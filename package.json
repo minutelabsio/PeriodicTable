@@ -1,0 +1,28 @@
+{
+    "name": "PeriodicTable",
+    "version": "0.0.1",
+    "description": "Periodic Table visualization",
+    "author": "Jasper Palfree <jasper@wellcaffeinated.net>",
+    "contributors": [
+        {
+            "name": "Jasper Palfree",
+            "email": "jasper@wellcaffeinated.net"
+        }
+    ],
+    "main": null,
+    "dependencies": {},
+    "devDependencies": {
+        "prompt": "*",
+        "http-server": "*",
+        "grunt": "*",
+        "grunt-bg-shell": "*",
+        "grunt-contrib-clean": "*",
+        "grunt-contrib-copy": "*",
+        "grunt-contrib-jshint": "*",
+        "grunt-img": "*",
+        "grunt-contrib-requirejs": "*",
+        "grunt-contrib-compass": "*"
+    },
+    "bundledDependencies": [],
+    "license": "MIT"
+}

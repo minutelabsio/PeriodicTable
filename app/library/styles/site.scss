@@ -1,0 +1,121 @@
+$sansFontFamily:        'Karla', "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$serifFontFamily:       Georgia, "Times New Roman", Times, serif !default;
+$monoFontFamily:        Menlo, Consolas, "Courier New", monospace !default;
+
+$textColor:             #444;
+$headingsColor:         #222;
+
+$linkColor:             #08c !default;
+$linkColorHover:        darken($linkColor, 15%) !default;
+
+$base-font-size: 16px;
+$base-line-height: 24px;
+
+$phi: 1.61803398875;
+
+@import "vendor/_compass_twitter_bootstrap";
+@import "vendor/_compass_twitter_bootstrap_responsive";
+
+@import "compass/css3";
+@import "compass/typography";
+
+#viewport {
+
+}
+
+#site-header {
+    background: #333;
+    color: #fafafa;
+
+    padding: 0.5em 1em;
+
+    h1 {
+        display: inline-block;
+        margin: 0;
+        margin-right: 1em;
+        font-size: 1em;
+        color: #fafafa;
+    }
+
+    a {
+        color: #fafafa;
+    }
+
+    ul, ul > li {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    ul {
+        display: inline-block;
+    }
+
+    ul > li {
+        display: inline-block;
+        margin-right: 1em;
+    }
+}
+
+#periodic-table {
+    position: absolute;
+    top: 55px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 40px 30px;
+    overflow: auto;
+
+    .contents {
+        position: relative;
+        margin: auto;
+    }
+}
+
+.element {
+    font-size: 30px;
+    width: 2em;
+    height: 2.8em;
+    border: 1px solid rgba(127,255,255,0.25);
+    text-align: center;
+    cursor: pointer;
+    background: #333;
+}
+
+.element:hover {
+    outline: 1px solid rgba(0,255,255,0.75);
+}
+
+.element .number {
+    position: absolute;
+    top: 0.2em;
+    right: 0.5em;
+    font-size: 12px;
+    color: rgba(0,255,255,0.6);
+}
+
+.element .symbol {
+    position: absolute;
+    top: 1em;
+    left: 0px;
+    right: 0px;
+    font-weight: bold;
+    font-family: serif;
+    color: rgba(255,255,255,0.75);
+    
+    -webkit-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.15));
+    -moz-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.15));
+    -o-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.15));
+    -ms-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.15));
+    filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.15));
+}
+
+.element .details {
+    position: absolute;
+    bottom: .2em;
+    left: 0px;
+    right: 0px;
+    font-size: 10px;
+    color: rgba(127,255,255,0.6);
+    text-rendering: optimizeLegibility;
+}
