@@ -13,21 +13,78 @@ $base-line-height: 24px;
 
 $phi: 1.61803398875;
 
-@import "vendor/_compass_twitter_bootstrap";
-@import "vendor/_compass_twitter_bootstrap_responsive";
+// @import "vendor/_compass_twitter_bootstrap";
+// @import "vendor/_compass_twitter_bootstrap_responsive";
 
+@import "compass/reset";
 @import "compass/css3";
 @import "compass/typography";
+
+* {
+    @include box-sizing( border-box );
+}
+
+body {
+    font: 100%/1.2 $sansFontFamily;
+}
+
+button {
+    margin: 0;
+}
+
+.toggler {
+
+    font-size: 1em;
+    margin: 0.5em 0;
+
+    button {
+        background: #333;
+        color: #aff;
+        cursor: pointer;
+        padding: 0.5em 1em 0.7em;
+        border: 1px solid rgba(0, 255, 255, 0.4);
+        @include transition( all 0.3s ease-out );
+
+        &:first-child {
+            border-left-width: 1px;
+            @include border-radius( 4px 0 0 4px );
+        }
+        &:last-child {
+            @include border-radius( 0 4px 4px 0 );
+        }
+
+        &:hover {
+            border-color: rgba(0, 255, 255, 0.8);
+        }
+
+        &:active {
+            // color: yellow;
+        }
+
+        &.on {
+            color: #222;
+            background: rgba(0, 255, 255, 0.8);
+            border-color: rgba(0, 255, 255, 0.8);
+        }
+    }
+}
 
 #viewport {
 
 }
 
 #site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 54px;
     background: #333;
     color: #fafafa;
+    z-index: 2;
 
     padding: 0.5em 1em;
+    @include box-shadow( 0px 2px 7px rgba(0,0,0,0.5) );
 
     h1 {
         display: inline-block;
@@ -57,18 +114,89 @@ $phi: 1.61803398875;
     }
 }
 
+$sidebarWidth: 300px;
+
+#sidebar {
+    position: fixed;
+    left: -($sidebarWidth - 32px);
+    top: 54px;
+    bottom: 0;
+    width: $sidebarWidth;
+    background: #333;
+    color: #fafafa;
+    padding: 1em;
+    z-index: 3;
+    @include box-shadow( 1px 4px 7px rgba(0,0,0,0.5) );
+    @include transition( transform 0.3s ease-out );
+
+    .reveal & {
+        @include translate( $sidebarWidth - 32px, 0 );
+    }
+
+    .ctrl-toggle {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 32px;
+        background: rgba(0,255,255,0.05);
+        border: none;
+        color: #fafafa;
+        text-indent: -9999em;
+        overflow: hidden;
+
+        @include transition( background 0.3s ease-out );
+
+        &:hover {
+            background: rgba(0,255,255,0.6);
+        }
+
+        &:after {
+            position: relative;
+            left: 5px;
+            content: '';
+            text-indent: 0;
+            display: block;
+            border: 10px solid transparent;
+            border-left-color: #fafafa;
+        }
+
+        .reveal &:after {
+            left: -5px;
+            border-left-color: transparent;
+            border-right-color: #fafafa;
+        }
+    }
+}
+
 #periodic-table {
     position: absolute;
-    top: 55px;
-    left: 0;
+    top: 54px;
+    left: 32px;
     right: 0;
     bottom: 0;
-    padding: 40px 30px;
     overflow: auto;
+    background: #fff;
+    z-index: 1;
+    padding-right: 0;
 
     .contents {
         position: relative;
-        margin: auto;
+        margin: 40px;
+        padding-right: 40px;
+
+        @include box-sizing( content-box );
+
+        @include transform( translateZ(0) );
+        @include transition( width 0.3s ease-out );
+    }
+
+    @include transition( left 0.3s ease-out );
+
+    .reveal & {
+        left: $sidebarWidth;
+        // @include translate($sidebarWidth - 32px, 0);
+        // padding-right: $sidebarWidth;
     }
 }
 
@@ -79,43 +207,51 @@ $phi: 1.61803398875;
     border: 1px solid rgba(127,255,255,0.25);
     text-align: center;
     cursor: pointer;
-    background: #333;
-}
-
-.element:hover {
-    outline: 1px solid rgba(0,255,255,0.75);
-}
-
-.element .number {
-    position: absolute;
-    top: 0.2em;
-    right: 0.5em;
-    font-size: 12px;
-    color: rgba(0,255,255,0.6);
-}
-
-.element .symbol {
-    position: absolute;
-    top: 1em;
-    left: 0px;
-    right: 0px;
-    font-weight: bold;
-    font-family: serif;
-    color: rgba(255,255,255,0.75);
     
-    -webkit-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.15));
-    -moz-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.15));
-    -o-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.15));
-    -ms-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.15));
-    filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.15));
-}
+    @include transition( transform 0.5s ease-in-out );
 
-.element .details {
-    position: absolute;
-    bottom: .2em;
-    left: 0px;
-    right: 0px;
-    font-size: 10px;
-    color: rgba(127,255,255,0.6);
-    text-rendering: optimizeLegibility;
+    .inner {
+        background: #333;
+        width: 100%;
+        height: 100%;
+        @include transition( background-color 0.3s ease-out );
+    }
+    
+    &:hover .inner {
+        background: rgba(50, 0, 0, 1);
+    }
+    
+    .number {
+        position: absolute;
+        top: 0.4em;
+        right: 0.5em;
+        font-size: 12px;
+        color: rgba(0,255,255,0.6);
+    }
+
+    .symbol {
+        position: absolute;
+        top: 0.75em;
+        left: 0px;
+        right: 0px;
+        font-weight: bold;
+        font-family: serif;
+        color: rgba(255,255,255,0.75);
+        
+        -webkit-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.15));
+           -moz-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.15));
+            -ms-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.15));
+             -o-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.15));
+                filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.15));
+    }
+
+    .details {
+        position: absolute;
+        bottom: .4em;
+        left: 0px;
+        right: 0px;
+        font-size: 10px;
+        color: rgba(127,255,255,0.6);
+        text-rendering: optimizeLegibility;
+    }
 }

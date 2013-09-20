@@ -16,6 +16,22 @@ define(
 
         'use strict';
 
+        $.fn.toggler = function(){
+            return this.each(function(){
+
+                var $root = $(this);
+
+                $root.on('click', 'button', function(){
+                    var $this = $(this);
+                    $root.find('button').removeClass('on');
+                    $this.addClass('on');
+                    $root.data('value', $this.data('value') || $this.text());
+                    $root.trigger('change', $root.data('value'));
+                    return false;
+                });
+            });
+        };
+
         /**
          * Page-level Mediator
          * @module Main
@@ -53,6 +69,12 @@ define(
                 var self = this;
                 self.on('domready', self.onDomReady);
 
+                $(document).on('click', '.ctrl-toggle', function(){
+
+                    self.el.toggleClass('reveal');
+                    
+                    return false;
+                });
             },
 
             /**
@@ -93,7 +115,14 @@ define(
             onDomReady : function(){
 
                 var self = this;
+                self.el = $('#main');
+                self.controls = $('#sidebar');
 
+                $('.toggler').toggler();
+
+                $('.ctrl-table-style').on('change', function(e, val){
+                    self.periodicTable.setTableStyle( val );
+                });
             }
 
         });

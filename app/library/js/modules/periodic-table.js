@@ -3,12 +3,14 @@ define(
         'jquery',
         'stapes',
         'json!data/short-table.json',
+        'json!data/long-table.json',
         'tpl!templates/element.tpl'
     ],
     function(
         $,
         Stapes,
         shortTable,
+        longTable,
         tplElement
     ) {
 
@@ -17,7 +19,8 @@ define(
         var defaults = {
             el: 'body',
             elementWidth: 70,
-            elementHeight: 90
+            elementHeight: 90,
+            style: 'short'
         };
 
         /**
@@ -62,6 +65,22 @@ define(
                 });
             },
 
+            setTableStyle: function( style ){
+
+                var self = this;
+
+                style = style && style.toLowerCase();
+
+                if (style === 'long'){
+
+                    self.setData( longTable );
+
+                } else {
+
+                    self.setData( shortTable );
+                }
+            },
+
             renderElement: function( element, data ){
 
                 var self = this
@@ -71,15 +90,31 @@ define(
                     ;
 
                 if (nodes[ element ]){
-                    nodes[ element ].remove();
+
+                    el = nodes[ element ].html( $(tplElement.render( data )).html() );
+
+                } else {
+
+                    el = nodes[ element ] = $(tplElement.render( data )).appendTo( contents );
                 }
 
-                el = nodes[ element ] = $(tplElement.render( data )).appendTo( contents );
-                el.css({
-                    position: 'absolute',
-                    left: data.col * self.options.elementWidth,
-                    top: data.row * self.options.elementHeight
-                });
+                if (window.Modernizr && window.Modernizr.csstransforms){
+
+                    el.css({
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        transform: 'translate(' + data.col * self.options.elementWidth + 'px,' + data.row * self.options.elementHeight + 'px)'
+                    });
+
+                } else {
+
+                    el.css({
+                        position: 'absolute',
+                        left: data.col * self.options.elementWidth,
+                        top: data.row * self.options.elementHeight
+                    });
+                }
             },
 
             setData: function( table ){
@@ -91,8 +126,6 @@ define(
                     ,rows = 0
                     ,cols = 0
                     ;
-
-                contents.detach();
 
                 for ( var i = 0; i < table.length; i++ ) {
                     
@@ -116,7 +149,6 @@ define(
                     width: cols * self.options.elementWidth,
                     height: rows * self.options.elementHeight
                 });
-                self.el.append( contents );
             },
 
             /**
@@ -129,8 +161,9 @@ define(
 
                 self.el = $(self.options.el);
                 self.contents = $('<div>').addClass('contents');
-                
-                self.setData( shortTable );
+
+                self.setTableStyle( self.options.style );
+                self.el.append( self.contents );
 
                 this.ready.resolve();
             }
