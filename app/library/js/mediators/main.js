@@ -96,7 +96,7 @@ define(
 
                 self.on({
                     'change:temperature': function( T ){
-                        console.log(T)
+                        self.controls.find('.temperature-display').text( T );
                     }
                 });
             },
@@ -118,9 +118,13 @@ define(
                 .navigate({
                     path: 'mag',
                     directions: function(params) {
+
+                        if (self.logic){
+                            self.logic.cleanup();
+                        }
                         
                         require(['./mag'], function( mag ){
-                            mag.init( self.periodicTable );
+                            self.logic = mag( self, self.periodicTable );
                         });
                     }
                 })

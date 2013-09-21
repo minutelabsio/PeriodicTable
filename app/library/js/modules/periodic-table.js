@@ -79,11 +79,12 @@ define(
 
                     self.renderElement( element, data );
                 });
+            },
 
-                self.on('mutage:highlight', function( vals ){
+            setState: function( state ){
+                var self = this;
 
-                    self.el.removeClass( vals.oldValue ).addClass( vals.newValue );
-                });
+                self.el.removeClass('magnetic state').addClass( state );
             },
 
             showMagneticResponse: function( temp ){
@@ -94,7 +95,7 @@ define(
                     ,nodes = self.nodes
                     ;
 
-                self.set('highlight', 'magnetic');
+                self.setState( 'magnetic' );
 
                 // set overrides for temperature dependent magnetic response
                 _.each(magneticResponders, function( elem, symbol ){
@@ -106,7 +107,7 @@ define(
                     // ferromagnetic below Tc
                     mode = ( elem.mag.Tc && temp <= elem.mag.Tc )? 'ferro' : mode;
 
-                    $el.removeClass('anti para ferro dia').addClass( mode );
+                    $el && $el.removeClass('anti para ferro dia').addClass( mode );
                 });
             },
 

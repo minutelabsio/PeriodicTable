@@ -256,13 +256,17 @@ $sidebarWidth: 300px;
     $highlight: rgba(0, 255, 255, 1),
     $link: rgba(0, 255, 255, 1),
     $elementText: rgba(255, 255, 255, 0.75),
-    $diaColor: red,
-    $paraColor: green,
-    $antiColor: blue,
-    $ferroColor: orange
+    $diaColor: rgb(64, 11, 66),
+    $paraColor: rgb(11, 94, 0),
+    $antiColor: rgb(10, 0, 129),
+    $ferroColor: rgb(102, 0, 0)
 ){
 
 $magColors: dia $diaColor, para $paraColor, anti $antiColor, ferro $ferroColor;
+
+body {
+    background: $background;
+}
 
 .toggler {
 
@@ -340,11 +344,16 @@ $magColors: dia $diaColor, para $paraColor, anti $antiColor, ferro $ferroColor;
     
     .inner {
         background: #333;
-        @include transition( background-color 0.3s ease-out );
+        outline: 1px solid transparent;
+        @include transition( background-color 0.3s ease-out, outline-color 0.3s ease-out );
     }
     
     &:hover .inner {
-        background: rgba(50, 0, 0, 1);
+        .symbol {
+            color: $highlight;
+        }
+
+        outline-color: $highlight;
     }
     
     .number {
@@ -353,6 +362,7 @@ $magColors: dia $diaColor, para $paraColor, anti $antiColor, ferro $ferroColor;
 
     .symbol {
         color: $elementText;
+        @include transition( color 0.3s ease-out );
     }
 
     .details {
@@ -361,9 +371,14 @@ $magColors: dia $diaColor, para $paraColor, anti $antiColor, ferro $ferroColor;
         word-wrap: break-word;
         line-height: 1;
     }
+}
 
+#periodic-table.magnetic {
     @each $type in $magColors {
-        &[data-magnetic-order="#{nth($type, 1)}"] .inner {
+        [data-magnetic-order="#{nth($type, 1)}"] > .inner {
+            background: nth($type, 2);
+        }
+        .element.#{nth($type, 1)} > .inner {
             background: nth($type, 2);
         }
     }
