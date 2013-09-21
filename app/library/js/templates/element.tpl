@@ -1,7 +1,7 @@
-<div class="element">
+<div class="element" data-magnetic-order="{{=it.mag.type || 'unknown'}}">
     <div class="inner">
         <div class="number">{{=it.number}}</div>
-        <div class="symbol">{{=it.symbol}}</div>
+        <abbr title="{{=it.name}}" class="symbol">{{=it.symbol}}</abbr>
         <div class="details">
             {{=it.name}}
             <!--<br/>{{=it.mass}}-->

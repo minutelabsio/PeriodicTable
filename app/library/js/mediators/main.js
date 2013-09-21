@@ -19,9 +19,13 @@ define(
         $.fn.toggler = function(){
             return this.each(function(){
 
-                var $root = $(this);
+                var $root = $(this)
+                    ,$selected = $root.find('.on:first') || $root.find('button:first')
+                    ;
 
-                $root.on('click', 'button', function(){
+                $root.data('value', $selected.data('value') || $selected.text());
+
+                $root.on('click', 'button:not(.on)', function(){
                     var $this = $(this);
                     $root.find('button').removeClass('on');
                     $this.addClass('on');
@@ -69,11 +73,31 @@ define(
                 var self = this;
                 self.on('domready', self.onDomReady);
 
-                $(document).on('click', '.ctrl-toggle', function(){
+                $(document)
+                    .on('click', '.ctrl-toggle', function(){
 
-                    self.el.toggleClass('reveal');
-                    
-                    return false;
+                        self.el.toggleClass('reveal');
+                        
+                        return false;
+                    })
+                    .on('change', '.ctrl-table-style', function(e, val){
+                        self.periodicTable.setTableStyle( val );
+                    })
+                    .on('change', '.ctrl-table-size', function(e, val){
+                        self.periodicTable.el.toggleClass( 'mini-table', val );
+                    })
+                    .on('change', '.ctrl-temperature', function(){
+
+                        var temp = $(this).val();
+
+                        self.set('temperature', temp);
+                    })
+                    ;
+
+                self.on({
+                    'change:temperature': function( T ){
+                        console.log(T)
+                    }
                 });
             },
 
@@ -119,10 +143,6 @@ define(
                 self.controls = $('#sidebar');
 
                 $('.toggler').toggler();
-
-                $('.ctrl-table-style').on('change', function(e, val){
-                    self.periodicTable.setTableStyle( val );
-                });
             }
 
         });

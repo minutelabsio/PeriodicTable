@@ -2,25 +2,41 @@ define(
     [
         'jquery',
         'stapes',
+        'lodash',
         'json!data/short-table.json',
         'json!data/long-table.json',
+        'json!data/physical-properties.json',
         'tpl!templates/element.tpl'
     ],
     function(
         $,
         Stapes,
+        _,
         shortTable,
         longTable,
+        physicalProperties,
         tplElement
     ) {
 
         'use strict';
 
+
+        var magneticResponders = _.omit(physicalProperties, function( props ){
+            return !(props.mag.Tc || props.mag.Tn);
+        });
+
+        _.each(magneticResponders, function(val){
+            if (val.mag.Tc && val.mag.Tn && val.mag.Tc >= val.mag.Tn){
+                window.console.warn('Found Tc >= Tn for '+val.name, val);
+            }
+        });
+
         var defaults = {
             el: 'body',
             elementWidth: 70,
             elementHeight: 90,
-            style: 'short'
+            fontSize: 30,
+            style: 'long'
         };
 
         /**
@@ -63,6 +79,35 @@ define(
 
                     self.renderElement( element, data );
                 });
+
+                self.on('mutage:highlight', function( vals ){
+
+                    self.el.removeClass( vals.oldValue ).addClass( vals.newValue );
+                });
+            },
+
+            showMagneticResponse: function( temp ){
+
+                var self = this
+                    ,elem
+                    ,mode
+                    ,nodes = self.nodes
+                    ;
+
+                self.set('highlight', 'magnetic');
+
+                // set overrides for temperature dependent magnetic response
+                _.each(magneticResponders, function( elem, symbol ){
+
+                    var $el = nodes[ symbol ];
+                    
+                    // antiferromagnetic below Tn
+                    mode = ( elem.mag.Tn && temp <= elem.mag.Tn )? 'anti' : 'para';
+                    // ferromagnetic below Tc
+                    mode = ( elem.mag.Tc && temp <= elem.mag.Tc )? 'ferro' : mode;
+
+                    $el.removeClass('anti para ferro dia').addClass( mode );
+                });
             },
 
             setTableStyle: function( style ){
@@ -87,6 +132,10 @@ define(
                     ,nodes = self.nodes
                     ,contents = self.contents
                     ,el
+                    ,fontSize = self.options.fontSize
+                    ,toEm = function( px ){
+                        return px / fontSize;
+                    }
                     ;
 
                 if (nodes[ element ]){
@@ -104,15 +153,15 @@ define(
                         position: 'absolute',
                         top: 0,
                         left: 0,
-                        transform: 'translate(' + data.col * self.options.elementWidth + 'px,' + data.row * self.options.elementHeight + 'px)'
+                        transform: 'translate(' + toEm(data.col * self.options.elementWidth) + 'em,' + toEm(data.row * self.options.elementHeight) + 'em)'
                     });
 
                 } else {
 
                     el.css({
                         position: 'absolute',
-                        left: data.col * self.options.elementWidth,
-                        top: data.row * self.options.elementHeight
+                        left: toEm(data.col * self.options.elementWidth)+'em',
+                        top: toEm(data.row * self.options.elementHeight)+'em'
                     });
                 }
             },
@@ -130,17 +179,15 @@ define(
                 for ( var i = 0; i < table.length; i++ ) {
                     
                     entry = table[ i ];
-                    data = {
+                    data = $.extend({
                         number: (i + 1),
                         symbol: entry[ 0 ],
-                        name: entry[ 1 ],
-                        mass: entry[ 2 ],
-                        col: (entry[ 3 ] - 1),
-                        row: (entry[ 4 ] - 1)
-                    };
+                        col: (entry[ 1 ] - 1),
+                        row: (entry[ 2 ] - 1)
+                    }, physicalProperties[ entry[0] ]);
 
-                    cols = Math.max( cols, entry[ 3 ] );
-                    rows = Math.max( rows, entry[ 4 ] );
+                    cols = Math.max( cols, entry[ 1 ] );
+                    rows = Math.max( rows, entry[ 2 ] );
 
                     self.set( entry[ 0 ], data );
                 }

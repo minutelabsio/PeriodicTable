@@ -10,6 +10,8 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- font -->
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Oxygen+Mono' rel='stylesheet' type='text/css'>
   <!-- css -->
   <link rel="stylesheet" href="library/styles/site.css" />
 
@@ -27,14 +29,27 @@
       </ul>
     </header>
     <div id="main">
-      <div id="periodic-table"></div>
+      <div id="periodic-table">
+        <div id="video-area">
+          <iframe width="560" height="315" src="//www.youtube.com/embed/qyi5SvPlMXc" frameborder="0" allowfullscreen></iframe>
+        </div>
+        
+      </div>
       <div id="sidebar">
 
-        <h2>Table Style</h2>
+        <h2 class="title">Table Style</h2>
         <div class="toggler ctrl-table-style">
-          <button class="on">Short</button>
-          <button>Long</button>
+          <button>Short</button>
+          <button class="on">Long</button>
         </div>
+
+        <div class="toggler ctrl-table-size">
+          <button>Mini</button>
+          <button class="on">Big</button>
+        </div>
+
+        <h2 class="title">Temperature</h2>
+        <input type="range" class="ctrl-temperature" style="width: 80px; height: 460px; -webkit-appearance: slider-vertical;" min="0" max="5000" step="5"/>
 
         <button class="ctrl-toggle">toggle sidebar</button>
       </div>

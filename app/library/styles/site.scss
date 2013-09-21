@@ -1,20 +1,6 @@
-$sansFontFamily:        'Karla', "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$sansFontFamily:        'Droid Sans', 'Karla', "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 $serifFontFamily:       Georgia, "Times New Roman", Times, serif !default;
-$monoFontFamily:        Menlo, Consolas, "Courier New", monospace !default;
-
-$textColor:             #444;
-$headingsColor:         #222;
-
-$linkColor:             #08c !default;
-$linkColorHover:        darken($linkColor, 15%) !default;
-
-$base-font-size: 16px;
-$base-line-height: 24px;
-
-$phi: 1.61803398875;
-
-// @import "vendor/_compass_twitter_bootstrap";
-// @import "vendor/_compass_twitter_bootstrap_responsive";
+$monoFontFamily:        'Oxygen Mono', "Courier New", monospace !default;
 
 @import "compass/reset";
 @import "compass/css3";
@@ -25,11 +11,16 @@ $phi: 1.61803398875;
 }
 
 body {
-    font: 100%/1.2 $sansFontFamily;
+    font: 100%/1.2 $monoFontFamily;
 }
 
 button {
     margin: 0;
+    font-family: $monoFontFamily;
+}
+
+#viewport {
+
 }
 
 .toggler {
@@ -38,13 +29,11 @@ button {
     margin: 0.5em 0;
 
     button {
-        background: #333;
-        color: #aff;
         cursor: pointer;
-        padding: 0.5em 1em 0.7em;
-        border: 1px solid rgba(0, 255, 255, 0.4);
-        @include transition( all 0.3s ease-out );
-
+        padding: 0.7em 1em 0.7em;
+        font-size: 14px;
+        width: 8em;
+        
         &:first-child {
             border-left-width: 1px;
             @include border-radius( 4px 0 0 4px );
@@ -52,25 +41,7 @@ button {
         &:last-child {
             @include border-radius( 0 4px 4px 0 );
         }
-
-        &:hover {
-            border-color: rgba(0, 255, 255, 0.8);
-        }
-
-        &:active {
-            // color: yellow;
-        }
-
-        &.on {
-            color: #222;
-            background: rgba(0, 255, 255, 0.8);
-            border-color: rgba(0, 255, 255, 0.8);
-        }
     }
-}
-
-#viewport {
-
 }
 
 #site-header {
@@ -79,8 +50,6 @@ button {
     left: 0;
     right: 0;
     height: 54px;
-    background: #333;
-    color: #fafafa;
     z-index: 2;
 
     padding: 0.5em 1em;
@@ -91,11 +60,6 @@ button {
         margin: 0;
         margin-right: 1em;
         font-size: 1em;
-        color: #fafafa;
-    }
-
-    a {
-        color: #fafafa;
     }
 
     ul, ul > li {
@@ -122,13 +86,14 @@ $sidebarWidth: 300px;
     top: 54px;
     bottom: 0;
     width: $sidebarWidth;
-    background: #333;
-    color: #fafafa;
     padding: 1em;
     z-index: 3;
     @include box-shadow( 1px 4px 7px rgba(0,0,0,0.5) );
-    @include transition( transform 0.3s ease-out );
 
+    .title {
+        margin: 1.5em 0 0.5em;
+    }
+    
     .reveal & {
         @include translate( $sidebarWidth - 32px, 0 );
     }
@@ -139,17 +104,9 @@ $sidebarWidth: 300px;
         right: 0;
         bottom: 0;
         width: 32px;
-        background: rgba(0,255,255,0.05);
         border: none;
-        color: #fafafa;
         text-indent: -9999em;
         overflow: hidden;
-
-        @include transition( background 0.3s ease-out );
-
-        &:hover {
-            background: rgba(0,255,255,0.6);
-        }
 
         &:after {
             position: relative;
@@ -169,6 +126,18 @@ $sidebarWidth: 300px;
     }
 }
 
+#video-area {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 235px;
+    overflow: visible;
+    padding: 12px 10px 6px;
+    @include border-radius( 0 0 5px 5px );
+    @include transform( translateZ(0) );
+    @include transition( left 0.3s ease-out );
+}
+
 #periodic-table {
     position: absolute;
     top: 54px;
@@ -176,19 +145,18 @@ $sidebarWidth: 300px;
     right: 0;
     bottom: 0;
     overflow: auto;
-    background: #fff;
     z-index: 1;
     padding-right: 0;
 
     .contents {
         position: relative;
-        margin: 40px;
+        margin: 110px 40px;
         padding-right: 40px;
 
         @include box-sizing( content-box );
 
         @include transform( translateZ(0) );
-        @include transition( width 0.3s ease-out );
+        @include transition( all 0.3s ease-out );
     }
 
     @include transition( left 0.3s ease-out );
@@ -204,21 +172,15 @@ $sidebarWidth: 300px;
     font-size: 30px;
     width: 2em;
     height: 2.8em;
-    border: 1px solid rgba(127,255,255,0.25);
+    border: 1px solid black;
     text-align: center;
     cursor: pointer;
     
     @include transition( transform 0.5s ease-in-out );
 
     .inner {
-        background: #333;
         width: 100%;
         height: 100%;
-        @include transition( background-color 0.3s ease-out );
-    }
-    
-    &:hover .inner {
-        background: rgba(50, 0, 0, 1);
     }
     
     .number {
@@ -226,7 +188,6 @@ $sidebarWidth: 300px;
         top: 0.4em;
         right: 0.5em;
         font-size: 12px;
-        color: rgba(0,255,255,0.6);
     }
 
     .symbol {
@@ -234,9 +195,8 @@ $sidebarWidth: 300px;
         top: 0.75em;
         left: 0px;
         right: 0px;
-        font-weight: bold;
-        font-family: serif;
-        color: rgba(255,255,255,0.75);
+        // font-weight: bold;
+        font-family: 'Droid Sans', sans-serif;
         
         -webkit-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.15));
            -moz-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.15));
@@ -251,7 +211,165 @@ $sidebarWidth: 300px;
         left: 0px;
         right: 0px;
         font-size: 10px;
-        color: rgba(127,255,255,0.6);
         text-rendering: optimizeLegibility;
+        word-wrap: break-word;
+        line-height: 1;
     }
 }
+
+#periodic-table.mini-table {
+
+    #video-area {
+        left: 140px;
+    }
+
+    .contents {
+        margin: 360px 100px;
+    }
+
+    .element {
+        font-size: 16px;
+
+        .symbol {
+            top: 1.1em;
+        }
+
+        .number {
+            top: auto;
+            top: 0.2em;
+            right: 0.25em;
+        }
+
+        .details {
+            display: none;
+        }
+    }
+}
+
+
+//////////////////////////////////
+// Site skins controlled by mixin
+// 
+@mixin site-skin(
+    $background: #333,
+    $text: #aff,
+    $highlight: rgba(0, 255, 255, 1),
+    $link: rgba(0, 255, 255, 1),
+    $elementText: rgba(255, 255, 255, 0.75),
+    $diaColor: red,
+    $paraColor: green,
+    $antiColor: blue,
+    $ferroColor: orange
+){
+
+$magColors: dia $diaColor, para $paraColor, anti $antiColor, ferro $ferroColor;
+
+.toggler {
+
+    button {
+        background: $background;
+        color: $text;
+        border: 1px solid rgba(0, 255, 255, 0.4);
+        @include transition( all 0.3s ease-out );
+
+        &:hover {
+            border-color: rgba(0, 255, 255, 0.8);
+        }
+
+        &:active {
+            // color: yellow;
+        }
+
+        &.on {
+            color: #222;
+            background: rgba(0, 255, 255, 0.8);
+            border-color: rgba(0, 255, 255, 0.8);
+        }
+    }
+}
+
+#site-header {
+    background: $background;
+    color: $text;
+    
+    h1 {
+        color: #fafafa;
+    }
+
+    a {
+        color: #fafafa;
+    }
+}
+
+#sidebar {
+    background: #333;
+    color: #0ff;
+    @include transition( transform 0.3s ease-out );
+
+    .ctrl-toggle {
+        background: transparentize($highlight, 1);
+        color: #fafafa;
+        
+        @include transition( background 0.3s ease-out );
+
+        &:hover {
+            background: transparentize($highlight, 0.4);
+        }
+
+        &:after {
+            border-left-color: #fafafa;
+        }
+
+        .reveal &:after {
+            border-right-color: #fafafa;
+        }
+    }
+}
+
+#video-area {
+    background: $background;
+    border: 1px solid darken($background, 10);
+}
+
+#periodic-table {
+    background: darken($background, 5);
+}
+
+.element {
+    border: 1px solid transparentize(lighten($highlight, 24), 0.75);
+    
+    .inner {
+        background: #333;
+        @include transition( background-color 0.3s ease-out );
+    }
+    
+    &:hover .inner {
+        background: rgba(50, 0, 0, 1);
+    }
+    
+    .number {
+        color: transparentize($highlight, 0.4);
+    }
+
+    .symbol {
+        color: $elementText;
+    }
+
+    .details {
+        color: transparentize(lighten($highlight, 24), 0.4);
+        text-rendering: optimizeLegibility;
+        word-wrap: break-word;
+        line-height: 1;
+    }
+
+    @each $type in $magColors {
+        &[data-magnetic-order="#{nth($type, 1)}"] .inner {
+            background: nth($type, 2);
+        }
+    }
+}
+
+}
+
+@include site-skin();
+

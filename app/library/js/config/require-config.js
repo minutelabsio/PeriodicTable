@@ -26,7 +26,10 @@ require.config({
         'stapes': 'vendor/stapes',
         
         // jQuery
-        'jquery': 'vendor/jquery'
+        'jquery': 'vendor/jquery',
+
+        // lodash
+        'lodash': 'vendor/lodash'
     },
 
     map: {
