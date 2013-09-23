@@ -178,6 +178,103 @@ $sidebarPeek: 40px;
         @include transition( all 0.3s ease-out );
     }
 
+    .info {
+        display: none;
+        width: 368px;
+        height: 222px;
+        padding: 1.6em 1.6em 1.6em 0;
+        overflow: hidden;
+        z-index: 3;
+        @include border-radius( 5px );
+
+        .symbol {
+            display: block;
+            width: 2.6em;
+            text-align: center;
+            float: left;
+            font-size: 60px;
+            font-family: 'Droid Sans', sans-serif;
+
+            &:after {
+                content: attr(title);
+                display: block;
+                margin-top: 1em;
+                font-size: 16px;
+                font-family: $monoFontFamily;
+            }
+        }
+
+        .above {
+            @include clearfix;
+            margin-bottom: 1em;
+        }
+
+        .details {
+            overflow: hidden;
+            padding-top: 1em;
+            font-size: 14px;
+
+            .line {
+                margin-bottom: 1em;
+                text-transform: capitalize;
+
+                div {
+                    display: inline-block;
+                    vertical-align: middle;
+                    text-align: center;
+                    width: 50%;
+                }
+
+                div:first-child {
+                    width: 40%;
+                    text-align: right;
+                }
+            }
+        }
+
+        .magnetic-response {
+            position: relative;
+            width: 100%;
+            text-align: center;
+
+            abbr {
+                position: relative;
+                z-index: 0;
+                display: inline-block;
+                width: 4.8em;
+                height: 2em;
+                margin-right: -0.65em;
+                padding: 0.5em 0;
+                background: black;
+                text-align: center;
+            }
+
+            data {
+                position: absolute;
+                bottom: -2em;
+                display: inline-block;
+                text-align: center;
+                width: 4em;
+                margin-left: -2em;
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    border-left: 1px solid black;
+                    top: -1em;
+                    left: 50%;
+                    margin-left: -1px;
+                    height: 1em;
+                    z-index: -1;
+                }
+            }
+
+            abbr.stp {
+                color: transparent !important;
+            }
+        }
+    }
+
     @include transition( left 0.3s ease-out );
 
     .reveal & {
@@ -233,6 +330,14 @@ $sidebarPeek: 40px;
         text-rendering: optimizeLegibility;
         word-wrap: break-word;
         line-height: 1;
+    }
+}
+
+#periodic-table {
+    .info {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
     }
 }
 
@@ -337,6 +442,10 @@ body {
             background: darken($background, 5);
         }
 
+        .reveal-video &.ctrl-toggle-video {
+            background: darken($background, 5);
+        }
+
         &:hover {
             background: darken($background, 10);
         }
@@ -354,6 +463,25 @@ body {
 
 #periodic-table {
     background: darken($background, 5);
+
+    .info {
+
+        background: $background;
+        color: $text;
+        border: 1px solid darken($background, 10);
+
+        .symbol {
+            color: $elementText;
+        }
+
+        .details {
+            color: darken(invert($background), 15);
+        }
+
+        .magnetic-response data:after {
+            border-color: $highlight;
+        }
+    }
 }
 
 .element {
@@ -395,6 +523,7 @@ body {
         [data-magnetic-order="#{nth($type, 1)}"] > .inner {
             background: nth($type, 2);
         }
+        .info abbr.#{nth($type, 1)},
         .element.#{nth($type, 1)} > .inner {
             background: nth($type, 2);
         }
