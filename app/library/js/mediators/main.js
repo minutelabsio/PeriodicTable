@@ -56,6 +56,8 @@ define(
                     el: '#periodic-table'
                 });
 
+                self.set('temperature', 273);
+
                 self.initRouter();
 
                 $(function(){
