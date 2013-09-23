@@ -56,10 +56,6 @@ define(
                     el: '#periodic-table'
                 });
 
-                self.set('temperature', 273);
-
-                self.initRouter();
-
                 $(function(){
                     self.emit('domready');
                 });
@@ -151,6 +147,9 @@ define(
                 var self = this;
                 self.el = $('#main');
                 self.controls = $('#sidebar');
+
+                self.set('temperature', self.controls.find('.ctrl-temperature').val());
+                self.initRouter();
 
                 $('.toggler').toggler();
             }
