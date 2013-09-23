@@ -84,6 +84,11 @@ define(
             setState: function( state ){
                 var self = this;
 
+                if ( self.ready.state() !== 'resolved' ){
+                    self.ready.then($.proxy(self.setState, self, state));
+                    return;
+                }
+
                 self.el.removeClass('magnetic state').addClass( state );
             },
 

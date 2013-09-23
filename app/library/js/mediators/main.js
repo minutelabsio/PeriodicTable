@@ -74,10 +74,14 @@ define(
                 self.on('domready', self.onDomReady);
 
                 $(document)
-                    .on('click', '.ctrl-toggle', function(){
+                    .on('click', '.ctrl-toggle-sidebar', function(){
 
                         self.el.toggleClass('reveal');
-                        
+                        return false;
+                    })
+                    .on('click', '.ctrl-toggle-video', function(){
+
+                        self.el.toggleClass('reveal-video');
                         return false;
                     })
                     .on('change', '.ctrl-table-style', function(e, val){

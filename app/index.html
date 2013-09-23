@@ -28,8 +28,8 @@
         <li><a href="#">About</a></li>
       </ul>
     </header>
-    <div id="main">
-      <div id="periodic-table">
+    <div id="main" class="reveal-video">
+      <div id="periodic-table" class="mini-table">
         <div id="video-area">
           <iframe width="560" height="315" src="//www.youtube.com/embed/qyi5SvPlMXc" frameborder="0" allowfullscreen></iframe>
         </div>
@@ -44,14 +44,17 @@
         </div>
 
         <div class="toggler ctrl-table-size">
-          <button>Mini</button>
-          <button class="on">Big</button>
+          <button class="on">Mini</button>
+          <button>Big</button>
         </div>
 
         <h2 class="title">Temperature: <data class="temperature-display">275</data>K</h2>
         <input type="range" class="ctrl-temperature" style="width: 80px; height: 460px; -webkit-appearance: slider-vertical;" min="0" max="2000" step="5" value="275"/>
 
-        <button class="ctrl-toggle">toggle sidebar</button>
+        <div class="peek-controls">
+          <button class="ctrl-toggle ctrl-toggle-sidebar" title="toggle settings">toggle settings</button>
+          <button class="ctrl-toggle ctrl-toggle-video" title="toggle video area">toggle video area</button>
+        </div>
       </div>
     </div>
   </div>
