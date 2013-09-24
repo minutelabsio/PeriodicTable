@@ -4,7 +4,9 @@ define(
         'jquery',
         'stapes',
         'satnav',
+        'popcorn',
         'modules/periodic-table',
+        'json!data/periodic-videos.json',
         'nouislider'
     ],
     function(
@@ -12,7 +14,9 @@ define(
         $,
         Stapes,
         Satnav,
+        Popcorn,
         PeriodicTable,
+        periodicVideos,
         _nouisl
     ) {
 
@@ -52,11 +56,12 @@ define(
             constructor : function(){
 
                 var self = this;
-                self.initEvents();
-
+                
                 self.periodicTable = PeriodicTable({
                     el: '#periodic-table'
                 });
+
+                self.initEvents();
 
                 $(function(){
                     self.emit('domready');
@@ -106,11 +111,27 @@ define(
                         $this.find('.noUi-handle').text( temp + 'K' );
                         self.set('temperature', temp);
                     })
+                    .on('click', '.ctrl-play-video', function(e){
+
+                        self.loadVideo( $(this).attr('href'), true );
+                        return false;
+                    })
                     ;
 
                 self.on({
                     'change:temperature': function( T ){
                         self.controls.find('.temperature-display').text( T );
+                    }
+                });
+
+                self.periodicTable.on('element', function( data ){
+
+                    var vidId = periodicVideos[ data.number - 1 ];
+
+                    if (vidId){
+
+                        // load and play video
+                        self.loadVideo('http://www.youtube.com/watch?v=' + vidId, true);
                     }
                 });
             },
@@ -168,6 +189,35 @@ define(
                 $('#loading-msg').hide();
             },
 
+            loadVideo: function( url, play ){
+
+                var self = this;
+                $('#original-video').remove();
+
+                if ( typeof url === 'string' ){
+
+                    if (url !== self.popcornUrl){
+                       
+                        if (self.popcorn){
+                            self.popcorn.destroy();
+                        }
+
+                        self.popcorn = Popcorn.youtube( '#video-area', url );
+                        self.popcornUrl = url;
+                    }
+
+                } else {
+
+                    play = url;
+                }
+
+                if (play){
+
+                    self.popcorn.play();
+                    self.el.addClass('reveal-video');
+                }
+            },
+
             /**
              * DomReady Callback
              * @return {void}
@@ -187,10 +237,15 @@ define(
                     }
                 }).trigger('change');
 
-                self.set('temperature', self.controls.find('.ctrl-temperature').val());
+                self.set('temperature', $('.ctrl-temperature').val());
                 self.initRouter();
 
                 $('.toggler').toggler();
+
+                setTimeout(function(){
+                    // reveal video after 1.5 seconds
+                    self.el.addClass('reveal-video');
+                }, 1500);
             }
 
         });

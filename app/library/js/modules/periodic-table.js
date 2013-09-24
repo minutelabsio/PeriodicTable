@@ -86,6 +86,15 @@ define(
 
                     self.el.on({
 
+                        click: function( e ){
+
+                            var id = $(this).data('id')
+                                ,data = self.get( id )
+                                ;
+
+                            self.emit('element', data);
+                        },
+
                         mouseenter: function( e ){
 
                             var id = $(this).data('id')

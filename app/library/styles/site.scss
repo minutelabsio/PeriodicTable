@@ -197,6 +197,11 @@ $sidebarPeek: 40px;
     @include transition( margin-left 0.3s ease-out );
 }
 
+#video-area {
+    width: 582px;
+    height: 339px;
+}
+
 #settings-area {
     width: 260px;
     margin-left: -260px;

@@ -5,6 +5,9 @@ require.config({
     
     shim: {
         // Add shims for things here
+        'popcorn': {
+            exports: 'Popcorn'
+        }
     },
 
     paths: {
@@ -30,7 +33,9 @@ require.config({
         'nouislider': 'vendor/jquery.nouislider.min',
 
         // lodash
-        'lodash': 'vendor/lodash'
+        'lodash': 'vendor/lodash',
+
+        'popcorn': 'vendor/popcorn-complete'
     },
 
     map: {
