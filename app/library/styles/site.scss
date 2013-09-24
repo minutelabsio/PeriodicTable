@@ -261,7 +261,7 @@ $sidebarPeek: 40px;
             &:after {
                 content: attr(title);
                 display: block;
-                margin-top: 1em;
+                margin-top: 0.8em;
                 font-size: 16px;
                 font-family: $monoFontFamily;
             }
@@ -448,7 +448,7 @@ $sidebarPeek: 40px;
 
 $magColors: dia $diaColor, para $paraColor, anti $antiColor, ferro $ferroColor;
 
-body {
+& {
     background: darken($background, 5);
 }
 
@@ -489,7 +489,7 @@ body {
         }
 
         &.on {
-            color: darken($background, 10);
+            color: mix($background, $highlight, 98);
             background: transparentize($highlight, 0.2);
             border-color: transparentize($highlight, 0.2);
         }
@@ -537,23 +537,25 @@ body {
         border: 2px solid $background;
         
         @include transition( background 0.3s ease-out );
-
-        .reveal &.ctrl-toggle-sidebar {
-            background: darken($background, 5);
-        }
-
-        .reveal-video &.ctrl-toggle-video {
-            background: darken($background, 5);
-        }
-
-        &:hover {
-            background: darken($background, 10);
-        }
-
-        &:active {
-            background: darken($background, 15);
-        }        
     }
+}
+
+.reveal #sidebar .ctrl-toggle-sidebar {
+    background: darken(mix($background, $highlight, 60), 5);
+}
+
+.reveal-video #sidebar .ctrl-toggle-video {
+    background: darken(mix($background, $highlight, 60), 5);
+}
+
+#sidebar .ctrl-toggle {
+    &:hover {
+        background: darken($background, 10);
+    }
+
+    &:active {
+        background: darken($background, 15);
+    }        
 }
 
 #video-area {
@@ -588,7 +590,7 @@ body {
     border: 1px solid transparentize(lighten($highlight, 24), 0.75);
     
     .inner {
-        background: #333;
+        background: $background;
         outline: 1px solid transparent;
         @include transition( background-color 0.3s ease-out, outline-color 0.3s ease-out );
     }
@@ -611,7 +613,7 @@ body {
     }
 
     .details {
-        color: transparentize(lighten($highlight, 24), 0.4);
+        color: transparentize(mix($highlight, $text, 5), 0.3);
         text-rendering: optimizeLegibility;
         word-wrap: break-word;
         line-height: 1;
@@ -632,5 +634,22 @@ body {
 
 }
 
-@include site-skin();
+body {
+    @include site-skin();
+}
+
+body.light-skin {
+    @include site-skin(
+        $background: #fff,
+        $text: #522,
+        $textHeading: #222,
+        $highlight: rgba(180, 0, 0, 1),
+        $link: rgba(200, 0, 0, 1),
+        $elementText: rgba(0, 0, 0, 0.75),
+        $diaColor: desaturate(lighten(rgb(124, 11, 66), 50), 40),
+        $paraColor: desaturate(lighten(rgb(11, 94, 0), 50), 40),
+        $antiColor: desaturate(lighten(rgb(10, 0, 129), 50), 40),
+        $ferroColor: desaturate(lighten(rgb(102, 0, 0), 50), 40)
+    );
+}
 
