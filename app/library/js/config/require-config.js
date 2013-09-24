@@ -27,6 +27,7 @@ require.config({
         
         // jQuery
         'jquery': 'vendor/jquery',
+        'nouislider': 'vendor/jquery.nouislider.min',
 
         // lodash
         'lodash': 'vendor/lodash'

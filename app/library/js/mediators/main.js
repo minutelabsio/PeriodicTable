@@ -4,14 +4,16 @@ define(
         'jquery',
         'stapes',
         'satnav',
-        'modules/periodic-table'
+        'modules/periodic-table',
+        'nouislider'
     ],
     function(
         require,
         $,
         Stapes,
         Satnav,
-        PeriodicTable
+        PeriodicTable,
+        _nouisl
     ) {
 
         'use strict';
@@ -73,13 +75,19 @@ define(
 
                 $(document)
                     .on('click', '.ctrl-toggle-sidebar', function(){
-
+                        var active = self.el.hasClass('reveal');
                         self.el.toggleClass('reveal');
+                        if (!active){
+                            self.el.removeClass('reveal-video');
+                        }
                         return false;
                     })
                     .on('click', '.ctrl-toggle-video', function(){
-
+                        var active = self.el.hasClass('reveal-video');
                         self.el.toggleClass('reveal-video');
+                        if (!active){
+                            self.el.removeClass('reveal');
+                        }
                         return false;
                     })
                     .on('change', '.ctrl-theme', function(e, val){
@@ -92,9 +100,10 @@ define(
                         self.periodicTable.el.toggleClass( 'mini-table', val );
                     })
                     .on('change', '.ctrl-temperature', function(){
-
-                        var temp = $(this).val();
-
+                        var $this = $(this)
+                            ,temp = $this.val() | 0
+                            ;
+                        $this.find('.noUi-handle').text( temp + 'K' );
                         self.set('temperature', temp);
                     })
                     ;
@@ -166,6 +175,15 @@ define(
                 var self = this;
                 self.el = $('#main');
                 self.controls = $('#sidebar');
+
+                $('.ctrl-temperature').noUiSlider({
+                    handles: 1,
+                    range: [0, 2000],
+                    start: [273],
+                    slide: function(){
+                        $(this).trigger('change');
+                    }
+                }).trigger('change');
 
                 self.set('temperature', self.controls.find('.ctrl-temperature').val());
                 self.initRouter();
