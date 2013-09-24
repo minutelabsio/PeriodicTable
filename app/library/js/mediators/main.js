@@ -153,6 +153,8 @@ define(
                 })
                 .go()
                 ;
+
+                $('#loading-msg').hide();
             },
 
             /**
