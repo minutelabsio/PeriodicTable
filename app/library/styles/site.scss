@@ -667,7 +667,12 @@ body.light-skin {
 }
 
 #viewport #periodic-table .contents {
-    background: image-url('big-logo.png') no-repeat 200px -20px;
+    background: image-url('wm-big-logo-inverse.png') no-repeat 200px -20px;
+    background-size: 260px;
+}
+
+.light-skin #viewport #periodic-table .contents {
+    background: image-url('wm-big-logo.png') no-repeat 200px -20px;
     background-size: 260px;
 }
 
