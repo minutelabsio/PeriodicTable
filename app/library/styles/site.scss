@@ -237,6 +237,10 @@ $sidebarPeek: 40px;
 
         @include border-radius( 5px );
     }
+
+    #disqus_thread {
+        margin-top: 3em;
+    }
 }
 
 #periodic-table {
@@ -360,7 +364,7 @@ $sidebarPeek: 40px;
 
 .element {
     font-size: 30px;
-    width: 2em;
+    width: 2.1em;
     height: 2.8em;
     border: 1px solid black;
     text-align: center;
@@ -425,7 +429,7 @@ $sidebarPeek: 40px;
         font-size: 16px;
 
         .symbol {
-            top: 1.1em;
+            top: 1.3em;
         }
 
         .number {
@@ -492,13 +496,14 @@ $sidebarPeek: 40px;
     $highlight: rgba(0, 255, 255, 1),
     $link: rgba(0, 255, 255, 1),
     $elementText: rgba(255, 255, 255, 0.75),
-    $diaColor: rgb(64, 11, 66),
-    $paraColor: rgb(11, 94, 0),
-    $antiColor: rgb(10, 0, 129),
-    $ferroColor: rgb(102, 0, 0)
+    $diaColor: blue,
+    $paraColor: rgb(120, 0, 0),
+    $paraColor2: black,
+    $antiColor: cyan,
+    $antiColor2: white,
+    $ferroColor: rgb(255, 0, 0),
+    $ferroColor2: black
 ){
-
-$magColors: dia $diaColor, para $paraColor, anti $antiColor, ferro $ferroColor;
 
 & {
     background: darken($background, 5);
@@ -634,8 +639,14 @@ $magColors: dia $diaColor, para $paraColor, anti $antiColor, ferro $ferroColor;
             color: darken(invert($background), 15);
         }
 
-        .magnetic-response data:after {
-            border-color: $highlight;
+        .magnetic-response {
+            abbr {
+                border: 1px solid mix(invert($background), $background, 30);
+            }
+
+            data:after {
+                border-color: $highlight;
+            }
         }
     }
 }
@@ -675,14 +686,84 @@ $magColors: dia $diaColor, para $paraColor, anti $antiColor, ferro $ferroColor;
 }
 
 #periodic-table.magnetic {
-    @each $type in $magColors {
-        [data-magnetic-order="#{nth($type, 1)}"] > .inner {
-            background: nth($type, 2);
+    
+    [data-magnetic-order="dia"] > .inner,
+    .info abbr.dia,
+    .element.dia > .inner {
+        background: $diaColor;
+    }
+
+    [data-magnetic-order="ferro"], 
+    .info abbr.ferro,
+    .element.ferro {
+        background: $ferroColor2;
+
+        &,
+        .inner > * {
+            color: invert($ferroColor2);
         }
-        .info abbr.#{nth($type, 1)},
-        .element.#{nth($type, 1)} > .inner {
-            background: nth($type, 2);
+
+        .inner {
+            background: none;
         }
+
+        &:after {
+            position: absolute;
+            top: 0;
+            z-index: -1;
+            content: "";
+            display: block;
+            height: 50%;
+            width: 100%;
+            background: $ferroColor;
+        }
+    }
+
+    [data-magnetic-order="anti"], 
+    .info abbr.anti,
+    .element.anti {
+        background: $antiColor2;
+        color: black;
+
+        &,
+        .inner > * {
+            color: invert($antiColor2);
+        }
+
+        .inner {
+            background: none;
+        }
+
+        &:after {
+            position: absolute;
+            top: 0;
+            z-index: -1;
+            content: "";
+            display: block;
+            height: 50%;
+            width: 100%;
+            background: $antiColor;
+        }
+    }
+
+    [data-magnetic-order="para"] .inner, 
+    .info abbr.para,
+    .element.para .inner {
+
+        &,
+        > * {
+            color: invert($paraColor2);
+        }
+        
+        @include background(
+            linear-gradient(45deg, $paraColor2 25%, transparent 25%, transparent), 
+            linear-gradient(-45deg, $paraColor2 25%, transparent 25%, transparent), 
+            linear-gradient(45deg, transparent 75%, $paraColor2 75%), 
+            linear-gradient(-45deg, transparent 75%, $paraColor2 75%)
+            );
+
+        background-color: $paraColor;
+        background-size: 50%;
     }
 }
 
@@ -705,21 +786,21 @@ $magColors: dia $diaColor, para $paraColor, anti $antiColor, ferro $ferroColor;
 } // mixin
 
 body {
-    @include site-skin();
+    @include site-skin(
+        $diaColor: saturate(darken(#C4D4E6, 55), 15)
+    );
 }
 
 body.light-skin {
     @include site-skin(
         $background: #fff,
-        $text: #522,
+        $text: #411,
         $textHeading: #222,
         $highlight: rgba(180, 0, 0, 1),
         $link: rgba(200, 0, 0, 1),
         $elementText: rgba(0, 0, 0, 0.75),
-        $diaColor: desaturate(lighten(rgb(124, 11, 66), 50), 40),
-        $paraColor: desaturate(lighten(rgb(11, 94, 0), 50), 40),
-        $antiColor: desaturate(lighten(rgb(10, 0, 129), 50), 40),
-        $ferroColor: desaturate(lighten(rgb(102, 0, 0), 50), 40)
+        $diaColor: #C4D4E6,
+        $antiColor2: #fafafa
     );
 }
 

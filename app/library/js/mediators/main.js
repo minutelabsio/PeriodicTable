@@ -139,6 +139,7 @@ define(
                         }
 
                         self.el.find('#about').hide();
+                        self.el.find('#slide-panel').show();
                         self.controls.show();
                         self.periodicTable.el.show();
                         
@@ -152,6 +153,7 @@ define(
                     directions: function(params) {
 
                         self.periodicTable.el.hide();
+                        self.el.find('#slide-panel').hide();
                         self.controls.hide();
                         self.el.find('#about').show();
                     }
