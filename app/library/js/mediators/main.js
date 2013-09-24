@@ -113,6 +113,7 @@ define(
                     })
                     .on('click', '.ctrl-play-video', function(e){
 
+                        window.location.hash = '#';
                         self.loadVideo( $(this).attr('href'), true );
                         return false;
                     })
