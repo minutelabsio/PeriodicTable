@@ -11,6 +11,7 @@ define(
         function Logic( mediator, pt ){
 
             this.callback = $.proxy(pt.showMagneticResponse, pt);
+            this.mediator = mediator;
 
             mediator.on({
                 'change:temperature': this.callback
@@ -22,7 +23,7 @@ define(
         Logic.prototype = {
             cleanup: function(){
 
-                mediator.off( 'change:temperature', this.callback );
+                this.mediator.off( 'change:temperature', this.callback );
             }
         };
 

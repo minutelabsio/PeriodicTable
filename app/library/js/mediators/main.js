@@ -123,11 +123,25 @@ define(
 
                         if (self.logic){
                             self.logic.cleanup();
+                            delete self.logic;
                         }
+
+                        self.el.find('#about').hide();
+                        self.controls.show();
+                        self.periodicTable.el.show();
                         
                         require(['./mag'], function( mag ){
                             self.logic = mag( self, self.periodicTable );
                         });
+                    }
+                })
+                .navigate({
+                    path: 'about',
+                    directions: function(params) {
+
+                        self.periodicTable.el.hide();
+                        self.controls.hide();
+                        self.el.find('#about').show();
                     }
                 })
                 .otherwise('mag') // will route all unmatched paths to #/mag
