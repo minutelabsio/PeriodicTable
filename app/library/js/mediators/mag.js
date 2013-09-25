@@ -17,6 +17,8 @@ define(
                 'change:temperature': this.callback
             });
 
+            mediator.temperatureRange([0, 2000]);
+
             pt.showMagneticResponse( mediator.get('temperature') );
         }
 

@@ -369,7 +369,8 @@ $headerHeight: 80px;
             }
         }
 
-        .magnetic-response {
+        .magnetic-response,
+        .state-response {
             display: none;
             position: relative;
             width: 100%;
@@ -379,7 +380,7 @@ $headerHeight: 80px;
                 position: relative;
                 z-index: 0;
                 display: inline-block;
-                width: 4.8em;
+                width: 4.9em;
                 height: 2em;
                 margin-right: -0.65em;
                 padding: 0.5em 0;
@@ -414,6 +415,10 @@ $headerHeight: 80px;
     }
 
     &.magnetic .info .magnetic-response {
+        display: block;
+    }
+
+    &.states .info .state-response {
         display: block;
     }
 }
@@ -518,7 +523,11 @@ $headerHeight: 80px;
     $antiColor: cyan,
     $antiColor2: white,
     $ferroColor: rgb(255, 0, 0),
-    $ferroColor2: black
+    $ferroColor2: black,
+
+    $gasColor: rgb(200, 226, 255),
+    $liquidColor: rgb(100, 227, 252),
+    $solidColor: #3F708B
 ){
 
 @include selecter($background, $text, $highlight);
@@ -781,6 +790,51 @@ $headerHeight: 80px;
         
         background: $paraColor image-url('para-texture-grey.png') no-repeat center 0;
         background-size: 180px;
+    }
+}
+
+#periodic-table.states {
+    
+    [data-state="gas"] > .inner,
+    .info abbr.gas,
+    .element.gas > .inner {
+        &,
+        > * {
+            @if (lightness($gasColor) < 50){
+                color: mix($text, white, 10);
+            } @else {
+                color: mix($text, black, 10);
+            }
+        }
+        background: $gasColor;
+    }
+
+    [data-state="liquid"] > .inner,
+    .info abbr.liquid,
+    .element.liquid > .inner {
+        &,
+        > * {
+            @if (lightness($liquidColor) < 50){
+                color: mix($text, white, 10);
+            } @else {
+                color: mix($text, black, 10);
+            }
+        }
+        background: $liquidColor;
+    }
+
+    [data-state="solid"] > .inner,
+    .info abbr.solid,
+    .element.solid > .inner {
+        &,
+        > * {
+            @if (lightness($solidColor) < 50){
+                color: mix($text, white, 10);
+            } @else {
+                color: mix($text, black, 10);
+            }
+        }
+        background: $solidColor;
     }
 }
 

@@ -33,6 +33,16 @@ define(
             }
         });
 
+        var stateResponders = _.omit(physicalProperties, function( props ){
+            return !(props.state.Tm || props.state.Tb);
+        });
+
+        _.each(stateResponders, function(val){
+            if (val.state.Tm && val.state.Tb && val.state.Tm >= val.state.Tb){
+                window.console.warn('Found Tm >= Tb for '+val.name, val);
+            }
+        });
+
         var defaults = {
             el: 'body',
             elementWidth: 70,
@@ -122,7 +132,7 @@ define(
                     return;
                 }
 
-                self.el.removeClass('magnetic state').addClass( state );
+                self.el.removeClass('magnetic states').addClass( state );
             },
 
             showStates: function( temp ){
@@ -135,18 +145,18 @@ define(
 
                 self.setState( 'states' );
 
-                // // set overrides for temperature dependent magnetic response
-                // _.each(magneticResponders, function( elem, symbol ){
+                // set overrides for temperature dependent magnetic response
+                _.each(stateResponders, function( elem, symbol ){
 
-                //     var $el = nodes[ symbol ];
+                    var $el = nodes[ symbol ];
                     
-                //     // antiferromagnetic below Tn
-                //     mode = ( elem.mag.Tn && temp <= elem.mag.Tn )? 'anti' : 'para';
-                //     // ferromagnetic below Tc
-                //     mode = ( elem.mag.Tc && temp <= elem.mag.Tc )? 'ferro' : mode;
+                    // liquid below Tb
+                    mode = ( elem.state.Tb && temp <= elem.state.Tb )? 'liquid' : 'gas';
+                    // solid below Tm
+                    mode = ( elem.state.Tm && temp <= elem.state.Tm )? 'solid' : mode;
 
-                //     $el && $el.removeClass('anti para ferro dia').addClass( mode );
-                // });
+                    $el && $el.removeClass('solid liquid gas').addClass( mode );
+                });
             },
 
             showMagneticResponse: function( temp ){

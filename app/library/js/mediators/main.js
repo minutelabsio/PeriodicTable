@@ -277,6 +277,21 @@ define(
                 }
             },
 
+            temperatureRange: function( range ){
+                var self = this;
+                var start = self.get( 'temperature' );
+                start = Math.min(start, range[1]);
+
+                self.temperatureSelector = $('.ctrl-temperature').empty().noUiSlider({
+                    handles: 1,
+                    range: range,
+                    start: [start],
+                    slide: function(){
+                        $(this).trigger('change');
+                    }
+                }).trigger('change');
+            },
+
             /**
              * DomReady Callback
              * @return {void}
@@ -288,16 +303,7 @@ define(
                 self.el = $('#main');
                 self.controls = $('#controls');
 
-                $('.ctrl-temperature').noUiSlider({
-                    handles: 1,
-                    range: [0, 2000],
-                    start: [273],
-                    slide: function(){
-                        $(this).trigger('change');
-                    }
-                }).trigger('change');
-
-                self.set('temperature', $('.ctrl-temperature').val());
+                self.set('temperature', 273);
                 
                 $('.toggler').toggler();
                 $('.selecter.fake').remove();

@@ -1,120 +1,1438 @@
 {
-    "H": { "name": "Hydrogen", "mass": "1.00794", "mag": { "type": "dia" } }, 
-    "He": { "name": "Helium", "mass": "4.002602", "mag": { "type": "dia" } }, 
-    "Li": { "name": "Lithium", "mass": "6.941", "mag": { "type": "para" } }, 
-    "Be": { "name": "Beryllium", "mass": "9.012182", "mag": { "type": "dia" } }, 
-    "B": { "name": "Boron", "mass": "10.811", "mag": { "type": "dia" } }, 
-    "C": { "name": "Carbon", "mass": "12.0107", "mag": { "type": "dia" } }, 
-    "N": { "name": "Nitrogen", "mass": "14.0067", "mag": { "type": "dia" } }, 
-    "O": { "name": "Oxygen", "mass": "15.9994", "mag": { "type": "para" } }, 
-    "F": { "name": "Fluorine", "mass": "18.9984032", "mag": { "type": false } }, 
-    "Ne": { "name": "Neon", "mass": "20.1797", "mag": { "type": "dia" } }, 
-    "Na": { "name": "Sodium", "mass": "22.98976...", "mag": { "type": "para" } }, 
-    "Mg": { "name": "Magnesium", "mass": "24.305", "mag": { "type": "para" } }, 
-    "Al": { "name": "Aluminium", "mass": "26.9815386", "mag": { "type": "para" } }, 
-    "Si": { "name": "Silicon", "mass": "28.0855", "mag": { "type": "dia" } }, 
-    "P": { "name": "Phosphorus", "mass": "30.973762", "mag": { "type": "dia" } }, 
-    "S": { "name": "Sulfur", "mass": "32.065", "mag": { "type": "dia" } }, 
-    "Cl": { "name": "Chlorine", "mass": "35.453", "mag": { "type": "dia" } }, 
-    "Ar": { "name": "Argon", "mass": "39.948", "mag": { "type": "dia" } }, 
-    "K": { "name": "Potassium", "mass": "39.948", "mag": { "type": false } }, 
-    "Ca": { "name": "Calcium", "mass": "40.078", "mag": { "type": "para" } }, 
-    "Sc": { "name": "Scandium", "mass": "44.955912", "mag": { "type": false } }, 
-    "Ti": { "name": "Titanium", "mass": "47.867", "mag": { "type": "para" } }, 
-    "V": { "name": "Vanadium", "mass": "50.9415", "mag": { "type": false } }, 
-    "Cr": { "name": "Chromium", "mass": "51.9961", "mag": { "type": "anti", "Tn": 311 } }, 
-    "Mn": { "name": "Manganese", "mass": "54.938045", "mag": { "type": "para", "Tn": 100 } }, 
-    "Fe": { "name": "Iron", "mass": "55.845", "mag": { "type": "ferro", "Tc": 1044 } }, 
-    "Co": { "name": "Cobalt", "mass": "58.933195", "mag": { "type": "ferro", "Tc": 1390 } }, 
-    "Ni": { "name": "Nickel", "mass": "58.6934", "mag": { "type": "ferro", "Tc": 630 } }, 
-    "Cu": { "name": "Copper", "mass": "63.546", "mag": { "type": "dia", "Tn": 60e-9 } }, 
-    "Zn": { "name": "Zinc", "mass": "65.38", "mag": { "type": "dia" } }, 
-    "Ga": { "name": "Gallium", "mass": "69.723", "mag": { "type": "dia" } }, 
-    "Ge": { "name": "Germanium", "mass": "72.63", "mag": { "type": "dia" } }, 
-    "As": { "name": "Arsenic", "mass": "74.9216", "mag": { "type": "dia" } }, 
-    "Se": { "name": "Selenium", "mass": "78.96", "mag": { "type": "dia" } }, 
-    "Br": { "name": "Bromine", "mass": "79.904", "mag": { "type": "dia" } }, 
-    "Kr": { "name": "Krypton", "mass": "83.798", "mag": { "type": "dia" } }, 
-    "Rb": { "name": "Rubidium", "mass": "85.4678", "mag": { "type": false } }, 
-    "Sr": { "name": "Strontium", "mass": "87.62", "mag": { "type": "para" } }, 
-    "Y": { "name": "Yttrium", "mass": "88.90585", "mag": { "type": false } }, 
-    "Zr": { "name": "Zirconium", "mass": "91.224", "mag": { "type": "para" } }, 
-    "Nb": { "name": "Niobium", "mass": "92.90628", "mag": { "type": false } }, 
-    "Mo": { "name": "Molybdenum", "mass": "95.96", "mag": { "type": "para" } }, 
-    "Tc": { "name": "Technetium", "mass": "(98)", "mag": { "type": false } }, 
-    "Ru": { "name": "Ruthenium", "mass": "101.07", "mag": { "type": "para" } }, 
-    "Rh": { "name": "Rhodium", "mass": "102.9055", "mag": { "type": "para" } }, 
-    "Pd": { "name": "Palladium", "mass": "106.42", "mag": { "type": "para" } }, 
-    "Ag": { "name": "Silver", "mass": "107.8682", "mag": { "type": "dia", "Tn": 560e-12 } }, 
-    "Cd": { "name": "Cadmium", "mass": "112.411", "mag": { "type": "dia" } }, 
-    "In": { "name": "Indium", "mass": "114.818", "mag": { "type": "dia" } }, 
-    "Sn": { "name": "Tin", "mass": "118.71", "mag": { "type": "para" } }, 
-    "Sb": { "name": "Antimony", "mass": "121.76", "mag": { "type": "dia" } }, 
-    "Te": { "name": "Tellurium", "mass": "127.6", "mag": { "type": "dia" } }, 
-    "I": { "name": "Iodine", "mass": "126.90447", "mag": { "type": false } }, 
-    "Xe": { "name": "Xenon", "mass": "131.293", "mag": { "type": "dia" } }, 
-    "Cs": { "name": "Caesium", "mass": "132.9054", "mag": { "type": false } }, 
-    "Ba": { "name": "Barium", "mass": "132.9054", "mag": { "type": "para" } }, 
-    "La": { "name": "Lanthanum", "mass": "138.90547", "mag": { "type": false } }, 
-    "Ce": { "name": "Cerium", "mass": "140.116", "mag": { "type": "para", "Tn": 13 } }, 
-    "Pr": { "name": "Praseodymium", "mass": "140.90765", "mag": { "type": false, "Tn": 25 } }, 
-    "Nd": { "name": "Neodymium", "mass": "144.242", "mag": { "type": "para", "Tn": 19.9 } }, 
-    "Pm": { "name": "Promethium", "mass": "(145)", "mag": { "type": false } }, 
-    "Sm": { "name": "Samarium", "mass": "150.36", "mag": { "type": "para", "Tn": 13.3 } }, 
-    "Eu": { "name": "Europium", "mass": "151.964", "mag": { "type": "para", "Tn": 91 } }, 
-    "Gd": { "name": "Gadolinium", "mass": "157.25", "mag": { "type": "ferro", "Tc": 291.8 } }, 
-    "Tb": { "name": "Terbium", "mass": "158.92535", "mag": { "type": "para", "Tc": 221, "Tn": 230 } }, 
-    "Dy": { "name": "Dysprosium", "mass": "162.5", "mag": { "type": "para", "Tc": 92.1, "Tn": 180.2 } }, 
-    "Ho": { "name": "Holmium", "mass": "164.93032", "mag": { "type": "para", "Tc": 20, "Tn": 132.245 } }, 
-    "Er": { "name": "Erbium", "mass": "167.259", "mag": { "type": "para", "Tc": 18.74, "Tn": 85.7 } }, 
-    "Tm": { "name": "Thulium", "mass": "168.93421", "mag": { "type": "para", "Tc": 32, "Tn": 56 } }, 
-    "Yb": { "name": "Ytterbium", "mass": "173.054", "mag": { "type": false } }, 
-    "Lu": { "name": "Lutetium", "mass": "174.9668", "mag": { "type": false } }, 
-    "Hf": { "name": "Hafnium", "mass": "178.49", "mag": { "type": false } }, 
-    "Ta": { "name": "Tantalum", "mass": "180.94788", "mag": { "type": false } }, 
-    "W": { "name": "Tungsten", "mass": "183.84", "mag": { "type": "para" } }, 
-    "Re": { "name": "Rhenium", "mass": "186.207", "mag": { "type": false } }, 
-    "Os": { "name": "Osmium", "mass": "190.23", "mag": { "type": "para" } }, 
-    "Ir": { "name": "Iridium", "mass": "192.217", "mag": { "type": "para" } }, 
-    "Pt": { "name": "Platinum", "mass": "195.084", "mag": { "type": "para" } }, 
-    "Au": { "name": "Gold", "mass": "196.966569", "mag": { "type": "dia" } }, 
-    "Hg": { "name": "Mercury", "mass": "200.59", "mag": { "type": "dia" } }, 
-    "Tl": { "name": "Thallium", "mass": "204.3833", "mag": { "type": "dia" } }, 
-    "Pb": { "name": "Lead", "mass": "207.2", "mag": { "type": "dia" } }, 
-    "Bi": { "name": "Bismuth", "mass": "208.9804", "mag": { "type": "dia" } }, 
-    "Po": { "name": "Polonium", "mass": "(209)", "mag": { "type": false } }, 
-    "At": { "name": "Astatine", "mass": "(210)", "mag": { "type": false } }, 
-    "Rn": { "name": "Radon", "mass": "(222)", "mag": { "type": false } }, 
-    "Fr": { "name": "Francium", "mass": "(223)", "mag": { "type": false } }, 
-    "Ra": { "name": "Radium", "mass": "(226)", "mag": { "type": false } }, 
-    "Ac": { "name": "Actinium", "mass": "(227)", "mag": { "type": false } }, 
-    "Th": { "name": "Thorium", "mass": "232.03806", "mag": { "type": false } }, 
-    "Pa": { "name": "Protactinium", "mass": "231.0588", "mag": { "type": false } }, 
-    "U": { "name": "Uranium", "mass": "238.02891", "mag": { "type": false } }, 
-    "Np": { "name": "Neptunium", "mass": "(237)", "mag": { "type": false } }, 
-    "Pu": { "name": "Plutonium", "mass": "(244)", "mag": { "type": false } }, 
-    "Am": { "name": "Americium", "mass": "(243)", "mag": { "type": false } }, 
-    "Cm": { "name": "Curium", "mass": "(247)", "mag": { "type": false, "Tn": 52 } }, 
-    "Bk": { "name": "Berkelium", "mass": "(247)", "mag": { "type": false, "Tc": 34, "Tn": 70 } }, 
-    "Cf": { "name": "Californium", "mass": "(251)", "mag": { "type": false, "Tc": 48, "Tn": 66 } }, 
-    "Es": { "name": "Einstenium", "mass": "(252)", "mag": { "type": false } }, 
-    "Fm": { "name": "Fermium", "mass": "(257)", "mag": { "type": false } }, 
-    "Md": { "name": "Mendelevium", "mass": "(258)", "mag": { "type": false } }, 
-    "No": { "name": "Nobelium", "mass": "(259)", "mag": { "type": false } }, 
-    "Lr": { "name": "Lawrencium", "mass": "(262)", "mag": { "type": false } }, 
-    "Rf": { "name": "Rutherfordium", "mass": "(267)", "mag": { "type": false } }, 
-    "Db": { "name": "Dubnium", "mass": "(268)", "mag": { "type": false } }, 
-    "Sg": { "name": "Seaborgium", "mass": "(271)", "mag": { "type": false } }, 
-    "Bh": { "name": "Bohrium", "mass": "(272)", "mag": { "type": false } }, 
-    "Hs": { "name": "Hassium", "mass": "(270)", "mag": { "type": false } }, 
-    "Mt": { "name": "Meitnerium", "mass": "(276)", "mag": { "type": false } }, 
-    "Ds": { "name": "Darmstadium", "mass": "(281)", "mag": { "type": false } }, 
-    "Rg": { "name": "Roentgenium", "mass": "(280)", "mag": { "type": false } }, 
-    "Cn": { "name": "Copernicium", "mass": "(285)", "mag": { "type": false } }, 
-    "Uut": { "name": "Unutrium", "mass": "(284)", "mag": { "type": false } }, 
-    "Fl": { "name": "Flerovium", "mass": "(289)", "mag": { "type": false } }, 
-    "Uup": { "name": "Ununpentium", "mass": "(288)", "mag": { "type": false } }, 
-    "Lv": { "name": "Livermorium", "mass": "(293)", "mag": { "type": false } }, 
-    "Uus": { "name": "Ununseptium", "mass": "(294)", "mag": { "type": false } }, 
-    "Uuo": { "name": "Ununoctium", "mass": "(294)", "mag": { "type": false } }
+    "H": {
+        "name": "Hydrogen",
+        "mass": "1.00794",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "gas",
+            "Tm": 14.01,
+            "Tb": 20.28
+        }
+    },
+    "He": {
+        "name": "Helium",
+        "mass": "4.002602",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "gas",
+            "Tm": null,
+            "Tb": 4.22
+        }
+    },
+    "Li": {
+        "name": "Lithium",
+        "mass": "6.941",
+        "mag": {
+            "type": "para"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 453.69,
+            "Tb": 1615
+        }
+    },
+    "Be": {
+        "name": "Beryllium",
+        "mass": "9.012182",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1560,
+            "Tb": 2743
+        }
+    },
+    "B": {
+        "name": "Boron",
+        "mass": "10.811",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 2348,
+            "Tb": 4273
+        }
+    },
+    "C": {
+        "name": "Carbon",
+        "mass": "12.0107",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 3823,
+            "Tb": 4300
+        }
+    },
+    "N": {
+        "name": "Nitrogen",
+        "mass": "14.0067",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "gas",
+            "Tm": 63.05,
+            "Tb": 77.36
+        }
+    },
+    "O": {
+        "name": "Oxygen",
+        "mass": "15.9994",
+        "mag": {
+            "type": "para"
+        },
+        "state": {
+            "type": "gas",
+            "Tm": 54.8,
+            "Tb": 90.2
+        }
+    },
+    "F": {
+        "name": "Fluorine",
+        "mass": "18.9984032",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "gas",
+            "Tm": 53.5,
+            "Tb": 85.03
+        }
+    },
+    "Ne": {
+        "name": "Neon",
+        "mass": "20.1797",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "gas",
+            "Tm": 24.56,
+            "Tb": 27.07
+        }
+    },
+    "Na": {
+        "name": "Sodium",
+        "mass": "22.98976...",
+        "mag": {
+            "type": "para"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 370.87,
+            "Tb": 1156
+        }
+    },
+    "Mg": {
+        "name": "Magnesium",
+        "mass": "24.305",
+        "mag": {
+            "type": "para"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 923,
+            "Tb": 1363
+        }
+    },
+    "Al": {
+        "name": "Aluminium",
+        "mass": "26.9815386",
+        "mag": {
+            "type": "para"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 933.47,
+            "Tb": 2792
+        }
+    },
+    "Si": {
+        "name": "Silicon",
+        "mass": "28.0855",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1687,
+            "Tb": 3173
+        }
+    },
+    "P": {
+        "name": "Phosphorus",
+        "mass": "30.973762",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 317.3,
+            "Tb": 553.6
+        }
+    },
+    "S": {
+        "name": "Sulfur",
+        "mass": "32.065",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 388.36,
+            "Tb": 717.87
+        }
+    },
+    "Cl": {
+        "name": "Chlorine",
+        "mass": "35.453",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "gas",
+            "Tm": 171.6,
+            "Tb": 239.11
+        }
+    },
+    "Ar": {
+        "name": "Argon",
+        "mass": "39.948",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "gas",
+            "Tm": 83.8,
+            "Tb": 87.3
+        }
+    },
+    "K": {
+        "name": "Potassium",
+        "mass": "39.948",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 336.53,
+            "Tb": 1032
+        }
+    },
+    "Ca": {
+        "name": "Calcium",
+        "mass": "40.078",
+        "mag": {
+            "type": "para"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1115,
+            "Tb": 1757
+        }
+    },
+    "Sc": {
+        "name": "Scandium",
+        "mass": "44.955912",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1814,
+            "Tb": 3103
+        }
+    },
+    "Ti": {
+        "name": "Titanium",
+        "mass": "47.867",
+        "mag": {
+            "type": "para"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1941,
+            "Tb": 3560
+        }
+    },
+    "V": {
+        "name": "Vanadium",
+        "mass": "50.9415",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 2183,
+            "Tb": 3680
+        }
+    },
+    "Cr": {
+        "name": "Chromium",
+        "mass": "51.9961",
+        "mag": {
+            "type": "anti",
+            "Tn": 311
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 2180,
+            "Tb": 2944
+        }
+    },
+    "Mn": {
+        "name": "Manganese",
+        "mass": "54.938045",
+        "mag": {
+            "type": "para",
+            "Tn": 100
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1519,
+            "Tb": 2334
+        }
+    },
+    "Fe": {
+        "name": "Iron",
+        "mass": "55.845",
+        "mag": {
+            "type": "ferro",
+            "Tc": 1044
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1811,
+            "Tb": 3134
+        }
+    },
+    "Co": {
+        "name": "Cobalt",
+        "mass": "58.933195",
+        "mag": {
+            "type": "ferro",
+            "Tc": 1390
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1768,
+            "Tb": 3200
+        }
+    },
+    "Ni": {
+        "name": "Nickel",
+        "mass": "58.6934",
+        "mag": {
+            "type": "ferro",
+            "Tc": 630
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1728,
+            "Tb": 3186
+        }
+    },
+    "Cu": {
+        "name": "Copper",
+        "mass": "63.546",
+        "mag": {
+            "type": "dia",
+            "Tn": 6e-8
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1357.77,
+            "Tb": 3200
+        }
+    },
+    "Zn": {
+        "name": "Zinc",
+        "mass": "65.38",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 692.68,
+            "Tb": 1180
+        }
+    },
+    "Ga": {
+        "name": "Gallium",
+        "mass": "69.723",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 302.91,
+            "Tb": 2477
+        }
+    },
+    "Ge": {
+        "name": "Germanium",
+        "mass": "72.63",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1211.4,
+            "Tb": 3093
+        }
+    },
+    "As": {
+        "name": "Arsenic",
+        "mass": "74.9216",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1090,
+            "Tb": 887
+        }
+    },
+    "Se": {
+        "name": "Selenium",
+        "mass": "78.96",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 494,
+            "Tb": 958
+        }
+    },
+    "Br": {
+        "name": "Bromine",
+        "mass": "79.904",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "liquid",
+            "Tm": 265.8,
+            "Tb": 332
+        }
+    },
+    "Kr": {
+        "name": "Krypton",
+        "mass": "83.798",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "gas",
+            "Tm": 115.79,
+            "Tb": 119.93
+        }
+    },
+    "Rb": {
+        "name": "Rubidium",
+        "mass": "85.4678",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 312.46,
+            "Tb": 961
+        }
+    },
+    "Sr": {
+        "name": "Strontium",
+        "mass": "87.62",
+        "mag": {
+            "type": "para"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1050,
+            "Tb": 1655
+        }
+    },
+    "Y": {
+        "name": "Yttrium",
+        "mass": "88.90585",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1799,
+            "Tb": 3618
+        }
+    },
+    "Zr": {
+        "name": "Zirconium",
+        "mass": "91.224",
+        "mag": {
+            "type": "para"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 2128,
+            "Tb": 4682
+        }
+    },
+    "Nb": {
+        "name": "Niobium",
+        "mass": "92.90628",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 2750,
+            "Tb": 5017
+        }
+    },
+    "Mo": {
+        "name": "Molybdenum",
+        "mass": "95.96",
+        "mag": {
+            "type": "para"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 2896,
+            "Tb": 4912
+        }
+    },
+    "Tc": {
+        "name": "Technetium",
+        "mass": "(98)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 2430,
+            "Tb": 4538
+        }
+    },
+    "Ru": {
+        "name": "Ruthenium",
+        "mass": "101.07",
+        "mag": {
+            "type": "para"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 2607,
+            "Tb": 4423
+        }
+    },
+    "Rh": {
+        "name": "Rhodium",
+        "mass": "102.9055",
+        "mag": {
+            "type": "para"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 2237,
+            "Tb": 3968
+        }
+    },
+    "Pd": {
+        "name": "Palladium",
+        "mass": "106.42",
+        "mag": {
+            "type": "para"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1828.05,
+            "Tb": 3236
+        }
+    },
+    "Ag": {
+        "name": "Silver",
+        "mass": "107.8682",
+        "mag": {
+            "type": "dia",
+            "Tn": 5.6e-10
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1234.93,
+            "Tb": 2435
+        }
+    },
+    "Cd": {
+        "name": "Cadmium",
+        "mass": "112.411",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 594.22,
+            "Tb": 1040
+        }
+    },
+    "In": {
+        "name": "Indium",
+        "mass": "114.818",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 429.75,
+            "Tb": 2345
+        }
+    },
+    "Sn": {
+        "name": "Tin",
+        "mass": "118.71",
+        "mag": {
+            "type": "para"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 505.08,
+            "Tb": 2875
+        }
+    },
+    "Sb": {
+        "name": "Antimony",
+        "mass": "121.76",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 903.78,
+            "Tb": 1860
+        }
+    },
+    "Te": {
+        "name": "Tellurium",
+        "mass": "127.6",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 722.66,
+            "Tb": 1261
+        }
+    },
+    "I": {
+        "name": "Iodine",
+        "mass": "126.90447",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 386.85,
+            "Tb": 457.4
+        }
+    },
+    "Xe": {
+        "name": "Xenon",
+        "mass": "131.293",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "gas",
+            "Tm": 161.3,
+            "Tb": 165.1
+        }
+    },
+    "Cs": {
+        "name": "Caesium",
+        "mass": "132.9054",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 301.59,
+            "Tb": 944
+        }
+    },
+    "Ba": {
+        "name": "Barium",
+        "mass": "132.9054",
+        "mag": {
+            "type": "para"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1000,
+            "Tb": 2143
+        }
+    },
+    "La": {
+        "name": "Lanthanum",
+        "mass": "138.90547",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1193,
+            "Tb": 3737
+        }
+    },
+    "Ce": {
+        "name": "Cerium",
+        "mass": "140.116",
+        "mag": {
+            "type": "para",
+            "Tn": 13
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1071,
+            "Tb": 3633
+        }
+    },
+    "Pr": {
+        "name": "Praseodymium",
+        "mass": "140.90765",
+        "mag": {
+            "type": false,
+            "Tn": 25
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1204,
+            "Tb": 3563
+        }
+    },
+    "Nd": {
+        "name": "Neodymium",
+        "mass": "144.242",
+        "mag": {
+            "type": "para",
+            "Tn": 19.9
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1294,
+            "Tb": 3373
+        }
+    },
+    "Pm": {
+        "name": "Promethium",
+        "mass": "(145)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1373,
+            "Tb": 3273
+        }
+    },
+    "Sm": {
+        "name": "Samarium",
+        "mass": "150.36",
+        "mag": {
+            "type": "para",
+            "Tn": 13.3
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1345,
+            "Tb": 2076
+        }
+    },
+    "Eu": {
+        "name": "Europium",
+        "mass": "151.964",
+        "mag": {
+            "type": "para",
+            "Tn": 91
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1095,
+            "Tb": 1800
+        }
+    },
+    "Gd": {
+        "name": "Gadolinium",
+        "mass": "157.25",
+        "mag": {
+            "type": "ferro",
+            "Tc": 291.8
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1586,
+            "Tb": 3523
+        }
+    },
+    "Tb": {
+        "name": "Terbium",
+        "mass": "158.92535",
+        "mag": {
+            "type": "para",
+            "Tc": 221,
+            "Tn": 230
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1629,
+            "Tb": 3503
+        }
+    },
+    "Dy": {
+        "name": "Dysprosium",
+        "mass": "162.5",
+        "mag": {
+            "type": "para",
+            "Tc": 92.1,
+            "Tn": 180.2
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1685,
+            "Tb": 2840
+        }
+    },
+    "Ho": {
+        "name": "Holmium",
+        "mass": "164.93032",
+        "mag": {
+            "type": "para",
+            "Tc": 20,
+            "Tn": 132.245
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1747,
+            "Tb": 2973
+        }
+    },
+    "Er": {
+        "name": "Erbium",
+        "mass": "167.259",
+        "mag": {
+            "type": "para",
+            "Tc": 18.74,
+            "Tn": 85.7
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1770,
+            "Tb": 3141
+        }
+    },
+    "Tm": {
+        "name": "Thulium",
+        "mass": "168.93421",
+        "mag": {
+            "type": "para",
+            "Tc": 32,
+            "Tn": 56
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1818,
+            "Tb": 2223
+        }
+    },
+    "Yb": {
+        "name": "Ytterbium",
+        "mass": "173.054",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1092,
+            "Tb": 1469
+        }
+    },
+    "Lu": {
+        "name": "Lutetium",
+        "mass": "174.9668",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1936,
+            "Tb": 3675
+        }
+    },
+    "Hf": {
+        "name": "Hafnium",
+        "mass": "178.49",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 2506,
+            "Tb": 4876
+        }
+    },
+    "Ta": {
+        "name": "Tantalum",
+        "mass": "180.94788",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 3290,
+            "Tb": 5731
+        }
+    },
+    "W": {
+        "name": "Tungsten",
+        "mass": "183.84",
+        "mag": {
+            "type": "para"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 3695,
+            "Tb": 5828
+        }
+    },
+    "Re": {
+        "name": "Rhenium",
+        "mass": "186.207",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 3459,
+            "Tb": 5869
+        }
+    },
+    "Os": {
+        "name": "Osmium",
+        "mass": "190.23",
+        "mag": {
+            "type": "para"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 3306,
+            "Tb": 5285
+        }
+    },
+    "Ir": {
+        "name": "Iridium",
+        "mass": "192.217",
+        "mag": {
+            "type": "para"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 2739,
+            "Tb": 4701
+        }
+    },
+    "Pt": {
+        "name": "Platinum",
+        "mass": "195.084",
+        "mag": {
+            "type": "para"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 2041.4,
+            "Tb": 4098
+        }
+    },
+    "Au": {
+        "name": "Gold",
+        "mass": "196.966569",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1337.33,
+            "Tb": 3129
+        }
+    },
+    "Hg": {
+        "name": "Mercury",
+        "mass": "200.59",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "liquid",
+            "Tm": 234.32,
+            "Tb": 629.88
+        }
+    },
+    "Tl": {
+        "name": "Thallium",
+        "mass": "204.3833",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 577,
+            "Tb": 1746
+        }
+    },
+    "Pb": {
+        "name": "Lead",
+        "mass": "207.2",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 600.61,
+            "Tb": 2022
+        }
+    },
+    "Bi": {
+        "name": "Bismuth",
+        "mass": "208.9804",
+        "mag": {
+            "type": "dia"
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 544.4,
+            "Tb": 1837
+        }
+    },
+    "Po": {
+        "name": "Polonium",
+        "mass": "(209)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 527,
+            "Tb": 1235
+        }
+    },
+    "At": {
+        "name": "Astatine",
+        "mass": "(210)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 575,
+            "Tb": null
+        }
+    },
+    "Rn": {
+        "name": "Radon",
+        "mass": "(222)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "gas",
+            "Tm": 202,
+            "Tb": 211.3
+        }
+    },
+    "Fr": {
+        "name": "Francium",
+        "mass": "(223)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": null,
+            "Tb": null
+        }
+    },
+    "Ra": {
+        "name": "Radium",
+        "mass": "(226)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 973,
+            "Tb": 2010
+        }
+    },
+    "Ac": {
+        "name": "Actinium",
+        "mass": "(227)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1323,
+            "Tb": 3473
+        }
+    },
+    "Th": {
+        "name": "Thorium",
+        "mass": "232.03806",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 2023,
+            "Tb": 5093
+        }
+    },
+    "Pa": {
+        "name": "Protactinium",
+        "mass": "231.0588",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1845,
+            "Tb": 4273
+        }
+    },
+    "U": {
+        "name": "Uranium",
+        "mass": "238.02891",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1408,
+            "Tb": 4200
+        }
+    },
+    "Np": {
+        "name": "Neptunium",
+        "mass": "(237)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 917,
+            "Tb": 4273
+        }
+    },
+    "Pu": {
+        "name": "Plutonium",
+        "mass": "(244)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 913,
+            "Tb": 3503
+        }
+    },
+    "Am": {
+        "name": "Americium",
+        "mass": "(243)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1449,
+            "Tb": 2284
+        }
+    },
+    "Cm": {
+        "name": "Curium",
+        "mass": "(247)",
+        "mag": {
+            "type": false,
+            "Tn": 52
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1618,
+            "Tb": 3383
+        }
+    },
+    "Bk": {
+        "name": "Berkelium",
+        "mass": "(247)",
+        "mag": {
+            "type": false,
+            "Tc": 34,
+            "Tn": 70
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1323,
+            "Tb": null
+        }
+    },
+    "Cf": {
+        "name": "Californium",
+        "mass": "(251)",
+        "mag": {
+            "type": false,
+            "Tc": 48,
+            "Tn": 66
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1173,
+            "Tb": null
+        }
+    },
+    "Es": {
+        "name": "Einsteinium",
+        "mass": "(252)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "solid",
+            "Tm": 1133,
+            "Tb": null
+        }
+    },
+    "Fm": {
+        "name": "Fermium",
+        "mass": "(257)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "n/a",
+            "Tm": 1800,
+            "Tb": null
+        }
+    },
+    "Md": {
+        "name": "Mendelevium",
+        "mass": "(258)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "n/a",
+            "Tm": 1100,
+            "Tb": null
+        }
+    },
+    "No": {
+        "name": "Nobelium",
+        "mass": "(259)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "n/a",
+            "Tm": 1100,
+            "Tb": null
+        }
+    },
+    "Lr": {
+        "name": "Lawrencium",
+        "mass": "(262)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "n/a",
+            "Tm": 1900,
+            "Tb": null
+        }
+    },
+    "Rf": {
+        "name": "Rutherfordium",
+        "mass": "(267)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "n/a",
+            "Tm": null,
+            "Tb": null
+        }
+    },
+    "Db": {
+        "name": "Dubnium",
+        "mass": "(268)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "n/a",
+            "Tm": null,
+            "Tb": null
+        }
+    },
+    "Sg": {
+        "name": "Seaborgium",
+        "mass": "(271)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "n/a",
+            "Tm": null,
+            "Tb": null
+        }
+    },
+    "Bh": {
+        "name": "Bohrium",
+        "mass": "(272)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "n/a",
+            "Tm": null,
+            "Tb": null
+        }
+    },
+    "Hs": {
+        "name": "Hassium",
+        "mass": "(270)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "n/a",
+            "Tm": null,
+            "Tb": null
+        }
+    },
+    "Mt": {
+        "name": "Meitnerium",
+        "mass": "(276)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "n/a",
+            "Tm": null,
+            "Tb": null
+        }
+    },
+    "Ds": {
+        "name": "Darmstadtium",
+        "mass": "(281)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "n/a",
+            "Tm": null,
+            "Tb": null
+        }
+    },
+    "Rg": {
+        "name": "Roentgenium",
+        "mass": "(280)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "n/a",
+            "Tm": null,
+            "Tb": null
+        }
+    },
+    "Cn": {
+        "name": "Copernicium",
+        "mass": "(285)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": false
+        }
+    },
+    "Uut": {
+        "name": "Unutrium",
+        "mass": "(284)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": false
+        }
+    },
+    "Fl": {
+        "name": "Flerovium",
+        "mass": "(289)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": false
+        }
+    },
+    "Uup": {
+        "name": "Ununpentium",
+        "mass": "(288)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "n/a",
+            "Tm": null,
+            "Tb": null
+        }
+    },
+    "Lv": {
+        "name": "Livermorium",
+        "mass": "(293)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": false
+        }
+    },
+    "Uus": {
+        "name": "Ununseptium",
+        "mass": "(294)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "n/a",
+            "Tm": null,
+            "Tb": null
+        }
+    },
+    "Uuo": {
+        "name": "Ununoctium",
+        "mass": "(294)",
+        "mag": {
+            "type": false
+        },
+        "state": {
+            "type": "n/a",
+            "Tm": null,
+            "Tb": null
+        }
+    }
 }
