@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Periodic Table | Minute Physics</title>
-  <meta name="description" content="">
+  <meta name="description" content="The Minute Physics Periodic Table">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- font -->
@@ -24,15 +24,33 @@
     
   <div id="viewport">
     <header id="site-header">
-      <h1><a href="/#">Periodic Table of Magnetism</a> <small>by <a href="http://www.youtube.com/minutephysics" target="_blank">Minute Physics</a></small></h1>
+
+      <h1><a href="/#">Periodic Table</a></h1>
+      <div class="subtitle">
+        of
+        <select>
+          <option>Magnetism</option>
+          <option>States</option>
+        </select>
+        <small>by <a href="http://www.youtube.com/minutephysics" target="_blank">Minute Physics</a></small>
+      </div>
+
       <ul>
         <li><a href="http://www.youtube.com/watch?v=hFAOXdXZ5TM" target="_blank" class="ctrl-play-video">Watch the Video</a></li>
         <li><a href="#about">About</a></li>
       </ul>
 
-      <div class="controls">
-        <h2 class="title">Temperature</h2>
+      <div id="controls">
+
+        <div class="left">
+          <button class="ctrl-toggle ctrl-toggle-controls" title="toggle settings">toggle settings</button>
+          <button class="ctrl-toggle ctrl-toggle-video" title="toggle video area">toggle video area</button>
+
+          <h2 class="title">Temperature</h2>
+        </div>
+
         <div class="ctrl-temperature"></div>
+
       </div>
 
     </header>
@@ -76,16 +94,8 @@
       </section>
 
       <div id="periodic-table" class="mini-table hidden"></div>
-      <div id="sidebar">
-
-        <div class="peek-controls">
-          <button class="ctrl-toggle ctrl-toggle-sidebar" title="toggle settings">toggle settings</button>
-          <button class="ctrl-toggle ctrl-toggle-video" title="toggle video area">toggle video area</button>
-        </div>
-
-      </div>
-
-      <div id="slide-panel">
+      
+      <div id="panels">
 
         <div id="video-area">
           <iframe id="original-video" width="560" height="315" src="//www.youtube.com/embed/hFAOXdXZ5TM" frameborder="0" allowfullscreen></iframe>
@@ -103,7 +113,7 @@
             <h2 class="title">Table Style</h2>
             <div class="toggler ctrl-table-style">
               <button>Short</button>
-              <button class="on">Long</button>
+              <button class="on">Wide</button>
             </div>
 
             <div class="toggler ctrl-table-size">

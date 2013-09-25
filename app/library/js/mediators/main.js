@@ -79,20 +79,12 @@ define(
                 self.on('domready', self.onDomReady);
 
                 $(document)
-                    .on('click', '.ctrl-toggle-sidebar', function(){
-                        var active = self.el.hasClass('reveal');
-                        self.el.toggleClass('reveal');
-                        if (!active){
-                            self.el.removeClass('reveal-video');
-                        }
+                    .on('click', '.ctrl-toggle-controls', function(){
+                        self.viewport.toggleClass('reveal');
                         return false;
                     })
                     .on('click', '.ctrl-toggle-video', function(){
-                        var active = self.el.hasClass('reveal-video');
-                        self.el.toggleClass('reveal-video');
-                        if (!active){
-                            self.el.removeClass('reveal');
-                        }
+                        self.viewport.toggleClass('reveal-video');
                         return false;
                     })
                     .on('change', '.ctrl-theme', function(e, val){
@@ -118,12 +110,6 @@ define(
                         return false;
                     })
                     ;
-
-                self.on({
-                    'change:temperature': function( T ){
-                        self.controls.find('.temperature-display').text( T );
-                    }
-                });
 
                 self.periodicTable.on('element', function( data ){
 
@@ -161,8 +147,6 @@ define(
                         }
 
                         self.el.find('#about').hide();
-                        self.el.find('#slide-panel').show();
-                        self.controls.show();
                         self.periodicTable.el.show();
                         
                         require(['./mag'], function( mag ){
@@ -175,8 +159,6 @@ define(
                     directions: function(params) {
 
                         self.periodicTable.el.hide();
-                        self.el.find('#slide-panel').hide();
-                        self.controls.hide();
                         self.el.find('#about').show();
                     }
                 })
@@ -215,7 +197,7 @@ define(
                 if (play){
 
                     self.popcorn.play();
-                    self.el.addClass('reveal-video');
+                    self.viewport.addClass('reveal-video');
                 }
             },
 
@@ -226,8 +208,9 @@ define(
             onDomReady : function(){
 
                 var self = this;
+                self.viewport = $('#viewport');
                 self.el = $('#main');
-                self.controls = $('#sidebar');
+                self.controls = $('#controls');
 
                 $('.ctrl-temperature').noUiSlider({
                     handles: 1,
@@ -245,7 +228,7 @@ define(
 
                 setTimeout(function(){
                     // reveal video after 1.5 seconds
-                    self.el.addClass('reveal-video');
+                    self.viewport.addClass('reveal-video');
                 }, 1500);
             }
 

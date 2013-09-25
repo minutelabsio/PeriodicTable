@@ -73,23 +73,29 @@ a {
     }
 }
 
+$headerHeight: 80px;
+
 #site-header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    height: 100px;
+    height: $headerHeight;
     z-index: 2;
 
-    padding: 0.35em 1em;
+    padding: 0 1em;
     @include box-shadow( 0px 2px 7px rgba(0,0,0,0.5) );
 
-    h1 {
+    h1,
+    .subtitle {
         display: inline-block;
-        margin: 0 1em 0 0;
-        font-size: 1.5em;
+        font-size: 1.25em;
         font-family: $sansFontFamily;
         vertical-align: middle;
+    }
+
+    .subtitle {
+        margin: 0 1em 0 0;
 
         small {
             font-size: 0.5em;
@@ -127,52 +133,27 @@ a {
     }
 }
 
-$sidebarWidth: 300px;
-$sidebarPeek: 40px;
-
-#sidebar {
-    position: fixed;
-    left: 0;
-    top: 100px;
-    bottom: 0;
-    width: $sidebarPeek;
-    z-index: 3;
-    @include box-shadow( 1px 4px 7px rgba(0,0,0,0.5) );
-
-    .title {
-        margin: 1.5em 0 0.5em;
-    }
-
-    .peek-controls {
-        position: absolute;
-        top: 50%;
-        right: 0;
-        margin-top: -50px;
-        height: 100px;
-        width: $sidebarPeek;
-        text-align: center;
-    }
-
+#controls {
+    
     .ctrl-toggle {
         @extend [data-icon]:before;
-        width: 100%;
+        width: 1.5em;
         line-height: 0;
         padding: 0;
-        font-size: 18px;
-        height: 2em;
-        padding: .2em 0;
-        margin-bottom: 0.2em;
+        font-size: 22px;
+        height: 1.5em;
         border: none;
         text-indent: -9999em;
         overflow: hidden;
         @include border-radius( 5px );
 
         &:after {
+            vertical-align: middle;
             text-indent: 0;
             display: block;
         }
 
-        &.ctrl-toggle-sidebar:after {
+        &.ctrl-toggle-controls:after {
             @extend .icon-equalizer:before;
         }
 
@@ -180,35 +161,87 @@ $sidebarPeek: 40px;
             @extend .icon-youtube-2:before;
         }
     }
+
+    .left {
+        float: left;
+        margin-left: -4px;
+
+        > * {
+            vertical-align: middle;
+        }
+    }
+
+    .title {
+        display: inline-block;
+        margin-left: 1em;
+    }
+}
+
+.ctrl-temperature {
+    position: relative;
+    top: 5px;
+    margin-left: 230px;
+    
+    .noUi-base {
+        height: 22px;
+        width: 100%;
+    }
+    .noUi-background {
+        background: #004799; /* Old browsers */
+        background: -moz-linear-gradient(left,  #004799 0%, #ff0000 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%,#004799), color-stop(100%,#ff0000)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(left,  #004799 0%,#ff0000 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(left,  #004799 0%,#ff0000 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(left,  #004799 0%,#ff0000 100%); /* IE10+ */
+        background: linear-gradient(to right,  #004799 0%,#ff0000 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#004799', endColorstr='#ff0000',GradientType=1 ); /* IE6-9 */
+    }
+    .noUi-handle {
+        height: 30px;
+        width: 4em;
+        text-align: center;
+        padding-top: 0.32em;
+        cursor: pointer;
+        margin: -5px 0 0 -23px;
+        @include transition( border-color 0.1s ease-out );
+        @include border-radius( 3px );
+    }
+    .noUi-active:after {
+        display: none;
+    }
 }
 
 #video-area,
 #settings-area {
     position: fixed;
     z-index: 1;
-    bottom: 0;
-    left: $sidebarPeek;
-    margin-left: -582px;
     overflow: visible;
     width: 582px;
     padding: 12px 10px 6px;
-    @include border-radius( 0 5px 5px 0 );
     @include transform( translateZ(0) );
-    @include transition( margin-left 0.3s ease-out );
+    @include transition( margin 0.3s ease-out );
 }
 
 #video-area {
+    bottom: 0;
+    left: 0;
     width: 582px;
     height: 339px;
+    margin-left: -582px;
+    @include border-radius( 0 5px 5px 0 );
 }
 
 #settings-area {
+    top: $headerHeight;
+    left: 0;
     width: 260px;
-    margin-left: -260px;
+    margin-top: -260px;
+    @include border-radius( 0 0 5px 5px );
+    @include box-shadow( 0 2px 6px rgba(0, 0, 0, 0.4));
 }
 
 .reveal #settings-area {
-    margin-left: 0;
+    margin-top: 0;
 }
 
 .reveal-video #video-area {
@@ -250,8 +283,8 @@ $sidebarPeek: 40px;
 
 #periodic-table {
     position: absolute;
-    top: 100px;
-    left: $sidebarPeek;
+    top: $headerHeight;
+    left: 0;
     right: 0;
     bottom: 0;
     overflow: auto;
@@ -260,7 +293,7 @@ $sidebarPeek: 40px;
 
     .contents {
         position: relative;
-        margin: 40px 40px 360px;
+        margin: 20px 20px 360px;
         padding-right: 40px;
 
         @include box-sizing( content-box );
@@ -427,7 +460,7 @@ $sidebarPeek: 40px;
 #periodic-table.mini-table {
 
     .contents {
-        margin: 90px 100px;
+        margin: 20px 20px;
     }
 
     .element {
@@ -449,47 +482,6 @@ $sidebarPeek: 40px;
     }
 }
 
-#site-header .controls {
-    margin-top: 10px;
-
-    .title {
-        float: left;
-        margin-top: 0.4em;
-    }
-}
-
-.ctrl-temperature {
-    margin-left: 130px;
-
-    .noUi-base {
-        height: 30px;
-        width: 100%;
-    }
-    .noUi-background {
-        background: #004799; /* Old browsers */
-        background: -moz-linear-gradient(left,  #004799 0%, #ff0000 100%); /* FF3.6+ */
-        background: -webkit-gradient(linear, left top, right top, color-stop(0%,#004799), color-stop(100%,#ff0000)); /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(left,  #004799 0%,#ff0000 100%); /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(left,  #004799 0%,#ff0000 100%); /* Opera 11.10+ */
-        background: -ms-linear-gradient(left,  #004799 0%,#ff0000 100%); /* IE10+ */
-        background: linear-gradient(to right,  #004799 0%,#ff0000 100%); /* W3C */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#004799', endColorstr='#ff0000',GradientType=1 ); /* IE6-9 */
-    }
-    .noUi-handle {
-        height: 36px;
-        width: 4em;
-        text-align: center;
-        padding-top: 0.5em;
-        cursor: pointer;
-        margin: -4px 0 0 -23px;
-        @include transition( border-color 0.1s ease-out );
-        @include border-radius( 3px );
-    }
-    .noUi-active:after {
-        display: none;
-    }
-}
-
 
 //////////////////////////////////
 // Site skins controlled by mixin
@@ -501,9 +493,10 @@ $sidebarPeek: 40px;
     $highlight: rgba(0, 255, 255, 1),
     $link: rgba(0, 255, 255, 1),
     $elementText: rgba(255, 255, 255, 0.75),
+    $elementBg: #333,
     $diaColor: blue,
-    $paraColor: rgb(120, 0, 0),
-    $paraColor2: black,
+    $paraColor: rgb(112, 33, 33),
+    $paraBg: image-url('para-texture-grey.png'),
     $antiColor: cyan,
     $antiColor2: white,
     $ferroColor: rgb(255, 0, 0),
@@ -554,6 +547,7 @@ $sidebarPeek: 40px;
             color: mix($background, $highlight, 98);
             background: transparentize($highlight, 0.2);
             border-color: transparentize($highlight, 0.2);
+            @include box-shadow( 1px 1px 2px rgba(0, 0, 0, 0.5) inset );
         }
     }
 }
@@ -587,30 +581,26 @@ $sidebarPeek: 40px;
     }
 }
 
-#sidebar {
-    background: $background;
-    color: $highlight;
-    @include transition( transform 0.3s ease-out );
-
+#controls {
+    
     .ctrl-toggle {
         background: transparentize($highlight, 1);
         color: $textHeading;
         cursor: pointer;
-        border: 2px solid $background;
         
         @include transition( background 0.3s ease-out );
     }
 }
 
-.reveal #sidebar .ctrl-toggle-sidebar {
+.reveal #controls .ctrl-toggle-controls {
     background: darken(mix($background, $highlight, 60), 5);
 }
 
-.reveal-video #sidebar .ctrl-toggle-video {
+.reveal-video #controls .ctrl-toggle-video {
     background: darken(mix($background, $highlight, 60), 5);
 }
 
-#sidebar .ctrl-toggle {
+#controls .ctrl-toggle {
     &:hover {
         background: darken($background, 10);
     }
@@ -660,7 +650,7 @@ $sidebarPeek: 40px;
     border: 1px solid transparentize(lighten($highlight, 24), 0.75);
     
     .inner {
-        background: $background;
+        background: $elementBg;
         outline: 1px solid transparent;
         @include transition( background-color 0.3s ease-out, outline-color 0.3s ease-out );
     }
@@ -696,6 +686,11 @@ $sidebarPeek: 40px;
     .info abbr.dia,
     .element.dia > .inner {
         background: $diaColor;
+
+        &,
+        > * {
+            @include text-shadow( none );
+        }
     }
 
     [data-magnetic-order="ferro"], 
@@ -706,6 +701,7 @@ $sidebarPeek: 40px;
         &,
         .inner > * {
             color: invert($ferroColor2);
+            @include text-shadow( none );
         }
 
         .inner {
@@ -733,6 +729,7 @@ $sidebarPeek: 40px;
         &,
         .inner > * {
             color: invert($antiColor2);
+            @include text-shadow( none );
         }
 
         .inner {
@@ -757,18 +754,12 @@ $sidebarPeek: 40px;
 
         &,
         > * {
-            color: invert($paraColor2);
+            color: white;
+            @include text-shadow( 0 0 6px black );
         }
         
-        @include background(
-            linear-gradient(45deg, $paraColor2 25%, transparent 25%, transparent), 
-            linear-gradient(-45deg, $paraColor2 25%, transparent 25%, transparent), 
-            linear-gradient(45deg, transparent 75%, $paraColor2 75%), 
-            linear-gradient(-45deg, transparent 75%, $paraColor2 75%)
-            );
-
-        background-color: $paraColor;
-        background-size: 50%;
+        background: $paraColor image-url('para-texture-grey.png') no-repeat center 0;
+        background-size: 180px;
     }
 }
 
@@ -792,7 +783,8 @@ $sidebarPeek: 40px;
 
 body {
     @include site-skin(
-        $diaColor: saturate(darken(#C4D4E6, 55), 15)
+        $elementBg: #333333,
+        $diaColor: #204671
     );
 }
 
@@ -803,8 +795,11 @@ body.light-skin {
         $textHeading: #222,
         $highlight: rgba(180, 0, 0, 1),
         $link: rgba(200, 0, 0, 1),
+        $elementBg: rgb(221, 220, 220),
         $elementText: rgba(0, 0, 0, 0.75),
-        $diaColor: #C4D4E6,
+        $diaColor: hsl(180, 78%, 93%),
+        $paraColor: rgb(182, 68, 68),
+        $paraBg: image-url('para-texture-grey2.png'),
         $antiColor2: #fafafa
     );
 }
