@@ -125,6 +125,30 @@ define(
                 self.el.removeClass('magnetic state').addClass( state );
             },
 
+            showStates: function( temp ){
+
+                var self = this
+                    ,elem
+                    ,mode
+                    ,nodes = self.nodes
+                    ;
+
+                self.setState( 'states' );
+
+                // // set overrides for temperature dependent magnetic response
+                // _.each(magneticResponders, function( elem, symbol ){
+
+                //     var $el = nodes[ symbol ];
+                    
+                //     // antiferromagnetic below Tn
+                //     mode = ( elem.mag.Tn && temp <= elem.mag.Tn )? 'anti' : 'para';
+                //     // ferromagnetic below Tc
+                //     mode = ( elem.mag.Tc && temp <= elem.mag.Tc )? 'ferro' : mode;
+
+                //     $el && $el.removeClass('anti para ferro dia').addClass( mode );
+                // });
+            },
+
             showMagneticResponse: function( temp ){
 
                 var self = this

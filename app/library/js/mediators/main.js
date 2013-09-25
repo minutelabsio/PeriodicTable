@@ -42,6 +42,59 @@ define(
             });
         };
 
+        $.fn.selecter = function(){
+
+            var sel = $('<nav class="selecter closed">')
+                ,selected
+                ,opts
+                ,selTitle = this.find('option[selected], option').first().text()
+                ,self = this
+                ;
+
+            selected = $('<span class="selecter-selected">'+ selTitle +'</span>');
+            opts = $('<div class="selecter-options">').hide();
+            sel.append( selected );
+            sel.append( opts );
+
+            this.find('option').each(function(){
+                var el = $(this);
+                var val = el.attr('value') || el.text();
+                opts.append( '<a class="selecter-item" href="' + val + '">'+ el.text() +'</a>' );
+            });
+
+            this.on('change', function(){
+
+                var val = $(this).val();
+                var target;
+
+                sel.find('.selected').removeClass('selected');
+                target = sel.find('.selecter-item[href="'+ val +'"]').addClass('selected');
+                selected.text( target.text() );
+            });
+
+            $(document).on('click', function(){
+                opts.hide();
+                sel.addClass('closed').removeClass('open');
+            });
+
+            sel.on('click', '.selecter-selected', function( e ){
+                e.stopPropagation();
+                opts.toggle();
+                sel.toggleClass('closed open');
+            });
+
+            sel.on('click', '.selecter-item', function( e ){
+                e.stopPropagation();
+                self.val( $(this).attr('href') );
+                opts.hide();
+                sel.addClass('closed').removeClass('open');
+            });
+
+            this.after( sel );
+
+            return this;
+        };
+
         /**
          * Page-level Mediator
          * @module Main
@@ -147,6 +200,7 @@ define(
                         }
 
                         self.el.find('#about').hide();
+                        self.el.find('#panels').show();
                         self.periodicTable.el.show();
                         
                         require(['./mag'], function( mag ){
@@ -155,16 +209,38 @@ define(
                     }
                 })
                 .navigate({
+                    path: 'state',
+                    directions: function(params) {
+
+                        if (self.logic){
+                            self.logic.cleanup();
+                            delete self.logic;
+                        }
+
+                        self.el.find('#about').hide();
+                        self.el.find('#panels').show();
+                        self.periodicTable.el.show();
+                        
+                        require(['./state'], function( state ){
+                            self.logic = state( self, self.periodicTable );
+                        });
+                    }
+                })
+                .navigate({
                     path: 'about',
                     directions: function(params) {
 
                         self.periodicTable.el.hide();
+                        self.el.find('#panels').hide();
                         self.el.find('#about').show();
                     }
                 })
                 .otherwise('mag') // will route all unmatched paths to #/mag
                 .change(function(params, old) {
-                    
+                    var hash = window.location.hash;
+                    if ( hash && self.tableSelector.find( '[value="'+hash+'"]' ).length ){
+                        self.tableSelector.val( hash ).trigger('change');
+                    }
                 })
                 .go()
                 ;
@@ -222,9 +298,12 @@ define(
                 }).trigger('change');
 
                 self.set('temperature', $('.ctrl-temperature').val());
-                self.initRouter();
-
+                
                 $('.toggler').toggler();
+                $('.selecter.fake').remove();
+                self.tableSelector = $('.ctrl-table-switcher:first').selecter();
+
+                self.initRouter();
 
                 setTimeout(function(){
                     // reveal video after 1.5 seconds

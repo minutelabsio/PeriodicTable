@@ -7,6 +7,7 @@ $monoFontFamily:        'Oxygen Mono', "Courier New", monospace !default;
 @import "compass/typography";
 @import "_icons";
 @import "_jquery.nouislider";
+@import "_selecter";
 
 $phi: 1.61803398875;
 
@@ -91,14 +92,27 @@ $headerHeight: 80px;
         display: inline-block;
         font-size: 1.25em;
         font-family: $sansFontFamily;
-        vertical-align: middle;
+        
+        &,
+        > * {
+            vertical-align: middle;
+        }
     }
 
     .subtitle {
         margin: 0 1em 0 0;
 
+        .selecter {
+            position: relative;
+            top: 0.35em;
+            margin-left: 0.4em;
+            margin-top: -0.7em;
+            min-width: 142px;
+        }
+
         small {
             font-size: 0.5em;
+            vertical-align: baseline;
         }
 
         small,
@@ -164,7 +178,6 @@ $headerHeight: 80px;
 
     .left {
         float: left;
-        margin-left: -4px;
 
         > * {
             vertical-align: middle;
@@ -357,6 +370,7 @@ $headerHeight: 80px;
         }
 
         .magnetic-response {
+            display: none;
             position: relative;
             width: 100%;
             text-align: center;
@@ -397,6 +411,10 @@ $headerHeight: 80px;
                 color: transparent !important;
             }
         }
+    }
+
+    &.magnetic .info .magnetic-response {
+        display: block;
     }
 }
 
@@ -503,6 +521,8 @@ $headerHeight: 80px;
     $ferroColor2: black
 ){
 
+@include selecter($background, $text, $highlight);
+
 & {
     background: darken($background, 5);
 }
@@ -556,7 +576,8 @@ $headerHeight: 80px;
     background: $background;
     color: $text;
     
-    h1 {
+    h1,
+    .subtitle {
         color: $textHeading;
     }
 
@@ -776,6 +797,16 @@ $headerHeight: 80px;
         &:hover {
             border-color: transparentize($highlight, 0.6);
         }
+    }
+}
+
+#disqus_thread {
+    p {
+        color: $textHeading;
+    }
+
+    a {
+        color: $highlight;
     }
 }
 
