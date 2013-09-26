@@ -151,9 +151,9 @@ define(
                     var $el = nodes[ symbol ];
                     
                     // liquid above Tm
-                    mode = ( elem.state.Tb && temp >= elem.state.Tb )? 'liquid' : 'solid';
+                    mode = ( elem.state.Tm && temp >= elem.state.Tm )? 'liquid' : 'solid';
                     // gas above Tb
-                    mode = ( elem.state.Tm && temp >= elem.state.Tm )? 'gas' : mode;
+                    mode = ( elem.state.Tb && temp >= elem.state.Tb )? 'gas' : mode;
 
                     $el && $el.removeClass('solid liquid gas').addClass( mode );
                 });

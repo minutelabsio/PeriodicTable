@@ -523,7 +523,7 @@ $headerHeight: 80px;
         height: 30px;
         background: black;
         margin: 10px;
-        @include transition( all 0.5s linear );
+        @include transition( all 0.3s ease-in-out );
         
         &:after {
             content: "";

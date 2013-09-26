@@ -49,13 +49,15 @@ define(
                     
                     var anti = self.Tn && (self.temp < self.Tn);
                     var ferro = self.Tc && (self.temp < self.Tc);
-                    var T = (ferro && (self.temp / self.Tc)) || (anti && ((self.temp - self.Tc || 0) / (self.Tn - self.Tc || 0) ));
+                    var T = self.temp/self.Tmax;
+                    var time = 300 * (4 - T * 3)/4 | 0;
                     $material.toggleClass('ferro', ferro).toggleClass('anti', anti && !ferro);
 
                     $dipoles.css('transform', function(){
 
                         var offset = 0;
                         var rot;
+                        var $this = $(this);
 
                         if (ferro){
 
@@ -63,18 +65,21 @@ define(
 
                         } else if (anti){
 
-                            rot = ($(this).index() % 2) * Math.PI + (T * (Math.random() - 0.5) * Math.PI);
+                            rot = ($this.index() % 2) * Math.PI + (T * (Math.random() - 0.5) * Math.PI);
 
                         } else {
-
-                            rot = Math.random() * Math.PI * 2;
+                            rot = $this.data('rot')||0;
+                            rot += T * (Math.random()-0.5) * Math.PI * 2;
+                            rot -= (rot > Math.PI)? Math.PI : 0;
+                            rot += (rot < -Math.PI)? Math.PI : 0;
+                            $this.data('rot', rot);
                         }
 
-                        return 'rotate(' + rot + 'rad)';
-                    });
+                        return 'rotate(' + rot + 'rad) translate('+ (T * (Math.random()-0.5) * 6) +'px, ' + (T * (Math.random()-0.5) * 6) +'px)';
+                    }).css('transition-duration', time+'ms');
                     
                     clearTimeout( self.to );
-                    self.to = setTimeout(fluctuate, 300);
+                    self.to = setTimeout(fluctuate, time);
                 }
 
                 self.material = $material;
