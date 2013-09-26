@@ -1339,7 +1339,7 @@
             "type": false
         },
         "state": {
-            "type": "n/a",
+            "type": "unknown",
             "Tm": null,
             "Tb": null
         }

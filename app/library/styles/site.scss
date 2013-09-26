@@ -922,6 +922,11 @@ $headerHeight: 80px;
         }
         background: $solidColor;
     }
+
+    .info abbr.unknown {
+        color: $text;
+        background: $elementBg;
+    }
 }
 
 .ctrl-temperature,
