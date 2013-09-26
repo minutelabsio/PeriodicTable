@@ -299,6 +299,51 @@ $headerHeight: 80px;
     margin-left: 0;
 }
 
+///////////////
+// legend
+// 
+.legend {
+
+    position: relative;
+    line-height: 1.2;
+
+    abbr {
+        position: relative;
+        z-index: 0;
+        display: inline-block;
+        width: 4.9em;
+        height: 2em;
+        margin-right: -0.65em;
+        padding: 0.5em 0;
+        background: black;
+        text-align: center;
+    }
+
+    data {
+        position: absolute;
+        bottom: -2em;
+        display: inline-block;
+        text-align: center;
+        width: 4em;
+        margin-left: -2em;
+
+        &:after {
+            content: "";
+            position: absolute;
+            border-left: 1px solid black;
+            top: -1em;
+            left: 50%;
+            margin-left: -1px;
+            height: 1em;
+            z-index: -1;
+        }
+    }
+}
+
+///////////////
+// about section
+// 
+
 #about {
     margin: 154px auto;
     width: 600px;
@@ -307,6 +352,7 @@ $headerHeight: 80px;
 
     h1 {
         font-size: $phi * 1em;
+        margin-top: 1.5em;
         margin-bottom: 1em;
 
         small {
@@ -314,15 +360,26 @@ $headerHeight: 80px;
         }
     }
 
+    h2 {
+        font-size: $phi * 0.75em;
+        margin-top: 1.5em;
+        margin-bottom: 1em;
+    }
+
     p {
         margin-bottom: 1em;
+    }
+
+    .legend {
+        margin: auto;
+        width: 15em;
+        margin-bottom: 3em;
     }
 
     .ctrl-back {
         display: inline-block;
         font-size: 20px;
         padding: 0.5em 1em;
-        margin-bottom: 3em;
 
         &:before {
             font-family: 'icomoon';
@@ -416,41 +473,10 @@ $headerHeight: 80px;
         .magnetic-response,
         .state-response {
             display: none;
-            position: relative;
             width: 100%;
             text-align: center;
 
-            abbr {
-                position: relative;
-                z-index: 0;
-                display: inline-block;
-                width: 4.9em;
-                height: 2em;
-                margin-right: -0.65em;
-                padding: 0.5em 0;
-                background: black;
-                text-align: center;
-            }
-
-            data {
-                position: absolute;
-                bottom: -2em;
-                display: inline-block;
-                text-align: center;
-                width: 4em;
-                margin-left: -2em;
-
-                &:after {
-                    content: "";
-                    position: absolute;
-                    border-left: 1px solid black;
-                    top: -1em;
-                    left: 50%;
-                    margin-left: -1px;
-                    height: 1em;
-                    z-index: -1;
-                }
-            }
+            @extend .legend;
 
             abbr.stp {
                 color: transparent !important;
@@ -625,6 +651,14 @@ $headerHeight: 80px;
 #about {
     color: darken($textHeading, 15);
 
+    a {
+        color: $highlight;
+    }
+
+    strong {
+        font-weight: bold;
+    }
+
     .ctrl-back {
         background: darken($background, 10);
         color: $textHeading;
@@ -749,16 +783,18 @@ $headerHeight: 80px;
         .details {
             color: darken(invert($background), 15);
         }
+    }
+}
 
-        .magnetic-response {
-            abbr {
-                border: 1px solid mix(invert($background), $background, 30);
-            }
+#periodic-table .info .state-response,
+#periodic-table .info .magnetic-response,
+.legend {
+    abbr {
+        border: 1px solid mix(invert($background), $background, 30);
+    }
 
-            data:after {
-                border-color: $highlight;
-            }
-        }
+    data:after {
+        border-color: $highlight;
     }
 }
 
@@ -796,10 +832,12 @@ $headerHeight: 80px;
     }
 }
 
-#periodic-table.magnetic {
+#periodic-table.magnetic,
+#about {
     
     [data-magnetic-order="dia"] > .inner,
     .info abbr.dia,
+    .legend abbr.dia,
     .element.dia > .inner {
         background: $diaColor;
 
@@ -811,6 +849,7 @@ $headerHeight: 80px;
 
     [data-magnetic-order="ferro"], 
     .info abbr.ferro,
+    .legend abbr.ferro,
     .element.ferro {
         background: $ferroColor2;
 
@@ -838,6 +877,7 @@ $headerHeight: 80px;
 
     [data-magnetic-order="anti"], 
     .info abbr.anti,
+    .legend abbr.anti,
     .element.anti {
         background: $antiColor2;
         color: black;
@@ -866,6 +906,7 @@ $headerHeight: 80px;
 
     [data-magnetic-order="para"] .inner, 
     .info abbr.para,
+    .legend abbr.para,
     .element.para .inner {
 
         &,
@@ -879,9 +920,11 @@ $headerHeight: 80px;
     }
 }
 
-#periodic-table.states {
+#periodic-table.states,
+#about {
     
     [data-state="gas"] > .inner,
+    .legend abbr.gas,
     .info abbr.gas,
     .element.gas > .inner {
         &,
@@ -896,6 +939,7 @@ $headerHeight: 80px;
     }
 
     [data-state="liquid"] > .inner,
+    .legend abbr.liquid,
     .info abbr.liquid,
     .element.liquid > .inner {
         &,
@@ -911,6 +955,7 @@ $headerHeight: 80px;
 
     [data-state="solid"] > .inner,
     .info abbr.solid,
+    .legend abbr.solid,
     .element.solid > .inner {
         &,
         > * {
@@ -923,7 +968,8 @@ $headerHeight: 80px;
         background: $solidColor;
     }
 
-    .info abbr.unknown {
+    .info abbr.unknown,
+    .legend abbr.unknown {
         color: $text;
         background: $elementBg;
     }
