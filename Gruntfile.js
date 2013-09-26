@@ -75,7 +75,8 @@ module.exports = function(grunt) {
             dist: {
                 options: {
                     config: 'config.rb',
-                    force: true
+                    force: true,
+                    environment: 'production'
                 }
             }
         },
