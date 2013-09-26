@@ -119,7 +119,7 @@ define(
             },
 
             cleanup: function(){
-
+                var self = this;
                 clearTimeout( self.to );
                 this.mediator.off( 'change:temperature', this.tempChanged );
             }

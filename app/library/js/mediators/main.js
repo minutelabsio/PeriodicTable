@@ -141,7 +141,7 @@ define(
                         return false;
                     })
                     .on('change', '.ctrl-theme', function(e, val){
-                        $('body').toggleClass('light-skin', val === 'Light')
+                        $('body').toggleClass('light-skin', val === 'Light');
                     })
                     .on('change', '.ctrl-table-style', function(e, val){
                         self.periodicTable.setTableStyle( val );

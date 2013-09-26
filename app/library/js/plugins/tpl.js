@@ -80,10 +80,9 @@ define(
     
         return {
             
-            load: load
+            load: load,
             
-            // remove template compiling capability
-            // write: write
+            write: write
         };
     }
 );

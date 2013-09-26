@@ -31,7 +31,7 @@ module.exports = ({
     removeCombined: true,
 
     // uncomment to include conditionally loaded modules
-    // findNestedDependencies: true,
+    findNestedDependencies: true,
     
     // Include configurations from our require-config file
     // so r.js knows where to look for resources
@@ -44,53 +44,45 @@ module.exports = ({
         // that are needed on every page
         // this will include things like 
         // jquery, stapes, globals mediator, etc...
-        {
-            name: 'config/require-config',
+        // {
+        //     name: 'config/require-config',
 
-            include: [
-                'mediators/globals'
-            ]
-        },
+        //     include: [
+        //         'mediators/globals'
+        //     ]
+        // },
         // page level dependencies.
-        {
-            name: 'page-boilerplate',
-            // this usually is used for creating
-            // modules that don't exist in the optimized
-            // source yet. Instead, we're using it to
-            // "reset" the order of inclusion.
-            // eg: we need the home mediator
-            // to be defined in the build layer
-            // _before_ page-home.js
-            create: true,
+        // {
+        //     name: 'page-boilerplate',
+        //     // this usually is used for creating
+        //     // modules that don't exist in the optimized
+        //     // source yet. Instead, we're using it to
+        //     // "reset" the order of inclusion.
+        //     // eg: we need the home mediator
+        //     // to be defined in the build layer
+        //     // _before_ page-home.js
+        //     create: true,
 
-            // things to include in build layer.
-            // Dependencies of these modules are
-            // included also.
-            // 
-            // Including page-home so it gets defined
-            // at the bottom. Used in conjunction with
-            // create: true as described above.
-            include: [
-                'mediators/boilerplate',
-                'page-boilerplate'
-            ],
+        //     // things to include in build layer.
+        //     // Dependencies of these modules are
+        //     // included also.
+        //     // 
+        //     // Including page-home so it gets defined
+        //     // at the bottom. Used in conjunction with
+        //     // create: true as described above.
+        //     include: [
+        //         'mediators/boilerplate',
+        //         'page-boilerplate'
+        //     ],
 
-            // Exclude anything already included
-            // in the require-config build layer
-            exclude: [
-                'config/require-config'
-            ]
-        },
+        //     // Exclude anything already included
+        //     // in the require-config build layer
+        //     exclude: [
+        //         'config/require-config'
+        //     ]
+        // },
         {
-            name: 'page-main',
-            create: true,
-            include: [
-                'mediators/main',
-                'page-main'
-            ],
-            exclude: [
-                'config/require-config'
-            ]
+            name: 'page-main'
         }
     ]
 });

@@ -155,7 +155,9 @@ define(
                     // gas above Tb
                     mode = ( elem.state.Tb && temp >= elem.state.Tb )? 'gas' : mode;
 
-                    $el && $el.removeClass('solid liquid gas').addClass( mode );
+                    if ( $el ){
+                        $el.removeClass('solid liquid gas').addClass( mode );
+                    }
                 });
             },
 
@@ -179,7 +181,9 @@ define(
                     // ferromagnetic below Tc
                     mode = ( elem.mag.Tc && temp <= elem.mag.Tc )? 'ferro' : mode;
 
-                    $el && $el.removeClass('anti para ferro dia').addClass( mode );
+                    if ( $el ){
+                        $el.removeClass('anti para ferro dia').addClass( mode );
+                    }
                 });
             },
 
