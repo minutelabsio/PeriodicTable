@@ -344,8 +344,7 @@
         "name": "Copper",
         "mass": "63.546",
         "mag": {
-            "type": "dia",
-            "Tn": 6e-8
+            "type": "dia"
         },
         "state": {
             "type": "solid",
@@ -1179,8 +1178,7 @@
         "mass": "(247)",
         "mag": {
             "type": "para",
-            "Tc": 34,
-            "Tn": 70
+            "Tn": 34
         },
         "state": {
             "type": "solid",
