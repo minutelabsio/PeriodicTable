@@ -194,7 +194,10 @@ $headerHeight: 80px;
     position: relative;
     top: 5px;
     margin-left: 230px;
-    
+}
+
+.ctrl-temperature,
+.temp-slider {
     .noUi-base {
         height: 22px;
         width: 100%;
@@ -221,6 +224,12 @@ $headerHeight: 80px;
     }
     .noUi-active:after {
         display: none;
+    }
+}
+
+.temp-slider {
+    .noUi-handle {
+        padding-top: 0.2em;
     }
 }
 
@@ -511,9 +520,20 @@ $headerHeight: 80px;
 
 #dipole-visualization {
 
+    width: (180px + 34px) * 2;
+    margin: 2em auto;
+
     .material {
         width: 180px;
-        margin: auto;
+        display: inline-block;
+        margin: 0 1em 1em;
+
+        &:after {
+            content: attr(data-title);
+            width: 100%;
+            text-align: center;
+            display: block;
+        }
     }
     
     .dipole {
@@ -869,7 +889,8 @@ $headerHeight: 80px;
     }
 }
 
-.ctrl-temperature {
+.ctrl-temperature,
+.temp-slider {
 
     .noUi-base {
         border-color: darken($background, 50);

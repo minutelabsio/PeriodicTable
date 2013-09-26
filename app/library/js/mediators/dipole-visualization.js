@@ -1,41 +1,70 @@
 define(
     [
-        'jquery'
+        'jquery',
+        'nouislider'
     ],
     function(
-        $
+        $,
+        _nouisl
     ) {
 
         'use strict';
 
-        function Logic( mediator, el, cfg ){
+        function Logic( mediator, el ){
 
+            var self = this;
             this.el = $(el);
+            var Tmin = 0;
+            var Tmax = 400;
+            var start = 273;
+
             this.mediator = mediator;
-            cfg = cfg || {};
-            this.Tc = cfg.Tc || 333;
-            this.Tn = cfg.Tn || 666;
-            this.Tmax = cfg.Tmax || 1000;
+            mediator.temperatureRange([0, 0]);
 
-            this.tempChanged = $.proxy(this.tempChanged, this);
-
-            mediator.on({
-                'change:temperature': this.tempChanged
+            self.tempCtrl = $('<div>').addClass('temp-slider').noUiSlider({
+                handles: 1,
+                range: [Tmin, Tmax],
+                start: [start],
+                slide: function(){
+                    var $this = $(this);
+                    var val = $this.val();
+                    self.tempChanged( val );
+                }
             });
 
-            mediator.temperatureRange([0, this.Tmax]);
-            this.temp = mediator.get('temperature');
+            self.tempChanged( start );
 
-            this.createMaterial();
-            this.el.empty().append( this.material );
+            this.animate = $.Callbacks();
+
+            this.el.empty().append( this.createMaterial({
+                title: 'Dysprosium (Dy)',
+                Tc: 92.1,
+                Tn: 180.2,
+                Tmax: Tmax,
+                Tmin: Tmin
+            })).append( this.createMaterial({
+                title: 'Gadolinium (Gd)',
+                Tc: 291.8,
+                Tmax: Tmax,
+                Tmin: Tmin
+            })).append( self.tempCtrl );
+
+            function anim(){
+                var T = (self.temp-Tmin)/(Tmax-Tmin);
+                var time = 300 * (4 - T * 3)/4 | 0;
+                self.animate.fire( time );
+                self.to = setTimeout(anim, time);
+            }
+            
+            anim();
         }
 
         Logic.prototype = {
 
-            createMaterial: function(){
+            createMaterial: function( cfg ){
 
                 var self = this
-                    ,$material = $('<div>').addClass('material')
+                    ,$material = $('<div>').addClass('material').attr('data-title', cfg.title)
                     ,$dipole = $('<div>').addClass('dipole')
                     ;
 
@@ -45,13 +74,13 @@ define(
 
                 var $dipoles = $material.find('.dipole');
 
-                function fluctuate(){
+                function fluctuate( time ){
                     
-                    var anti = self.Tn && (self.temp < self.Tn);
-                    var ferro = self.Tc && (self.temp < self.Tc);
-                    var T = self.temp/self.Tmax;
-                    var time = 300 * (4 - T * 3)/4 | 0;
-                    $material.toggleClass('ferro', ferro).toggleClass('anti', anti && !ferro);
+                    var anti = cfg.Tn && (self.temp < cfg.Tn);
+                    var ferro = cfg.Tc && (self.temp < cfg.Tc);
+                    var T = (self.temp-cfg.Tmin)/(cfg.Tmax-cfg.Tmin);
+                    
+                    $material.toggleClass('ferro', ferro).toggleClass('anti', !!anti && !ferro);
 
                     $dipoles.css('transform', function(){
 
@@ -77,18 +106,16 @@ define(
 
                         return 'rotate(' + rot + 'rad) translate('+ (T * (Math.random()-0.5) * 6) +'px, ' + (T * (Math.random()-0.5) * 6) +'px)';
                     }).css('transition-duration', time+'ms');
-                    
-                    clearTimeout( self.to );
-                    self.to = setTimeout(fluctuate, time);
                 }
 
-                self.material = $material;
-                fluctuate();
+                self.animate.add(fluctuate);
+                return $material;
             },
 
             tempChanged: function( t ){
 
                 this.temp = t;
+                this.tempCtrl.find('.noUi-handle').text( (t|0) + 'K' );
             },
 
             cleanup: function(){
