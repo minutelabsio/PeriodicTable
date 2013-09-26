@@ -41,7 +41,7 @@ define(
                 }
             });
 
-            self.tempCtrl.find('.noUi-handle').text( start + 'K' )
+            self.tempCtrl.find('.noUi-handle').text( start + 'K' );
 
             self.materials = this.createMaterial({
                     title: 'Dysprosium (Dy)',
@@ -80,7 +80,7 @@ define(
                 }
             });
 
-            self.tempCtrlLegend.find('.noUi-handle').text( '20K' )
+            self.tempCtrlLegend.find('.noUi-handle').text( '20K' );
 
             self.materialLegend = this.createMaterial({
                 Tc: 33,
@@ -135,6 +135,31 @@ define(
 
                 var $dipoles = $material.find('.dipole');
 
+                function getTransform(el, index, ferro, anti, T){
+
+                    var offset = 0;
+                    var rot;
+                    var $this = $(el);
+
+                    if (ferro){
+
+                        rot = T * (Math.random() - 0.5) * Math.PI;
+
+                    } else if (anti){
+
+                        rot = (index % 2) * Math.PI + (T * (Math.random() - 0.5) * Math.PI);
+
+                    } else {
+                        rot = $this.data('rot')||0;
+                        rot += T * (Math.random()-0.5) * Math.PI * 2;
+                        rot -= (rot > Math.PI)? Math.PI : 0;
+                        rot += (rot < -Math.PI)? Math.PI : 0;
+                        $this.data('rot', rot);
+                    }
+
+                    return 'rotate(' + rot + 'rad) translate('+ (T * (Math.random()-0.5) * 6) +'px, ' + (T * (Math.random()-0.5) * 6) +'px) translateZ(0)';
+                }
+
                 function fluctuate( time ){
 
                     var temp = $material.data('temp') | 0;
@@ -151,30 +176,7 @@ define(
                     for ( var i = 0, l = $dipoles.length; i < l; ++i ){
                         
                         el = $dipoles[ i ];
-                        el.style[ tf ] = (function(el, index){
-
-                            var offset = 0;
-                            var rot;
-                            var $this = $(el);
-
-                            if (ferro){
-
-                                rot = T * (Math.random() - 0.5) * Math.PI;
-
-                            } else if (anti){
-
-                                rot = (index % 2) * Math.PI + (T * (Math.random() - 0.5) * Math.PI);
-
-                            } else {
-                                rot = $this.data('rot')||0;
-                                rot += T * (Math.random()-0.5) * Math.PI * 2;
-                                rot -= (rot > Math.PI)? Math.PI : 0;
-                                rot += (rot < -Math.PI)? Math.PI : 0;
-                                $this.data('rot', rot);
-                            }
-
-                            return 'rotate(' + rot + 'rad) translate('+ (T * (Math.random()-0.5) * 6) +'px, ' + (T * (Math.random()-0.5) * 6) +'px) translateZ(0)';
-                        })(el, i);
+                        el.style[ tf ] = getTransform(el, i, ferro, anti, T);
                         el.style[ ts + 'Duration' ] = time + 'ms';
                     }
                 }
