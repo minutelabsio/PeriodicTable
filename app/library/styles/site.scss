@@ -370,10 +370,25 @@ $headerHeight: 80px;
         margin-bottom: 1em;
     }
 
+    #legend-visualization {
+        width: 100%;
+        padding-right: 10px;
+        margin-bottom: 5px;
+
+        .material {
+            display: block;
+            margin: auto;
+        }
+    }
+
     .legend {
         margin: auto;
-        width: 15em;
+        width: 100%;
         margin-bottom: 3em;
+
+        abbr {
+            width: 33.33%;
+        }
     }
 
     .ctrl-back {
@@ -579,7 +594,8 @@ $headerHeight: 80px;
 // Dipole visualizations
 // 
 
-#dipole-visualization {
+#dipole-visualization,
+#legend-visualization {
 
     width: (180px + 34px) * 2;
     margin: 2em auto;
@@ -615,6 +631,10 @@ $headerHeight: 80px;
             border-color: transparent transparent black;
         }
     }
+}
+
+#legend-visualization {
+    width: 180px;
 }
 
 
@@ -992,7 +1012,8 @@ $headerHeight: 80px;
     }
 }
 
-#dipole-visualization {
+#dipole-visualization,
+#legend-visualization {
 
     .dipole {
         background: $textHeading;

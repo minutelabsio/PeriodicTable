@@ -277,7 +277,7 @@ define(
                         self.el.find('#about').show();
 
                         require(['./dipole-visualization'], function( dipoles ){
-                            self.logic = dipoles( self, '#dipole-visualization' );
+                            self.logic = dipoles( self, '#about' );
                         });
                     }
                 })
