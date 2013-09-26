@@ -177,6 +177,15 @@ $headerHeight: 80px;
         }
     }
 
+    .ctrl-toggle-legend {
+        line-height: 1;
+        padding: 0.55em 0.5em;
+        font-size: 16px;
+        font-family: $monoFontFamily;
+        border: none;
+        @include border-radius( 5px );
+    }
+
     .left {
         float: left;
 
@@ -194,7 +203,7 @@ $headerHeight: 80px;
 .ctrl-temperature {
     position: relative;
     top: 5px;
-    margin-left: 230px;
+    margin-left: 320px;
 }
 
 .ctrl-temperature,
@@ -235,7 +244,8 @@ $headerHeight: 80px;
 }
 
 #video-area,
-#settings-area {
+#settings-area,
+#legend-area {
     position: fixed;
     z-index: 1;
     overflow: visible;
@@ -252,6 +262,25 @@ $headerHeight: 80px;
     height: 339px;
     margin-left: -582px;
     @include border-radius( 0 5px 5px 0 );
+}
+
+#legend-area {
+    @include clearfix;
+    top: $headerHeight;
+    left: 100px;
+    width: auto;
+    height: 57px;
+    margin-top: -57px;
+    @include border-radius( 0 5px 5px 0 );
+
+    .legend {
+        float: left;
+        width: 230px;
+    }
+
+    abbr {
+        width: 100%;
+    }
 }
 
 #settings-area {
@@ -292,6 +321,10 @@ $headerHeight: 80px;
 }
 
 .reveal #settings-area {
+    margin-top: 0;
+}
+
+.reveal-legend #legend-area {
     margin-top: 0;
 }
 
@@ -753,7 +786,8 @@ $headerHeight: 80px;
 
 #controls {
     
-    .ctrl-toggle {
+    .ctrl-toggle,
+    .ctrl-toggle-legend {
         background: transparentize($highlight, 1);
         color: $textHeading;
         cursor: pointer;
@@ -762,15 +796,14 @@ $headerHeight: 80px;
     }
 }
 
-.reveal #controls .ctrl-toggle-controls {
+.reveal #controls .ctrl-toggle-controls,
+.reveal-video #controls .ctrl-toggle-video,
+.reveal-legend #controls .ctrl-toggle-legend {
     background: darken(mix($background, $highlight, 60), 5);
 }
 
-.reveal-video #controls .ctrl-toggle-video {
-    background: darken(mix($background, $highlight, 60), 5);
-}
-
-#controls .ctrl-toggle {
+#controls .ctrl-toggle,
+#controls .ctrl-toggle-legend {
     &:hover {
         background: darken($background, 10);
     }
@@ -781,7 +814,8 @@ $headerHeight: 80px;
 }
 
 #video-area,
-#settings-area {
+#settings-area,
+#legend-area {
     color: $highlight;
     background: $background;
     border: 1px solid darken($background, 10);
@@ -853,7 +887,8 @@ $headerHeight: 80px;
 }
 
 #periodic-table.magnetic,
-#about {
+#about,
+#legend-area {
     
     [data-magnetic-order="dia"] > .inner,
     .info abbr.dia,
@@ -935,13 +970,14 @@ $headerHeight: 80px;
             @include text-shadow( 0 0 6px black );
         }
         
-        background: $paraColor image-url('para-texture-grey.png') no-repeat center 0;
+        background: $paraColor $paraBg repeat center 0;
         background-size: 180px;
     }
 }
 
 #periodic-table.states,
-#about {
+#about,
+#legend-area {
     
     [data-state="gas"] > .inner,
     .legend abbr.gas,
@@ -1081,7 +1117,7 @@ body.light-skin {
         $elementText: rgba(0, 0, 0, 0.75),
         $diaColor: hsl(180, 78%, 93%),
         $paraColor: rgb(182, 68, 68),
-        $paraBg: image-url('para-texture-grey2.png'),
+        $paraBg: image-url('para-texture-grey.png'),
         $antiColor2: #fafafa
     );
 }

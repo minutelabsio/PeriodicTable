@@ -1,12 +1,16 @@
 define(
     [
-        'jquery'
+        'jquery',
+        'tpl!templates/legend-mag.tpl'
     ],
     function(
-        $
+        $,
+        tplLegend
     ) {
 
         'use strict';
+
+        var legend = tplLegend.render();
 
         function Logic( mediator, pt ){
 
@@ -18,6 +22,7 @@ define(
             });
 
             mediator.temperatureRange([0, 2000]);
+            mediator.setLegend( legend );
 
             pt.showMagneticResponse( mediator.get('temperature') );
         }

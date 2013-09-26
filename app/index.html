@@ -24,7 +24,7 @@
 </head>
 <body class="light-skin">
     
-  <div id="viewport">
+  <div id="viewport" class="reveal-legend">
     <header id="site-header">
 
       <h1><a href="#">Periodic Table</a></h1>
@@ -55,6 +55,7 @@
         <div class="left">
           <button class="ctrl-toggle ctrl-toggle-controls" title="toggle settings">toggle settings</button>
           <button class="ctrl-toggle ctrl-toggle-video" title="toggle video area">toggle video area</button>
+          <button class="ctrl-toggle-legend" title="toggle legend">Legend</button>
 
           <h2 class="title">Temperature</h2>
         </div>
@@ -134,6 +135,8 @@
       <div id="periodic-table" class="mini-table hidden"></div>
       
       <div id="panels">
+
+        <div id="legend-area"></div>
 
         <div id="video-area">
           <iframe id="original-video" width="560" height="315" src="//www.youtube.com/embed/hFAOXdXZ5TM" frameborder="0" allowfullscreen></iframe>

@@ -1,12 +1,16 @@
 define(
     [
-        'jquery'
+        'jquery',
+        'tpl!templates/legend-state.tpl'
     ],
     function(
-        $
+        $,
+        tplLegend
     ) {
 
         'use strict';
+
+        var legend = tplLegend.render();
 
         function Logic( mediator, pt ){
 
@@ -18,6 +22,7 @@ define(
             });
 
             mediator.temperatureRange([0, 6000]);
+            mediator.setLegend( legend );
 
             pt.showStates( mediator.get('temperature') );
         }

@@ -142,6 +142,10 @@ define(
                         self.viewport.toggleClass('reveal-video');
                         return false;
                     })
+                    .on('click', '.ctrl-toggle-legend', function(){
+                        self.viewport.toggleClass('reveal-legend');
+                        return false;
+                    })
                     .on('change', '.ctrl-theme', function(e, val){
                         $('body').toggleClass('light-skin', val === 'Light');
                     })
@@ -338,6 +342,11 @@ define(
                 });
 
                 self.emit('change:temperature', start);
+            },
+
+            setLegend: function( html ){
+                
+                this.el.find('#legend-area').html( html );
             },
 
             /**
