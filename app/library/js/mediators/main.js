@@ -230,9 +230,22 @@ define(
                     path: 'about',
                     directions: function(params) {
 
+                        if (self.logic){
+                            self.logic.cleanup();
+                            delete self.logic;
+                        }
+
                         self.periodicTable.el.hide();
                         self.el.find('#panels').hide();
                         self.el.find('#about').show();
+
+                        require(['./dipole-visualization'], function( dipoles ){
+                            self.logic = dipoles( self, '#dipole-visualization', {
+                                Tn: 56,
+                                Tc: 32,
+                                Tmax: 100
+                            });
+                        });
                     }
                 })
                 .otherwise('mag') // will route all unmatched paths to #/mag

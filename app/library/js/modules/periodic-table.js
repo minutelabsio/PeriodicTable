@@ -48,7 +48,7 @@ define(
             elementWidth: 70,
             elementHeight: 90,
             fontSize: 30,
-            style: 'long'
+            style: 'wide'
         };
 
         /**
@@ -150,10 +150,10 @@ define(
 
                     var $el = nodes[ symbol ];
                     
-                    // liquid below Tb
-                    mode = ( elem.state.Tb && temp <= elem.state.Tb )? 'liquid' : 'gas';
-                    // solid below Tm
-                    mode = ( elem.state.Tm && temp <= elem.state.Tm )? 'solid' : mode;
+                    // liquid above Tm
+                    mode = ( elem.state.Tb && temp >= elem.state.Tb )? 'liquid' : 'solid';
+                    // gas above Tb
+                    mode = ( elem.state.Tm && temp >= elem.state.Tm )? 'gas' : mode;
 
                     $el && $el.removeClass('solid liquid gas').addClass( mode );
                 });
@@ -189,7 +189,7 @@ define(
 
                 style = style && style.toLowerCase();
 
-                if (style === 'long'){
+                if (style === 'wide'){
 
                     self.setData( longTable );
                     self.el.attr('data-table-style', 'long');

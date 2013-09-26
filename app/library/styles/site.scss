@@ -505,6 +505,37 @@ $headerHeight: 80px;
     }
 }
 
+/////////////////////////
+// Dipole visualizations
+// 
+
+#dipole-visualization {
+
+    .material {
+        width: 180px;
+        margin: auto;
+    }
+    
+    .dipole {
+        position: relative;
+        display: inline-block;
+        width: 4px;
+        height: 30px;
+        background: black;
+        margin: 10px;
+        @include transition( all 0.5s linear );
+        
+        &:after {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: -8px;
+            border: 10px solid black;
+            border-color: transparent transparent black;
+        }
+    }
+}
+
 
 //////////////////////////////////
 // Site skins controlled by mixin
@@ -850,6 +881,44 @@ $headerHeight: 80px;
 
         &:hover {
             border-color: transparentize($highlight, 0.6);
+        }
+    }
+}
+
+#dipole-visualization {
+
+    .dipole {
+        background: $textHeading;
+
+        &:after {
+            border-color: transparent transparent $textHeading;
+        }
+    }
+    
+    .ferro .dipole {
+        background: $ferroColor;
+
+        &:after {
+            border-color: transparent transparent $ferroColor;
+        }
+    }
+    
+    .anti {
+
+        .dipole {
+            background: $textHeading;
+
+            &:after {
+                border-color: transparent transparent $textHeading;
+            }
+        }
+
+        .dipole:nth-child(2n){
+            background: $antiColor;
+                
+            &:after {
+                border-color: transparent transparent $antiColor;
+            }
         }
     }
 }
