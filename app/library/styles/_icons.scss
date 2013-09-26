@@ -28,7 +28,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-youtube, .icon-youtube-2, .icon-minus, .icon-eye-blocked, .icon-lamp, .icon-coffee, .icon-equalizer {
+.icon-youtube, .icon-youtube-2, .icon-minus, .icon-eye-blocked, .icon-lamp, .icon-coffee, .icon-equalizer, .icon-chevron-left, .icon-chevron-right, .icon-chevron-up, .icon-chevron-down, .icon-question-sign {
     font-family: 'icomoon';
     speak: none;
     font-style: normal;
@@ -58,4 +58,19 @@ you can use the generic selector below, but it's slower:
 }
 .icon-equalizer:before {
     content: "\73";
+}
+.icon-chevron-left:before {
+    content: "\3c";
+}
+.icon-chevron-right:before {
+    content: "\3e";
+}
+.icon-chevron-up:before {
+    content: "\5e";
+}
+.icon-chevron-down:before {
+    content: "\76";
+}
+.icon-question-sign:before {
+    content: "\3f";
 }

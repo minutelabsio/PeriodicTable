@@ -114,6 +114,8 @@ define(
                     el: '#periodic-table'
                 });
 
+                self.set('units', 'K');
+
                 self.initEvents();
 
                 $(function(){
@@ -143,6 +145,10 @@ define(
                     .on('change', '.ctrl-theme', function(e, val){
                         $('body').toggleClass('light-skin', val === 'Light');
                     })
+                    .on('change', '.ctrl-units', function(e, val){
+                        self.set('units', val.toUpperCase());
+                        self.emit('change:temperature', self.get('temperature'));
+                    })
                     .on('change', '.ctrl-table-style', function(e, val){
                         self.periodicTable.setTableStyle( val );
                     })
@@ -153,7 +159,7 @@ define(
                         var $this = $(this)
                             ,temp = $this.val() | 0
                             ;
-                        $this.find('.noUi-handle').text( temp + 'K' );
+                        
                         self.set('temperature', temp);
                     })
                     .on('click', '.ctrl-play-video', function(e){
@@ -163,6 +169,37 @@ define(
                         return false;
                     })
                     ;
+
+                self.on('change:temperature', function( temp ){
+
+                    var unit = self.get('units')
+                        ,T = temp
+                        ;
+
+                    switch ( unit ){
+
+                        case 'C':
+                            T = (temp - 273) | 0;
+                            T += '&deg;';
+                        break;
+
+                        case 'F':
+                            T = (temp * 9/5 - 459.67) | 0;
+                            T += '&deg;';
+                        break;
+
+                        // kelvin
+                        default:
+                        break;
+                    }
+
+                    if (self.temperatureSelector){
+                        self.temperatureSelector
+                            .find('.noUi-handle:first')
+                            .html( T + unit )
+                            ;
+                    }
+                });
 
                 self.periodicTable.on('element', function( data ){
 
@@ -298,7 +335,9 @@ define(
                     slide: function(){
                         $(this).trigger('change');
                     }
-                }).trigger('change');
+                });
+
+                self.emit('change:temperature', start);
             },
 
             /**
@@ -313,7 +352,7 @@ define(
                 self.controls = $('#controls');
 
                 self.set('temperature', 273);
-                
+
                 $('.toggler').toggler();
                 $('.selecter.fake').remove();
                 self.tableSelector = $('.ctrl-table-switcher:first').selecter();

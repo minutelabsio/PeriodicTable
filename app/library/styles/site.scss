@@ -57,6 +57,7 @@ a {
 
     font-size: 1em;
     margin: 0.5em 0;
+    width: 14.8em;
 
     button {
         cursor: pointer;
@@ -256,10 +257,38 @@ $headerHeight: 80px;
 #settings-area {
     top: $headerHeight;
     left: 0;
-    width: 260px;
+    width: auto;
     margin-top: -260px;
+    padding-top: 1.2em;
+    width: auto;
     @include border-radius( 0 0 5px 5px );
     @include box-shadow( 0 2px 6px rgba(0, 0, 0, 0.4));
+
+    .inner { 
+        width: 520px;
+    }
+
+    .left,
+    .right {
+        display: block;
+        float: left;
+        width: 50%;
+    }
+
+    .left {
+        padding-right: 20px;
+    }
+
+    .ctrl-units button {
+        width: 8em * 2 / 3 - 0.22em;
+
+        &:before {
+            content: '\00b0';
+        }
+        &:first-child:before {
+            content: '';
+        }
+    }
 }
 
 .reveal #settings-area {
@@ -294,6 +323,12 @@ $headerHeight: 80px;
         font-size: 20px;
         padding: 0.5em 1em;
         margin-bottom: 3em;
+
+        &:before {
+            font-family: 'icomoon';
+            @extend .icon-chevron-left:before;
+            margin-right: 0.75em;
+        }
 
         @include border-radius( 5px );
     }
