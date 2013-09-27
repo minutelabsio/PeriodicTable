@@ -189,14 +189,16 @@ define(
 
                 var self = this
                     ,elem
-                    ,mode
                     ,nodes = self.nodes
+                    ,mode
+                    ,$el
                     ;
 
                 // set overrides for temperature dependent magnetic response
-                _.each(stateResponders, function( elem, symbol ){
-
-                    var $el = nodes[ symbol ];
+                for ( var symbol in stateResponders ){
+                    
+                    elem = stateResponders[ symbol ];
+                    $el = nodes[ symbol ];
                     
                     // liquid above Tm
                     mode = ( !elem.state.Tm || temp >= elem.state.Tm )? 'liquid' : 'solid';
@@ -204,9 +206,9 @@ define(
                     mode = ( elem.state.Tb && temp >= elem.state.Tb )? 'gas' : mode;
 
                     if ( $el ){
-                        $el.removeClass('solid liquid gas').addClass( mode );
+                        $el[0].className = $el[0].className.replace(/solid|liquid|gas/, '') + ' ' + mode;
                     }
-                });
+                }
 
                 return self;
             },
@@ -215,14 +217,16 @@ define(
 
                 var self = this
                     ,elem
-                    ,mode
                     ,nodes = self.nodes
+                    ,mode
+                    ,$el
                     ;
 
                 // set overrides for temperature dependent magnetic response
-                _.each(magneticResponders, function( elem, symbol ){
+                for ( var symbol in magneticResponders ){
 
-                    var $el = nodes[ symbol ];
+                    elem = magneticResponders[ symbol ];
+                    $el = nodes[ symbol ];
                     
                     // antiferromagnetic below Tn
                     mode = ( elem.mag.Tn && temp <= elem.mag.Tn )? 'anti' : 'para';
@@ -230,9 +234,9 @@ define(
                     mode = ( elem.mag.Tc && temp <= elem.mag.Tc )? 'ferro' : mode;
 
                     if ( $el ){
-                        $el.removeClass('anti para ferro dia').addClass( mode );
+                        $el[0].className = $el[0].className.replace(/anti|para|ferro|dia/, '') + ' ' + mode;
                     }
-                });
+                }
 
                 return self;
             },

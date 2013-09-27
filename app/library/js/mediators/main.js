@@ -168,13 +168,6 @@ define(
                     .on('change', '.ctrl-table-size', function(e, val){
                         self.periodicTable.el.toggleClass( 'mini-table', val );
                     })
-                    .on('change', '.ctrl-temperature', function(){
-                        var $this = $(this)
-                            ,temp = $this.val() | 0
-                            ;
-                        
-                        self.set('temperature', temp);
-                    })
                     .on('click', '.ctrl-play-video', function(e){
 
                         self.initVideoOrchestration();
@@ -291,6 +284,14 @@ define(
                         require(['./dipole-visualization'], function( dipoles ){
                             self.logic = dipoles( self, '#about' );
                         });
+                    }
+                })
+                .navigate({
+                    path: 'autoplay',
+                    directions: function(params) {
+
+                        window.location.hash = '#mag';
+                        window.setTimeout($.proxy(self.initVideoOrchestration, self), 1000);
                     }
                 })
                 .otherwise('mag') // will route all unmatched paths to #/mag
@@ -420,7 +421,7 @@ define(
                     onStart: function(){
                         var pt = self.periodicTable;
 
-                        pt.highlight( false ).highlight( 'Cr' );
+                        pt.highlight( false ).highlight( 'Cr', true );
                     }
                 }).code({
                     start: 40,
@@ -625,9 +626,13 @@ define(
                     handles: 1,
                     range: range,
                     start: [start],
-                    slide: function(){
-                        $(this).trigger('change');
-                    }
+                    slide: _.throttle(function(){
+                        var $this = $(this)
+                            ,temp = $this.val() | 0
+                            ;
+                        
+                        self.set('temperature', temp);
+                    }, 40)
                 });
 
                 self.emit('change:temperature', start);
