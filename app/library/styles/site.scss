@@ -623,6 +623,10 @@ $headerHeight: 80px;
     }
 }
 
+.reveal-legend #periodic-table[data-table-style="short"] .contents {
+    margin-top: 60px;
+}
+
 /////////////////////////
 // Dipole visualizations
 // 
@@ -886,6 +890,17 @@ $headerHeight: 80px;
     }
 }
 
+
+#periodic-table {
+    .highlight .inner {
+        background: $highlight;
+        &,
+        > * {
+            color: mix($background, $highlight, 80);
+        }
+    }
+}
+
 #periodic-table.magnetic,
 #about,
 #legend-area {
@@ -1028,6 +1043,18 @@ $headerHeight: 80px;
     .legend abbr.unknown {
         color: $text;
         background: $elementBg;
+    }
+}
+
+#periodic-table.magnetic.highlight,
+#periodic-table.states.highlight {
+    .element {
+        @include opacity( 0.1 );
+        @include transition( opacity 0.3s ease-out );
+    }
+
+    .element.highlight {
+        @include opacity( 1 );
     }
 }
 

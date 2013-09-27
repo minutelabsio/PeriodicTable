@@ -24,6 +24,7 @@ define(
             mediator.temperatureRange([0, 2000]);
             mediator.setLegend( legend );
 
+            pt.setState('magnetic');
             pt.showMagneticResponse( mediator.get('temperature') );
         }
 

@@ -24,6 +24,7 @@ define(
             mediator.temperatureRange([0, 6000]);
             mediator.setLegend( legend );
 
+            pt.setState('states');
             pt.showStates( mediator.get('temperature') );
         }
 

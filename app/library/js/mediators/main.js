@@ -5,6 +5,7 @@ define(
         'stapes',
         'satnav',
         'popcorn',
+        'lodash',
         'modules/periodic-table',
         'json!data/periodic-videos.json',
         'nouislider'
@@ -15,12 +16,20 @@ define(
         Stapes,
         Satnav,
         Popcorn,
+        _,
         PeriodicTable,
         periodicVideos,
         _nouisl
     ) {
 
         'use strict';
+
+        var videoUrl = 'http://www.youtube.com/watch?v=qlA7_78Zqrk';
+        var magneticElements = 'Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Th Pa U Np Pu Am Cm Bk Cf Es Fm Md Cr Mn Fe Co Ni Mo Tc Ru Rh Pd W Re Os Ir Pt';
+
+        function lerp(a, b, p) {
+            return (b-a)*p + a;
+        }
 
         $.fn.toggler = function(){
             return this.each(function(){
@@ -168,8 +177,7 @@ define(
                     })
                     .on('click', '.ctrl-play-video', function(e){
 
-                        window.location.hash = '#';
-                        self.loadVideo( $(this).attr('href'), true );
+                        self.initVideoOrchestration();
                         return false;
                     })
                     ;
@@ -296,6 +304,287 @@ define(
                 ;
 
                 $('#loading-msg').hide();
+            },
+
+            initVideoOrchestration: function(){
+
+                var self = this
+                    ,pop
+                    ;
+
+                self.loadVideo( videoUrl, true );
+                pop = self.popcorn;
+
+                pop.on('playing', function(){
+                    
+                    self.periodicTable.mouseevents = false;
+                    if ( pop.roundTime() > 23 ){
+                        self.periodicTable.setState('highlight magnetic');
+                    } else {
+                        self.periodicTable.setState('highlight');
+                    }
+
+                }).on('pause', function(){
+
+                    self.periodicTable.mouseevents = true;
+                    self.periodicTable.highlight( false ).setState('magnetic');
+
+                }).on('ended', function(){
+
+                    self.periodicTable.mouseevents = true;
+                    self.periodicTable.highlight( false ).setState('magnetic');
+                });
+
+                pop.code({
+                    start: 0,
+                    onStart: function(){
+
+                        self.viewport.addClass('reveal-legend').removeClass('reveal');
+                        self.periodicTable.el.addClass( 'mini-table' );
+                        self.periodicTable.mouseevents = false;
+                    },
+                    onEnd: function(){
+                        self.periodicTable.mouseevents = true;
+                    }
+                }).code({
+                    start: 0,
+                    end: 40,
+                    onStart: function(){
+                        self.temperatureSelector.val( 273 );
+                        self.set('temperature', 273);
+                        self.periodicTable.setState('highlight');
+                    }
+                }).code({
+                    start: 1,
+                    end: 7,
+                    onStart: function(){
+                        var pt = self.periodicTable.highlight( false )
+                            ,els = 'Nd Fe B'.split(' ')
+                            ;
+
+                        for ( var i = 0, l = els.length; i < l; ++i ){
+                            
+                            setTimeout(
+                                $.proxy( pt.highlight, pt, els[ i ], true ),
+                                i * 600
+                            );
+                        }
+                    },
+                    onEnd: function(){
+                        self.periodicTable
+                            .highlight(false)
+                            ;
+                    }
+                }).code({
+                    start: 13,
+                    end: 18,
+                    onStart: function(){
+                        var pt = self.periodicTable;
+
+                        pt.highlight(false).highlight( magneticElements );
+                    },
+                    onEnd: function(){
+                        self.periodicTable
+                            .highlight(false)
+                            ;
+                    }
+                }).code({
+                    start: 22.5,
+                    onStart: function(){
+                        self.periodicTable.setState('highlight magnetic');
+                    }
+                }).code({
+                    start: 22.5,
+                    end: 24,
+                    onStart: function(){
+                        var pt = self.periodicTable;
+
+                        pt.highlight(false).highlight( 'Co Ni Gd Fe', true );
+                    }
+                }).code({
+                    start: 24,
+                    end: 26,
+                    onStart: function(){
+                        var pt = self.periodicTable;
+
+                        pt.highlight( false ).highlight( 'Fe', true );
+                    },
+                    onEnd: function(){
+                        self.periodicTable
+                            .highlight(false)
+                            ;
+                    }
+                }).code({
+                    start: 33,
+                    end: 35,
+                    onStart: function(){
+                        var pt = self.periodicTable;
+
+                        pt.highlight( false ).highlight( 'Cr' );
+                    }
+                }).code({
+                    start: 40,
+                    end: 41.5,
+                    onStart: function(){
+                        var pt = self.periodicTable;
+
+                        self.temperatureSelector.val( 140 );
+                        self.set('temperature', 140);
+
+                        pt.highlight( false ).highlight( 'Gd', true );
+                    },
+                    onEnd: function(){
+                        self.periodicTable
+                            .highlight( 'Dy', true )
+                            ;
+                    }
+                }).code({
+                    start: 42,
+                    end: 46,
+                    onStart: function( options ){
+                        
+                        options.anim = $('<div>').css('opacity', 0).animate({
+                            opacity: 1
+                        }, {
+                            duration: ( options.end - options.start ) * 1000,
+                            step: function( t ){
+                                var temp = lerp(140, 300, t) | 0;
+                                self.temperatureSelector.val( temp );
+                                self.set('temperature', temp);
+                            }
+                        });
+                        
+                    },
+                    onEnd: function( options ){
+                        if (options.anim){
+                            options.anim.stop();
+                        }
+                    }
+                }).code({
+                    start: 46,
+                    end: 52,
+                    onEnd: function(){
+                        self.periodicTable
+                            .highlight( false )
+                            ;
+                    }
+                }).code({
+                    start: 60,
+                    end: 66,
+                    onStart: function(){
+                        var pt = self.periodicTable;
+
+                        self.temperatureSelector.val( 273 );
+                        self.set('temperature', 273);
+
+                        pt.highlight( false ).highlight( 'O', true );
+                    },
+                    onEnd: function(){
+                        self.periodicTable
+                            .highlight( false )
+                            ;
+                    }
+                }).code({
+                    start: 70,
+                    end: 80,
+                    onStart: function( options ){
+                        var pt = self.periodicTable;
+
+                        self.temperatureSelector.val( 273 );
+                        self.set('temperature', 273);
+
+                        pt.highlight( false ).highlight( 'Co Ni Fe', true );
+
+                        options.anim = $('<div>').css('opacity', 0).animate({
+                            opacity: 1
+                        }, {
+                            duration: ( options.end - options.start ) * 1000,
+                            step: function( t ){
+                                var temp = lerp(600, 1400, t) | 0;
+                                self.temperatureSelector.val( temp );
+                                self.set('temperature', temp);
+                            }
+                        });
+                    },
+                    onEnd: function( options ){
+
+                        self.periodicTable
+                            .highlight( false )
+                            ;
+
+                        if (options.anim){
+                            options.anim.stop();
+                        }
+                    }
+                }).code({
+                    start: 95,
+                    end: 100,
+                    onStart: function( options ){
+                        var pt = self.periodicTable;
+
+                        self.temperatureSelector.val( 10 );
+                        self.set('temperature', 10);
+
+                        window.location.hash = '#state';
+                        
+                        pt.highlight( false );
+
+                        options.anim = $('<div>').css('opacity', 0).animate({
+                            opacity: 1
+                        }, {
+                            duration: ( options.end - options.start ) * 1000,
+                            step: function( t ){
+                                var temp = lerp(10, 4000, t) | 0;
+                                self.temperatureSelector.val( temp );
+                                self.set('temperature', temp);
+                            }
+                        });
+                    },
+                    onEnd: function( options ){
+
+                        self.periodicTable
+                            .highlight( false )
+                            ;
+
+                        if (options.anim){
+                            options.anim.stop();
+                        }
+                    }
+                }).code({
+                    start: 100,
+                    end: 105,
+                    onStart: function( options ){
+                        var pt = self.periodicTable;
+
+                        self.temperatureSelector.val( 10 );
+                        self.set('temperature', 10);
+
+                        window.location.hash = '#mag';
+                        
+                        pt.highlight( false );
+
+                        options.anim = $('<div>').css('opacity', 0).animate({
+                            opacity: 1
+                        }, {
+                            duration: ( options.end - options.start ) * 1000,
+                            step: function( t ){
+                                var temp = lerp(2, 1400, t) | 0;
+                                self.temperatureSelector.val( temp );
+                                self.set('temperature', temp);
+                            }
+                        });
+                    },
+                    onEnd: function( options ){
+
+                        self.periodicTable
+                            .highlight( false )
+                            ;
+
+                        if (options.anim){
+                            options.anim.stop();
+                        }
+                    }
+                });
             },
 
             loadVideo: function( url, play ){

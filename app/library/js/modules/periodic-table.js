@@ -98,6 +98,10 @@ define(
 
                         click: function( e ){
 
+                            if ( self.mouseevents === false ){
+                                return;
+                            }
+
                             var id = $(this).data('id')
                                 ,data = self.get( id )
                                 ;
@@ -107,21 +111,33 @@ define(
 
                         mouseenter: function( e ){
 
-                            var id = $(this).data('id')
-                                ,data = self.get( id )
-                                ;
-
-                            if ( data ){
-
-                                self.info
-                                    .html( tplInfo.render( data ) )
-                                    .show()
-                                    ;
+                            if ( self.mouseevents === false ){
+                                return;
                             }
+
+                            var id = $(this).data('id');
+                            self.showInfo( id );
                         }
 
                     }, '.element');
                 });
+            },
+
+            showInfo: function( symbol ){
+
+                var self = this
+                    ,data = self.get( symbol )
+                    ;
+
+                if ( data ){
+
+                    self.info
+                        .html( tplInfo.render( data ) )
+                        .show()
+                        ;
+                }
+
+                return self;
             },
 
             setState: function( state ){
@@ -129,10 +145,44 @@ define(
 
                 if ( self.ready.state() !== 'resolved' ){
                     self.ready.then($.proxy(self.setState, self, state));
-                    return;
+                    return self;
                 }
 
-                self.el.removeClass('magnetic states').addClass( state );
+                self.el.removeClass('highlight magnetic states').addClass( state );
+
+                return self;
+            },
+
+            highlight: function( elems, showinfo ){
+
+                var self = this
+                    ,els = elems && elems.split(' ')
+                    ,$el
+                    ;
+
+
+                if ( elems === false ){
+                    self.contents.find('.element').removeClass('highlight');
+                }
+
+                if (!els || !els.length){
+                    return self;
+                }
+
+                for ( var i = 0, l = els.length; i < l; ++i ){
+                    
+                    $el = self.nodes[ els[ i ] ];
+
+                    if ($el){
+                        $el.addClass('highlight');
+
+                        if (showinfo){
+                            self.showInfo( els[ i ] );
+                        }
+                    }
+                }
+
+                return self;
             },
 
             showStates: function( temp ){
@@ -142,8 +192,6 @@ define(
                     ,mode
                     ,nodes = self.nodes
                     ;
-
-                self.setState( 'states' );
 
                 // set overrides for temperature dependent magnetic response
                 _.each(stateResponders, function( elem, symbol ){
@@ -159,6 +207,8 @@ define(
                         $el.removeClass('solid liquid gas').addClass( mode );
                     }
                 });
+
+                return self;
             },
 
             showMagneticResponse: function( temp ){
@@ -168,8 +218,6 @@ define(
                     ,mode
                     ,nodes = self.nodes
                     ;
-
-                self.setState( 'magnetic' );
 
                 // set overrides for temperature dependent magnetic response
                 _.each(magneticResponders, function( elem, symbol ){
@@ -185,6 +233,8 @@ define(
                         $el.removeClass('anti para ferro dia').addClass( mode );
                     }
                 });
+
+                return self;
             },
 
             setTableStyle: function( style ){
@@ -203,6 +253,8 @@ define(
                     self.setData( shortTable );
                     self.el.attr('data-table-style', 'short');
                 }
+
+                return self;
             },
 
             renderElement: function( element, data ){
@@ -243,6 +295,8 @@ define(
                         top: toEm(data.row * self.options.elementHeight)+'em'
                     });
                 }
+
+                return self;
             },
 
             setData: function( table ){
@@ -275,6 +329,8 @@ define(
                     width: cols * self.options.elementWidth,
                     height: rows * self.options.elementHeight
                 });
+
+                return self;
             },
 
             /**

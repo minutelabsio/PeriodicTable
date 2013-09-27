@@ -1,7 +1,7 @@
 /**
  * @license
  * Lo-Dash 1.2.1 (Custom Build) <http://lodash.com/>
- * Build: `lodash modern plus="each,filter,reject,omit" -o lodash.js`
+ * Build: `lodash modern plus="each,filter,reject,omit,throttle" -o lodash.js`
  * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
  * Based on Underscore.js 1.4.4 <http://underscorejs.org/>
  * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud Inc.
