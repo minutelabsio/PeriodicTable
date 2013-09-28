@@ -24,7 +24,7 @@ define(
 
         'use strict';
 
-        var videoUrl = 'http://www.youtube.com/watch?v=qlA7_78Zqrk';
+        var videoUrl = 'http://www.youtube.com/watch?v=IlnZKSR73S0';
         var magneticElements = 'Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Th Pa U Np Pu Am Cm Bk Cf Es Fm Md Cr Mn Fe Co Ni Mo Tc Ru Rh Pd W Re Os Ir Pt';
 
         function lerp(a, b, p) {
@@ -313,6 +313,7 @@ define(
                     ,pop
                     ;
 
+                window.location.hash = '#mag';
                 self.loadVideo( videoUrl, true );
                 pop = self.popcorn;
 
