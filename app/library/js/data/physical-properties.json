@@ -397,7 +397,8 @@
         "state": {
             "type": "solid",
             "Tm": false,
-            "Tb": 887
+            "Tb": false,
+            "Ts": 887
         }
     },
     "Se": {

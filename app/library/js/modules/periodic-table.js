@@ -34,7 +34,7 @@ define(
         });
 
         var stateResponders = _.omit(physicalProperties, function( props ){
-            return !(props.state.Tm || props.state.Tb);
+            return !(props.state.Tm || props.state.Tb || props.state.Ts);
         });
 
         _.each(stateResponders, function(val){
@@ -202,10 +202,17 @@ define(
                     elem = stateResponders[ symbol ];
                     $el = nodes[ symbol ];
                     
-                    // liquid above Tm
-                    mode = ( !elem.state.Tm || temp >= elem.state.Tm )? 'liquid' : 'solid';
-                    // gas above Tb
-                    mode = ( elem.state.Tb && temp >= elem.state.Tb )? 'gas' : mode;
+                    // check sublimation
+                    if (elem.state.Ts){
+
+                        mode = ( temp >= elem.state.Ts )? 'gas' : 'solid';
+
+                    } else {
+                        // liquid above Tm
+                        mode = ( !elem.state.Tm || temp >= elem.state.Tm )? 'liquid' : 'solid';
+                        // gas above Tb
+                        mode = ( elem.state.Tb && temp >= elem.state.Tb )? 'gas' : mode;
+                    }
 
                     if ( $el ){
                         $el[0].className = $el[0].className.replace(/solid|liquid|gas/, '') + ' ' + mode;

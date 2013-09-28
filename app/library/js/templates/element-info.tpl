@@ -40,18 +40,24 @@
     {{??}}
     <div class="state-response">
 
-        {{?it.state.Tm || it.state.Tb}}
-            {{?it.state.Tm}}
+        {{?it.state.Ts}}
             <abbr title="solid" class="solid">solid</abbr>
-            <data class="melting-point" value="{{=it.state.Tm}}">{{=it.state.Tm}}K</data>
-            {{?}}
-            {{?it.state.Tb}}
-            <abbr title="liquid" class="liquid">liquid</abbr>
-            <data class="boiling-point" value="{{=it.state.Tb}}">{{=it.state.Tb}}K</data>
-            {{?}}
+            <data class="sublimation-point" value="{{=it.state.Ts}}">{{=it.state.Ts}}K</data>
             <abbr title="gas" class="gas">gas</abbr>
         {{??}}
-            <abbr title="{{=it.state.type}}" class="{{=it.state.type}}">{{=it.state.type}}</abbr>
+            {{?it.state.Tm || it.state.Tb}}
+                {{?it.state.Tm}}
+                <abbr title="solid" class="solid">solid</abbr>
+                <data class="melting-point" value="{{=it.state.Tm}}">{{=it.state.Tm}}K</data>
+                {{?}}
+                {{?it.state.Tb}}
+                <abbr title="liquid" class="liquid">liquid</abbr>
+                <data class="boiling-point" value="{{=it.state.Tb}}">{{=it.state.Tb}}K</data>
+                {{?}}
+                <abbr title="gas" class="gas">gas</abbr>
+            {{??}}
+                <abbr title="{{=it.state.type}}" class="{{=it.state.type}}">{{=it.state.type}}</abbr>
+            {{?}}
         {{?}}
         
     </div>
