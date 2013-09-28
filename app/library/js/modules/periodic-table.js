@@ -98,10 +98,11 @@ define(
 
                         click: function( e ){
 
+                            self.emit('mouseevent', e);
                             if ( self.mouseevents === false ){
                                 return;
                             }
-
+                            
                             var id = $(this).data('id')
                                 ,data = self.get( id )
                                 ;
@@ -111,6 +112,7 @@ define(
 
                         mouseenter: function( e ){
 
+                            self.emit('mouseevent', e);
                             if ( self.mouseevents === false ){
                                 return;
                             }

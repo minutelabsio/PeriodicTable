@@ -311,14 +311,21 @@ define(
 
                 var self = this
                     ,pop
+                    ,pauseVid = function( e ){
+                        if (e.type === 'click'){
+                            pop.pause();
+                        }
+                    }
                     ;
 
                 window.location.hash = '#mag';
                 self.loadVideo( videoUrl, true );
                 pop = self.popcorn;
+                self.periodicTable.on('mouseevent', pauseVid);
 
                 pop.on('playing', function(){
                     
+                    self.periodicTable.on('mouseevent', pauseVid);
                     self.periodicTable.mouseevents = false;
                     if ( pop.roundTime() > 23 ){
                         self.periodicTable.setState('highlight magnetic');
@@ -330,11 +337,13 @@ define(
 
                     self.periodicTable.mouseevents = true;
                     self.periodicTable.highlight( false ).setState('magnetic');
+                    self.periodicTable.off('mouseevent', pauseVid);
 
                 }).on('ended', function(){
 
                     self.periodicTable.mouseevents = true;
                     self.periodicTable.highlight( false ).setState('magnetic');
+                    self.periodicTable.off('mouseevent', pauseVid);
                 });
 
                 pop.code({
