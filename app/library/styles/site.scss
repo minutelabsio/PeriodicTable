@@ -711,8 +711,8 @@ $headerHeight: 80px;
     $ferroColor2: black,
 
     $gasColor: rgb(200, 226, 255),
-    $liquidColor: rgb(100, 227, 252),
-    $solidColor: #3F708B
+    $liquidColor: rgb(100, 170, 197),
+    $solidColor: rgb(83, 102, 119)
 ){
 
 @include selecter($background, $text, $highlight);
