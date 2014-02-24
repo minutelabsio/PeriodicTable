@@ -157,6 +157,7 @@ define(
                     })
                     .on('change', '.ctrl-theme', function(e, val){
                         $('body').toggleClass('light-skin', val === 'Light');
+                        $('#nav-widget').toggleClass('light', val === 'Light');
                     })
                     .on('change', '.ctrl-units', function(e, val){
                         self.set('units', val.toUpperCase());

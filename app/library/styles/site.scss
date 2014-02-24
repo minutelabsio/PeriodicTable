@@ -31,6 +31,10 @@ button {
         left: 10px;
     }
 
+    .top {
+        background: #333333;
+    }
+
     a.btn-subscribe {
         @include border-radius( 3px );
     }
@@ -1178,12 +1182,12 @@ body.light-skin {
 }
 
 #viewport #periodic-table .contents {
-    background: image-url('wm-big-logo-inverse.png') no-repeat 200px -20px;
+    background: image-url('big-logo-inverse.png') no-repeat 200px 40px;
     background-size: 260px;
 }
 
 .light-skin #viewport #periodic-table .contents {
-    background: image-url('wm-big-logo.png') no-repeat 200px -20px;
+    background: image-url('big-logo.png') no-repeat 200px 40px;
     background-size: 260px;
 }
 
