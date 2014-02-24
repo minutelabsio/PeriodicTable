@@ -24,6 +24,18 @@ button {
     font-family: $monoFontFamily;
 }
 
+#nav-widget {
+    &,
+    &.light {
+        top: 80px;
+        left: 10px;
+    }
+
+    a.btn-subscribe {
+        @include border-radius( 3px );
+    }
+}
+
 #viewport {
 
 }
@@ -75,11 +87,11 @@ a {
     }
 }
 
-$headerHeight: 80px;
+$headerHeight: 110px;
 
 #site-header {
     position: fixed;
-    top: 0;
+    top: 0px;
     left: 0;
     right: 0;
     height: $headerHeight;

@@ -3,28 +3,43 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Periodic Table | Minute Physics</title>
-  <meta name="description" content="The Minute Physics Periodic Table">
+  <title>Periodic Table | MinuteLabs.io</title>
+  <meta name="description" content="The MinuteLabs.io Periodic Table">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <meta property="og:image" content="library/images/big-logo.png">
-  <meta itemprop="name" content="Minute Physics Periodic Table">
-  <meta itemprop="description" content="The Minute Physics Periodic Table">
+  <meta itemprop="name" content="MinuteLabs.io Periodic Table">
+  <meta itemprop="description" content="The MinuteLabs.io Periodic Table">
   <meta itemprop="image" content="library/images/big-logo.png">
 
   <!-- font -->
   <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Oxygen+Mono' rel='stylesheet' type='text/css'>
   <link href="http://fonts.googleapis.com/css?family=Alice&amp;text=Well%20Caffeinated" rel="stylesheet" type="text/css">
   <!-- css -->
+  <link rel="stylesheet" href="http://labs.minutelabs.io/library/styles/labs-nav.css" />
   <link rel="stylesheet" href="library/styles/site.css" />
 
   <!-- js includes -->
+  <script>
+    var Lab = { title: 'Periodic Table', id: '77182832509' };
+  </script>
   <script src="library/js/vendor/modernizr.js"></script>
   <script src="library/js/vendor/require.js" data-main="library/js/page-main"></script>
 </head>
 <body class="light-skin">
     
   <div id="viewport" class="reveal-legend">
+    <nav id="nav-widget" role="navigation" class="light no-branding">
+      <div class="top">
+        <ul>
+          <li><a href="http://minutelabs.io" class="btn-index">back to labs</a></li>
+          <li><a href="http://minutelabs.io" id="lab-nav-prev" class="btn-prev" title="previous Lab">prev</a></li>
+          <li><a href="http://minutelabs.io" id="lab-nav-next" class="btn-next" title="next Lab">next</a></li>
+          <li><a href="http://minutelabs.io/subscribe" class="btn-subscribe">subscribe!</a></li>
+        </ul>
+      </div>
+    </nav>
+
     <header id="site-header">
 
       <h1><a href="#">Periodic Table</a></h1>
@@ -40,9 +55,9 @@
           <option value="#state">States</option>
         </select>
 
-        <small>by <a href="http://www.youtube.com/minutephysics" target="_blank">Minute Physics</a></small>
+        <small>by <a href="http://minutelabs.io" target="_blank">MinuteLabs.io</a></small>
 
-        <img class="hidden" src="library/images/big-logo.png" alt="The Minute Physics Periodic Table" />
+        <img class="hidden" src="library/images/big-logo.png" alt="The MinuteLabs.io Periodic Table" />
       </div>
 
       <ul>
@@ -75,7 +90,7 @@
 
         <a href="#" class="ctrl-back">back to the science!</a>
 
-        <h1>The Minute Physics Periodic Table <small>( of awesome )</small></h1>
+        <h1>The MinuteLabs.io Periodic Table <small>( of awesome )</small></h1>
 
         <p>Hopefully you noticed the big <strong>temperature control</strong> at the top of the page. You can use it to see how elements behave at different temperatures. You can see either magnetic properties or states of matter by <strong>changing the title (in the top left)</strong> between "Magnetism" and "States". There are also other settings you can access by clicking on the <strong>settings icon</strong> ( <i class="icon-equalizer"></i> ).</p>
 
@@ -120,7 +135,7 @@
 
         <h2>Code and License</h2>
 
-        <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/StillImage" property="dct:title" rel="dct:type">Minute Physics Periodic Table Artwork</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://table.minutephysics.com" property="cc:attributionName" rel="cc:attributionURL">Henry Reich</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.<br />Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/MinutePhysics/PeriodicTable" rel="cc:morePermissions">https://github.com/MinutePhysics/PeriodicTable</a>.
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/StillImage" property="dct:title" rel="dct:type">MinuteLabs.io Periodic Table Artwork</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://table.minutephysics.com" property="cc:attributionName" rel="cc:attributionURL">Henry Reich</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.<br />Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/MinutePhysics/PeriodicTable" rel="cc:morePermissions">https://github.com/MinutePhysics/PeriodicTable</a>.
 
         <p>PS: By the way, the code for this website is <a href="https://github.com/MinutePhysics/PeriodicTable" target="_blank">freely available on github</a> under the GPLv3 License.</p>
 
@@ -192,6 +207,8 @@
 
     </div>
   </div>
+
+  <script src="http://labs.minutelabs.io/assets/labs-nav.js"></script>
 
   <script type="text/javascript">
       /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
