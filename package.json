@@ -10,18 +10,20 @@
         }
     ],
     "main": null,
-    "dependencies": {},
+    "dependencies": {
+        "node-sass": "^7.0.1"
+    },
     "devDependencies": {
-        "prompt": "*",
-        "http-server": "*",
         "grunt": "*",
         "grunt-bg-shell": "*",
         "grunt-contrib-clean": "*",
+        "grunt-contrib-compass": "*",
         "grunt-contrib-copy": "*",
         "grunt-contrib-jshint": "*",
-        "grunt-img": "*",
         "grunt-contrib-requirejs": "*",
-        "grunt-contrib-compass": "*"
+        "grunt-img": "*",
+        "http-server": "*",
+        "prompt": "*"
     },
     "bundledDependencies": [],
     "license": "MIT"
