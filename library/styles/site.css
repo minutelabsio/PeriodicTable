@@ -1,0 +1,2813 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline; }
+
+html {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle; }
+
+q, blockquote {
+  quotes: none; }
+  q:before, q:after, blockquote:before, blockquote:after {
+    content: "";
+    content: none; }
+
+a img {
+  border: none; }
+
+elements-of-type(html5-block) {
+  display: block; }
+
+@font-face {
+  font-family: 'icomoon';
+  src: url("fonts/icomoon.eot");
+  src: url("fonts/icomoon.eot?#iefix") format("embedded-opentype"), url("fonts/icomoon.woff") format("woff"), url("fonts/icomoon.ttf") format("truetype"), url("fonts/icomoon.svg#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before, #controls .ctrl-toggle {
+  font-family: 'icomoon';
+  content: attr(data-icon);
+  speak: none;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+/* Use the following CSS code if you want to have a class per icon */
+/*
+Instead of a list of all class selectors,
+you can use the generic selector below, but it's slower:
+[class*="icon-"] {
+*/
+.icon-youtube, .icon-youtube-2, .icon-minus, .icon-eye-blocked, .icon-lamp, .icon-coffee, .icon-equalizer, .icon-chevron-left, .icon-chevron-right, .icon-chevron-up, .icon-chevron-down, .icon-question-sign {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased; }
+
+.icon-youtube:before {
+  content: "\59"; }
+
+.icon-youtube-2:before, #controls .ctrl-toggle.ctrl-toggle-video:after {
+  content: "\79"; }
+
+.icon-minus:before {
+  content: "\2d"; }
+
+.icon-eye-blocked:before {
+  content: "\78"; }
+
+.icon-lamp:before {
+  content: "\6c"; }
+
+.icon-coffee:before {
+  content: "\63"; }
+
+.icon-equalizer:before, #controls .ctrl-toggle.ctrl-toggle-controls:after {
+  content: "\73"; }
+
+.icon-chevron-left:before, #about .ctrl-back:before {
+  content: "\3c"; }
+
+.icon-chevron-right:before {
+  content: "\3e"; }
+
+.icon-chevron-up:before {
+  content: "\5e"; }
+
+.icon-chevron-down:before {
+  content: "\76"; }
+
+.icon-question-sign:before {
+  content: "\3f"; }
+
+/*	General CSS resets;
+ *		The target itself is not affected, allowing
+ *		the remainder of the document to use an 
+ *		alternate box-sizing model;
+ *		Support for box-sizing is wide spread:
+ *		http://caniuse.com/#search=box-sizing
+ */
+.noUi-target * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -ms-touch-action: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: default; }
+
+/*	Main slider bar;
+ */
+.noUi-base {
+  height: 40px;
+  width: 300px;
+  position: relative;
+  max-width: 100%;
+  border: 1px solid #bfbfbf;
+  z-index: 1; }
+
+/*	Handles + active state;
+ */
+.noUi-handle {
+  background: #EEE;
+  height: 44px;
+  width: 44px;
+  border: 1px solid #BFBFBF;
+  margin: -3px 0 0 -23px; }
+
+.noUi-active {
+  background: #E9E9E9; }
+
+.noUi-active:after {
+  content: "";
+  display: block;
+  height: 100%;
+  border: 1px solid #DDD; }
+
+/*	Styling-only classes;
+ *		Structured to prevent double declarations
+ *		for various states of the slider.
+ */
+.noUi-connect {
+  background: Teal; }
+
+.noUi-background {
+  background: #DDD; }
+
+/*	Functional styles for handle positioning;
+ *		Note that the origins have z-index 0, the base has
+ *		z-index 1; This fixes a bug where borders become invisible.
+ */
+.noUi-origin {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 0; }
+
+.noUi-origin-upper {
+  background: inherit !important; }
+
+.noUi-z-index {
+  z-index: 10; }
+
+/*	Adaptations for the vertical slider;
+ */
+.noUi-vertical {
+  height: 300px;
+  width: 40px;
+  max-height: 100%; }
+
+.noUi-vertical .noUi-origin {
+  bottom: 0;
+  left: 0; }
+
+.noUi-vertical .noUi-handle {
+  margin: -23px 0 0 -3px; }
+
+/*	Various alternate slider states;
+ *	Support for transition is widely available,
+ *	Only IE7, IE8 and IE9 will ignore these rules.
+ *	Since this is merely a progressive enhancement,
+ *	this is no problem at all.
+ *	http://caniuse.com/#search=transition
+ */
+.noUi-target[disabled] .noUi-base {
+  background: #999; }
+
+.noUi-target[disabled] .noUi-connect {
+  background: #BBB; }
+
+.noUi-state-tap .noUi-origin {
+  -webkit-transition: left 0.3s, top 0.3s;
+  transition: left 0.3s, top 0.3s; }
+
+/*
+ * Selecter Plugin [Formstone Library]
+ * @author Ben Plum
+ * @version 2.1.2
+ *
+ * Copyright © 2013 Ben Plum <mr@benplum.com>
+ * Released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
+ */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+body {
+  font: 100%/1.2 "Oxygen Mono", "Courier New", monospace; }
+
+button {
+  margin: 0;
+  font-family: "Oxygen Mono", "Courier New", monospace; }
+
+#nav-widget, #nav-widget.light {
+  top: 80px;
+  left: 10px; }
+
+#nav-widget .top {
+  background: #333333; }
+
+#nav-widget a.btn-subscribe {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px; }
+
+#loading-msg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 300px;
+  font-size: 20px;
+  margin: -100px 0 0 -150px;
+  text-align: center;
+  padding-top: 160px;
+  background: image-url("bg-collider.png") no-repeat center 0; }
+
+.hidden {
+  display: none; }
+
+.mute {
+  color: #888; }
+
+a {
+  text-decoration: none; }
+
+.toggler {
+  font-size: 1em;
+  margin: 0.5em 0;
+  width: 14.8em; }
+  .toggler button {
+    cursor: pointer;
+    padding: 0.7em 1em 0.7em;
+    font-size: 14px;
+    width: 8em; }
+    .toggler button:first-child {
+      border-left-width: 1px;
+      -webkit-border-radius: 4px 0 0 4px;
+      -moz-border-radius: 4px 0 0 4px;
+      -ms-border-radius: 4px 0 0 4px;
+      -o-border-radius: 4px 0 0 4px;
+      border-radius: 4px 0 0 4px; }
+    .toggler button:last-child {
+      -webkit-border-radius: 0 4px 4px 0;
+      -moz-border-radius: 0 4px 4px 0;
+      -ms-border-radius: 0 4px 4px 0;
+      -o-border-radius: 0 4px 4px 0;
+      border-radius: 0 4px 4px 0; }
+
+#site-header {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  right: 0;
+  height: 110px;
+  z-index: 2;
+  padding: 0 1em;
+  -webkit-box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.5); }
+  #site-header h1,
+  #site-header .subtitle {
+    display: inline-block;
+    font-size: 1.25em;
+    font-family: "Droid Sans", "Karla", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+    #site-header h1,
+    #site-header h1 > *,
+    #site-header .subtitle,
+    #site-header .subtitle > * {
+      vertical-align: middle; }
+  #site-header .subtitle {
+    margin: 0 1em 0 0; }
+    #site-header .subtitle .selecter {
+      position: relative;
+      top: 0.35em;
+      margin-left: 0.4em;
+      margin-top: -0.7em;
+      min-width: 142px; }
+    #site-header .subtitle small {
+      font-size: 0.5em;
+      vertical-align: baseline; }
+    #site-header .subtitle small,
+    #site-header .subtitle a {
+      color: #888; }
+  #site-header ul, #site-header ul > li {
+    list-style: none;
+    padding: 0;
+    margin: 0; }
+  #site-header ul {
+    vertical-align: middle;
+    margin-top: 0.2em;
+    margin-left: 1em;
+    display: inline-block; }
+    #site-header ul > li {
+      display: inline-block;
+      margin-right: 1em; }
+    #site-header ul a {
+      display: block;
+      padding: 0.5em;
+      text-decoration: none;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+      border-radius: 5px; }
+
+#controls .ctrl-toggle {
+  width: 1.5em;
+  line-height: 0;
+  padding: 0;
+  font-size: 22px;
+  height: 1.5em;
+  border: none;
+  text-indent: -9999em;
+  overflow: hidden;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px; }
+  #controls .ctrl-toggle:after {
+    vertical-align: middle;
+    text-indent: 0;
+    display: block; }
+
+#controls .ctrl-toggle-legend {
+  line-height: 1;
+  padding: 0.55em 0.5em;
+  font-size: 16px;
+  font-family: "Oxygen Mono", "Courier New", monospace;
+  border: none;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px; }
+
+#controls .left {
+  float: left; }
+  #controls .left > * {
+    vertical-align: middle; }
+
+#controls .title {
+  display: inline-block;
+  margin-left: 1em; }
+
+.ctrl-temperature {
+  position: relative;
+  top: 5px;
+  margin-left: 320px; }
+
+.ctrl-temperature .noUi-base,
+.temp-slider .noUi-base {
+  height: 22px;
+  width: 100%; }
+
+.ctrl-temperature .noUi-background,
+.temp-slider .noUi-background {
+  background: #004799;
+  /* Old browsers */
+  background: -moz-linear-gradient(left, #004799 0%, #ff0000 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, #004799), color-stop(100%, #ff0000));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left, #004799 0%, #ff0000 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left, #004799 0%, #ff0000 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(left, #004799 0%, #ff0000 100%);
+  /* IE10+ */
+  background: linear-gradient(to right, #004799 0%, #ff0000 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#004799', endColorstr='#ff0000',GradientType=1 );
+  /* IE6-9 */ }
+
+.ctrl-temperature .noUi-handle,
+.temp-slider .noUi-handle {
+  height: 30px;
+  width: 4em;
+  text-align: center;
+  padding-top: 0.32em;
+  cursor: pointer;
+  margin: -5px 0 0 -23px;
+  -webkit-transition: border-color 0.1s ease-out;
+  -moz-transition: border-color 0.1s ease-out;
+  -o-transition: border-color 0.1s ease-out;
+  transition: border-color 0.1s ease-out;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px; }
+
+.ctrl-temperature .noUi-active:after,
+.temp-slider .noUi-active:after {
+  display: none; }
+
+.temp-slider .noUi-handle {
+  padding-top: 0.2em; }
+
+#original-video {
+  display: block;
+  width: 560px;
+  height: 315px;
+  background: image-url("sprite-video-thumb.png") no-repeat -1px -2px; }
+  #original-video:hover {
+    background-position: -1px -322px; }
+  #original-video img {
+    display: none; }
+
+#video-area,
+#settings-area,
+#legend-area {
+  position: fixed;
+  z-index: 1;
+  overflow: visible;
+  width: 582px;
+  padding: 12px 10px 6px;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-transition: margin 0.3s ease-out;
+  -moz-transition: margin 0.3s ease-out;
+  -o-transition: margin 0.3s ease-out;
+  transition: margin 0.3s ease-out; }
+
+#video-area {
+  bottom: 0;
+  left: 0;
+  width: 582px;
+  height: 339px;
+  margin-left: -582px;
+  -webkit-border-radius: 0 5px 5px 0;
+  -moz-border-radius: 0 5px 5px 0;
+  -ms-border-radius: 0 5px 5px 0;
+  -o-border-radius: 0 5px 5px 0;
+  border-radius: 0 5px 5px 0; }
+
+#legend-area {
+  overflow: hidden;
+  *zoom: 1;
+  top: 110px;
+  left: 100px;
+  width: auto;
+  height: 57px;
+  margin-top: -57px;
+  -webkit-border-radius: 0 5px 5px 0;
+  -moz-border-radius: 0 5px 5px 0;
+  -ms-border-radius: 0 5px 5px 0;
+  -o-border-radius: 0 5px 5px 0;
+  border-radius: 0 5px 5px 0; }
+  #legend-area .legend, #legend-area #periodic-table .info .magnetic-response, #periodic-table .info #legend-area .magnetic-response,
+  #legend-area #periodic-table .info .state-response, #periodic-table .info #legend-area .state-response {
+    float: left;
+    width: 230px; }
+  #legend-area abbr {
+    width: 100%; }
+
+#settings-area {
+  top: 110px;
+  left: 0;
+  width: auto;
+  margin-top: -260px;
+  padding-top: 1.2em;
+  width: auto;
+  -webkit-border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+  -ms-border-radius: 0 0 5px 5px;
+  -o-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
+  -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); }
+  #settings-area .inner {
+    width: 520px; }
+  #settings-area .left,
+  #settings-area .right {
+    display: block;
+    float: left;
+    width: 50%; }
+  #settings-area .left {
+    padding-right: 20px; }
+  #settings-area .ctrl-units button {
+    width: 5.11333em; }
+    #settings-area .ctrl-units button:before {
+      content: '\00b0'; }
+    #settings-area .ctrl-units button:first-child:before {
+      content: ''; }
+
+.reveal #settings-area {
+  margin-top: 0; }
+
+.reveal-legend #legend-area {
+  margin-top: 0; }
+
+.reveal-video #video-area {
+  margin-left: 0; }
+
+.legend, #periodic-table .info .magnetic-response,
+#periodic-table .info .state-response {
+  position: relative;
+  line-height: 1.2; }
+  .legend abbr, #periodic-table .info .magnetic-response abbr, #periodic-table .info .state-response abbr {
+    position: relative;
+    z-index: 0;
+    display: inline-block;
+    width: 4.9em;
+    height: 2em;
+    margin-right: -0.65em;
+    padding: 0.5em 0;
+    background: black;
+    text-align: center; }
+  .legend data, #periodic-table .info .magnetic-response data, #periodic-table .info .state-response data {
+    position: absolute;
+    bottom: -2em;
+    display: inline-block;
+    text-align: center;
+    width: 4em;
+    margin-left: -2em; }
+    .legend data:after, #periodic-table .info .magnetic-response data:after, #periodic-table .info .state-response data:after {
+      content: "";
+      position: absolute;
+      border-left: 1px solid black;
+      top: -1em;
+      left: 50%;
+      margin-left: -1px;
+      height: 1em;
+      z-index: -1; }
+
+#about {
+  margin: 154px auto;
+  width: 600px;
+  font-family: "Droid Sans", "Karla", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.6; }
+  #about h1 {
+    font-size: 1.61803em;
+    margin-top: 1.5em;
+    margin-bottom: 1em; }
+    #about h1 small {
+      font-size: 0.5em; }
+  #about h2 {
+    font-size: 1.21353em;
+    margin-top: 1.5em;
+    margin-bottom: 1em; }
+  #about p {
+    margin-bottom: 1em; }
+  #about #legend-visualization {
+    width: 100%;
+    padding-right: 10px;
+    margin-bottom: 5px; }
+    #about #legend-visualization .material {
+      display: block;
+      margin: auto; }
+  #about .legend, #about #periodic-table .info .magnetic-response, #periodic-table .info #about .magnetic-response,
+  #about #periodic-table .info .state-response, #periodic-table .info #about .state-response {
+    margin: auto;
+    width: 100%;
+    margin-bottom: 3em; }
+    #about .legend abbr, #about #periodic-table .info .magnetic-response abbr, #periodic-table .info #about .magnetic-response abbr, #about #periodic-table .info .state-response abbr, #periodic-table .info #about .state-response abbr {
+      width: 33.33%; }
+  #about .ctrl-back {
+    display: inline-block;
+    font-size: 20px;
+    padding: 0.5em 1em;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px; }
+    #about .ctrl-back:before {
+      font-family: 'icomoon';
+      margin-right: 0.75em; }
+  #about #disqus_thread {
+    margin-top: 3em; }
+
+#periodic-table {
+  position: absolute;
+  top: 110px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  z-index: 1;
+  padding-right: 0; }
+  #periodic-table .contents {
+    position: relative;
+    margin: 20px 20px 360px;
+    padding-right: 40px;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out; }
+  #periodic-table .info {
+    display: none;
+    width: 368px;
+    height: 222px;
+    padding: 1.6em 1.6em 1.6em 0;
+    overflow: hidden;
+    z-index: 3;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px; }
+    #periodic-table .info .symbol {
+      display: block;
+      width: 2.6em;
+      text-align: center;
+      float: left;
+      font-size: 60px;
+      font-family: 'Droid Sans', sans-serif; }
+      #periodic-table .info .symbol:after {
+        content: attr(title);
+        display: block;
+        margin-top: 0.8em;
+        font-size: 16px;
+        font-family: "Oxygen Mono", "Courier New", monospace; }
+    #periodic-table .info .above {
+      overflow: hidden;
+      *zoom: 1;
+      margin-bottom: 1em; }
+    #periodic-table .info .details {
+      overflow: hidden;
+      padding-top: 1em;
+      font-size: 14px; }
+      #periodic-table .info .details .line {
+        margin-bottom: 1em;
+        text-transform: capitalize; }
+        #periodic-table .info .details .line div {
+          display: inline-block;
+          vertical-align: middle;
+          text-align: center;
+          width: 50%; }
+        #periodic-table .info .details .line div:first-child {
+          width: 40%;
+          text-align: right; }
+    #periodic-table .info .magnetic-response,
+    #periodic-table .info .state-response {
+      display: none;
+      width: 100%;
+      text-align: center; }
+      #periodic-table .info .magnetic-response abbr.stp,
+      #periodic-table .info .state-response abbr.stp {
+        color: transparent !important; }
+  #periodic-table.magnetic .info .magnetic-response {
+    display: block; }
+  #periodic-table.states .info .state-response {
+    display: block; }
+
+.element {
+  font-size: 30px;
+  width: 2.1em;
+  height: 2.8em;
+  border: 1px solid black;
+  text-align: center;
+  cursor: pointer;
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  -moz-transition: -moz-transform 0.5s ease-in-out;
+  -o-transition: -o-transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out; }
+  .element .inner {
+    width: 100%;
+    height: 100%; }
+  .element .number {
+    position: absolute;
+    top: 0.4em;
+    right: 0.5em;
+    font-size: 12px; }
+  .element .symbol {
+    position: absolute;
+    top: 0.75em;
+    left: 0px;
+    right: 0px;
+    font-family: 'Droid Sans', sans-serif;
+    -webkit-filter: drop-shadow(0px 0px 20px rgba(0, 255, 255, 0.15));
+    -moz-filter: drop-shadow(0px 0px 20px rgba(0, 255, 255, 0.15));
+    -ms-filter: drop-shadow(0px 0px 20px rgba(0, 255, 255, 0.15));
+    -o-filter: drop-shadow(0px 0px 20px rgba(0, 255, 255, 0.15));
+    filter: drop-shadow(0px 0px 20px rgba(0, 255, 255, 0.15)); }
+  .element .details {
+    position: absolute;
+    bottom: .4em;
+    left: 0px;
+    right: 0px;
+    font-size: 10px;
+    text-rendering: optimizeLegibility;
+    word-wrap: break-word;
+    line-height: 1; }
+
+#periodic-table .info {
+  position: fixed;
+  bottom: 10px;
+  right: 10px; }
+
+#periodic-table.mini-table .contents {
+  margin: 20px 20px; }
+
+#periodic-table.mini-table .element {
+  font-size: 16px; }
+  #periodic-table.mini-table .element .symbol {
+    top: 1.3em; }
+  #periodic-table.mini-table .element .number {
+    top: auto;
+    top: 0.2em;
+    right: 0.25em; }
+  #periodic-table.mini-table .element .details {
+    display: none; }
+
+.reveal-legend #periodic-table[data-table-style="short"] .contents {
+  margin-top: 60px; }
+
+#dipole-visualization,
+#legend-visualization {
+  width: 428px;
+  margin: 2em auto; }
+  #dipole-visualization .material,
+  #legend-visualization .material {
+    width: 180px;
+    display: inline-block;
+    margin: 0 1em 1em; }
+    #dipole-visualization .material:after,
+    #legend-visualization .material:after {
+      content: attr(data-title);
+      width: 100%;
+      text-align: center;
+      display: block; }
+  #dipole-visualization .dipole,
+  #legend-visualization .dipole {
+    position: relative;
+    display: inline-block;
+    width: 4px;
+    height: 30px;
+    background: black;
+    margin: 10px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out; }
+    #dipole-visualization .dipole:after,
+    #legend-visualization .dipole:after {
+      content: "";
+      position: absolute;
+      top: -15px;
+      left: -8px;
+      border: 10px solid black;
+      border-color: transparent transparent black; }
+
+#legend-visualization {
+  width: 180px; }
+
+body {
+  /* Open */
+  /* 'Cover' Positioning */
+  /* 'Bottom' Positioning */
+  /* 'Bottom' + 'Cover' Positioning */
+  /* Multiple Select */
+  /* 'Disabled' State */ }
+  body .selecter-element {
+    *left: -999999px;
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    margin: 0;
+    border: 0;
+    width: 0; }
+  body .selecter {
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    z-index: 1; }
+  body .selecter .selecter-selected {
+    background: #333;
+    border: 1px solid #525252;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    color: #aff;
+    cursor: pointer;
+    display: block;
+    font-size: 1em;
+    margin: 0;
+    overflow: hidden;
+    padding: 6px 30px 6px 10px;
+    position: relative;
+    text-overflow: clip;
+    z-index: 49; }
+    body .selecter .selecter-selected:after {
+      content: '';
+      border: 6px solid #cccccc;
+      border-color: #cccccc transparent transparent;
+      position: absolute;
+      top: .8em;
+      right: 12px; }
+    body .selecter .selecter-selected:hover {
+      border-color: cyan; }
+      body .selecter .selecter-selected:hover:after {
+        border-color: cyan transparent transparent; }
+  body .selecter .selecter-options {
+    background-color: #333;
+    border: 1px solid #525252;
+    border-top: none;
+    -webkit-border-radius: 0 0 3px 3px;
+    -moz-border-radius: 0 0 3px 3px;
+    -ms-border-radius: 0 0 3px 3px;
+    -o-border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px;
+    display: none;
+    left: 0;
+    margin: 0;
+    max-height: 260px;
+    overflow: auto;
+    overflow-x: hidden;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    *width: auto;
+    z-index: 50; }
+  body .selecter .selecter-group {
+    background: #333;
+    border-bottom: 1px solid #525252;
+    color: #aff;
+    display: block;
+    font-size: 11px;
+    padding: 5px 10px 4px;
+    text-transform: uppercase; }
+  body .selecter .selecter-item {
+    background: #333;
+    border-bottom: 1px solid #525252;
+    color: #aff;
+    cursor: pointer;
+    display: block;
+    font-size: 1em;
+    margin: 0;
+    overflow: hidden;
+    padding: 14px 10px;
+    text-overflow: ellipsis;
+    width: 100%; }
+  body .selecter .selecter-item.selected {
+    background: #333; }
+  body .selecter .selecter-item.first {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    border-radius: 0; }
+  body .selecter .selecter-item.last {
+    -webkit-border-radius: 0 0 3px 3px;
+    -moz-border-radius: 0 0 3px 3px;
+    -ms-border-radius: 0 0 3px 3px;
+    -o-border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px;
+    border-bottom: 0; }
+  @media screen and (min-width: 740px) {
+    body .selecter .selecter-item:hover,
+    body .selecter .selecter-item.selected:hover {
+      color: #333;
+      background-color: cyan; }
+    body .selecter.disabled .selecter-item:hover {
+      background: #4b5c5c; } }
+  body .selecter.open {
+    z-index: 3; }
+  body .selecter.open .selecter-selected {
+    border-radius: 3px 3px 0 0;
+    z-index: 51; }
+  body .selecter.open .selecter-selected,
+  body .selecter.focus .selecter-selected {
+    background-color: #333; }
+  body .selecter.cover .selecter-options {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    border-width: 1px;
+    top: 0; }
+  body .selecter.cover .selecter-options .selecter-item.first {
+    -webkit-border-radius: 3px 3px 0 0;
+    -moz-border-radius: 3px 3px 0 0;
+    -ms-border-radius: 3px 3px 0 0;
+    -o-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0; }
+  body .selecter.cover.open .selecter-selected {
+    -webkit-border-radius: 3px 3px 0 0;
+    -moz-border-radius: 3px 3px 0 0;
+    -ms-border-radius: 3px 3px 0 0;
+    -o-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0;
+    z-index: 49; }
+  body .selecter.bottom .selecter-options {
+    border-width: 1px 1px 0;
+    bottom: 100%;
+    top: auto; }
+  body .selecter.bottom .selecter-item.last {
+    border: none; }
+  body .selecter.bottom.open .selecter-selected {
+    -webkit-border-radius: 0 0 3px 3px;
+    -moz-border-radius: 0 0 3px 3px;
+    -ms-border-radius: 0 0 3px 3px;
+    -o-border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px; }
+  body .selecter.bottom.open .selecter-options {
+    -webkit-border-radius: 3px 3px 0 0;
+    -moz-border-radius: 3px 3px 0 0;
+    -ms-border-radius: 3px 3px 0 0;
+    -o-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0; }
+  body .selecter.bottom.cover .selecter-options {
+    bottom: 0;
+    top: auto; }
+  body .selecter.bottom.cover.open .selecter-selected {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px; }
+  body .selecter.bottom.cover.open .selecter-options {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px; }
+  body .selecter.multiple .selecter-options {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    border-width: 1px;
+    box-shadow: none;
+    display: block;
+    position: static;
+    width: 100%; }
+  body .selecter.disabled .selecter-selected {
+    background: #fff;
+    border-color: #eee;
+    color: #ccc;
+    cursor: default; }
+  body .selecter.disabled .selecter-options {
+    background: #fff;
+    border-color: #eee; }
+  body .selecter.disabled .selecter-group,
+  body .selecter.disabled .selecter-item {
+    border-color: #eee;
+    color: #ccc;
+    cursor: default; }
+  body .selecter.disabled .selecter-item.selected {
+    background: #fafafa; }
+  body {
+    background: #262626; }
+  body #about {
+    color: #d4d4d4; }
+    body #about a {
+      color: cyan; }
+    body #about strong {
+      font-weight: bold; }
+    body #about .ctrl-back {
+      background: #1a1a1a;
+      color: #fafafa;
+      -webkit-transition: background 0.3s ease-out;
+      -moz-transition: background 0.3s ease-out;
+      -o-transition: background 0.3s ease-out;
+      transition: background 0.3s ease-out; }
+      body #about .ctrl-back:hover {
+        background: #0d0d0d; }
+      body #about .ctrl-back:active {
+        background: #0d0d0d; }
+  body .toggler button {
+    background: #333;
+    color: #aff;
+    border: 1px solid rgba(0, 255, 255, 0.4);
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out; }
+    body .toggler button:hover {
+      border-color: rgba(0, 255, 255, 0.8); }
+    body .toggler button.on {
+      color: #323737;
+      background: rgba(0, 255, 255, 0.8);
+      border-color: rgba(0, 255, 255, 0.8);
+      -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) inset;
+      -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) inset;
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) inset; }
+  body #site-header {
+    background: #333;
+    color: #aff; }
+    body #site-header h1,
+    body #site-header .subtitle {
+      color: #fafafa; }
+    body #site-header a {
+      color: #fafafa; }
+    body #site-header ul a {
+      background: rgba(0, 255, 255, 0);
+      color: #fafafa;
+      border: 2px solid #333;
+      -webkit-transition: background 0.3s ease-out;
+      -moz-transition: background 0.3s ease-out;
+      -o-transition: background 0.3s ease-out;
+      transition: background 0.3s ease-out; }
+      body #site-header ul a:hover {
+        background: #1a1a1a; }
+      body #site-header ul a:active {
+        background: #0d0d0d; }
+  body #controls .ctrl-toggle,
+  body #controls .ctrl-toggle-legend {
+    background: rgba(0, 255, 255, 0);
+    color: #fafafa;
+    cursor: pointer;
+    -webkit-transition: background 0.3s ease-out;
+    -moz-transition: background 0.3s ease-out;
+    -o-transition: background 0.3s ease-out;
+    transition: background 0.3s ease-out; }
+  body .reveal #controls .ctrl-toggle-controls,
+  body .reveal-video #controls .ctrl-toggle-video,
+  body .reveal-legend #controls .ctrl-toggle-legend {
+    background: #1a7070; }
+  body #controls .ctrl-toggle:hover,
+  body #controls .ctrl-toggle-legend:hover {
+    background: #1a1a1a; }
+  body #controls .ctrl-toggle:active,
+  body #controls .ctrl-toggle-legend:active {
+    background: #0d0d0d; }
+  body #video-area,
+  body #settings-area,
+  body #legend-area {
+    color: cyan;
+    background: #333;
+    border: 1px solid #1a1a1a; }
+  body #periodic-table {
+    background: #262626; }
+    body #periodic-table .info {
+      background: #333;
+      color: #aff;
+      border: 1px solid #1a1a1a; }
+      body #periodic-table .info .symbol {
+        color: rgba(255, 255, 255, 0.75); }
+      body #periodic-table .info .details {
+        color: #a6a6a6; }
+  body #periodic-table .info .state-response abbr,
+  body #periodic-table .info .magnetic-response abbr,
+  body .legend abbr,
+  body #periodic-table .info .magnetic-response abbr,
+  #periodic-table .info body .magnetic-response abbr,
+  body #periodic-table .info .state-response abbr,
+  #periodic-table .info body .state-response abbr {
+    border: 1px solid #616161; }
+  body #periodic-table .info .state-response data:after,
+  body #periodic-table .info .magnetic-response data:after,
+  body .legend data:after,
+  body #periodic-table .info .magnetic-response data:after,
+  #periodic-table .info body .magnetic-response data:after,
+  body #periodic-table .info .state-response data:after,
+  #periodic-table .info body .state-response data:after {
+    border-color: cyan; }
+  body .element {
+    border: 1px solid rgba(122, 255, 255, 0.25); }
+    body .element .inner {
+      background: #333333;
+      outline: 1px solid transparent;
+      -webkit-transition: background-color 0.3s ease-out, outline-color 0.3s ease-out;
+      -moz-transition: background-color 0.3s ease-out, outline-color 0.3s ease-out;
+      -o-transition: background-color 0.3s ease-out, outline-color 0.3s ease-out;
+      transition: background-color 0.3s ease-out, outline-color 0.3s ease-out; }
+    body .element:hover .inner {
+      outline-color: cyan; }
+      body .element:hover .inner .symbol {
+        color: cyan; }
+    body .element .number {
+      color: rgba(0, 255, 255, 0.6); }
+    body .element .symbol {
+      color: rgba(255, 255, 255, 0.75);
+      -webkit-transition: color 0.3s ease-out;
+      -moz-transition: color 0.3s ease-out;
+      -o-transition: color 0.3s ease-out;
+      transition: color 0.3s ease-out; }
+    body .element .details {
+      color: rgba(162, 255, 255, 0.7);
+      text-rendering: optimizeLegibility;
+      word-wrap: break-word;
+      line-height: 1; }
+  body #periodic-table .highlight .inner {
+    background: cyan; }
+    body #periodic-table .highlight .inner,
+    body #periodic-table .highlight .inner > * {
+      color: #295c5c; }
+  body #periodic-table.magnetic [data-magnetic-order="dia"] > .inner,
+  body #periodic-table.magnetic .info abbr.dia,
+  body #periodic-table.magnetic .legend abbr.dia,
+  body #periodic-table.magnetic .info .magnetic-response abbr.dia,
+  body #periodic-table.magnetic .info .state-response abbr.dia,
+  body #periodic-table.magnetic .element.dia > .inner,
+  body #about [data-magnetic-order="dia"] > .inner,
+  body #about .info abbr.dia,
+  body #about .legend abbr.dia,
+  body #about #periodic-table .info .magnetic-response abbr.dia,
+  #periodic-table .info body #about .magnetic-response abbr.dia,
+  body #about #periodic-table .info .state-response abbr.dia,
+  #periodic-table .info body #about .state-response abbr.dia,
+  body #about .element.dia > .inner,
+  body #legend-area [data-magnetic-order="dia"] > .inner,
+  body #legend-area .info abbr.dia,
+  body #legend-area .legend abbr.dia,
+  body #legend-area #periodic-table .info .magnetic-response abbr.dia,
+  #periodic-table .info body #legend-area .magnetic-response abbr.dia,
+  body #legend-area #periodic-table .info .state-response abbr.dia,
+  #periodic-table .info body #legend-area .state-response abbr.dia,
+  body #legend-area .element.dia > .inner {
+    background: #204671; }
+    body #periodic-table.magnetic [data-magnetic-order="dia"] > .inner,
+    body #periodic-table.magnetic [data-magnetic-order="dia"] > .inner > *,
+    body #periodic-table.magnetic .info abbr.dia,
+    body #periodic-table.magnetic .info abbr.dia > *,
+    body #periodic-table.magnetic .legend abbr.dia,
+    body #periodic-table.magnetic .info .magnetic-response abbr.dia,
+    body #periodic-table.magnetic .info .state-response abbr.dia,
+    body #periodic-table.magnetic .legend abbr.dia > *,
+    body #periodic-table.magnetic .info .magnetic-response abbr.dia > *,
+    body #periodic-table.magnetic .info .state-response abbr.dia > *,
+    body #periodic-table.magnetic .element.dia > .inner,
+    body #periodic-table.magnetic .element.dia > .inner > *,
+    body #about [data-magnetic-order="dia"] > .inner,
+    body #about [data-magnetic-order="dia"] > .inner > *,
+    body #about .info abbr.dia,
+    body #about .info abbr.dia > *,
+    body #about .legend abbr.dia,
+    body #about #periodic-table .info .magnetic-response abbr.dia,
+    #periodic-table .info body #about .magnetic-response abbr.dia,
+    body #about #periodic-table .info .state-response abbr.dia,
+    #periodic-table .info body #about .state-response abbr.dia,
+    body #about .legend abbr.dia > *,
+    body #about #periodic-table .info .magnetic-response abbr.dia > *,
+    #periodic-table .info body #about .magnetic-response abbr.dia > *,
+    body #about #periodic-table .info .state-response abbr.dia > *,
+    #periodic-table .info body #about .state-response abbr.dia > *,
+    body #about .element.dia > .inner,
+    body #about .element.dia > .inner > *,
+    body #legend-area [data-magnetic-order="dia"] > .inner,
+    body #legend-area [data-magnetic-order="dia"] > .inner > *,
+    body #legend-area .info abbr.dia,
+    body #legend-area .info abbr.dia > *,
+    body #legend-area .legend abbr.dia,
+    body #legend-area #periodic-table .info .magnetic-response abbr.dia,
+    #periodic-table .info body #legend-area .magnetic-response abbr.dia,
+    body #legend-area #periodic-table .info .state-response abbr.dia,
+    #periodic-table .info body #legend-area .state-response abbr.dia,
+    body #legend-area .legend abbr.dia > *,
+    body #legend-area #periodic-table .info .magnetic-response abbr.dia > *,
+    #periodic-table .info body #legend-area .magnetic-response abbr.dia > *,
+    body #legend-area #periodic-table .info .state-response abbr.dia > *,
+    #periodic-table .info body #legend-area .state-response abbr.dia > *,
+    body #legend-area .element.dia > .inner,
+    body #legend-area .element.dia > .inner > * {
+      text-shadow: none; }
+  body #periodic-table.magnetic [data-magnetic-order="ferro"],
+  body #periodic-table.magnetic .info abbr.ferro,
+  body #periodic-table.magnetic .legend abbr.ferro,
+  body #periodic-table.magnetic .info .magnetic-response abbr.ferro,
+  body #periodic-table.magnetic .info .state-response abbr.ferro,
+  body #periodic-table.magnetic .element.ferro,
+  body #about [data-magnetic-order="ferro"],
+  body #about .info abbr.ferro,
+  body #about .legend abbr.ferro,
+  body #about #periodic-table .info .magnetic-response abbr.ferro,
+  #periodic-table .info body #about .magnetic-response abbr.ferro,
+  body #about #periodic-table .info .state-response abbr.ferro,
+  #periodic-table .info body #about .state-response abbr.ferro,
+  body #about .element.ferro,
+  body #legend-area [data-magnetic-order="ferro"],
+  body #legend-area .info abbr.ferro,
+  body #legend-area .legend abbr.ferro,
+  body #legend-area #periodic-table .info .magnetic-response abbr.ferro,
+  #periodic-table .info body #legend-area .magnetic-response abbr.ferro,
+  body #legend-area #periodic-table .info .state-response abbr.ferro,
+  #periodic-table .info body #legend-area .state-response abbr.ferro,
+  body #legend-area .element.ferro {
+    background: black; }
+    body #periodic-table.magnetic [data-magnetic-order="ferro"],
+    body #periodic-table.magnetic [data-magnetic-order="ferro"] .inner > *,
+    body #periodic-table.magnetic .info abbr.ferro,
+    body #periodic-table.magnetic .info abbr.ferro .inner > *,
+    body #periodic-table.magnetic .legend abbr.ferro,
+    body #periodic-table.magnetic .info .magnetic-response abbr.ferro,
+    body #periodic-table.magnetic .info .state-response abbr.ferro,
+    body #periodic-table.magnetic .legend abbr.ferro .inner > *,
+    body #periodic-table.magnetic .info .magnetic-response abbr.ferro .inner > *,
+    body #periodic-table.magnetic .info .state-response abbr.ferro .inner > *,
+    body #periodic-table.magnetic .element.ferro,
+    body #periodic-table.magnetic .element.ferro .inner > *,
+    body #about [data-magnetic-order="ferro"],
+    body #about [data-magnetic-order="ferro"] .inner > *,
+    body #about .info abbr.ferro,
+    body #about .info abbr.ferro .inner > *,
+    body #about .legend abbr.ferro,
+    body #about #periodic-table .info .magnetic-response abbr.ferro,
+    #periodic-table .info body #about .magnetic-response abbr.ferro,
+    body #about #periodic-table .info .state-response abbr.ferro,
+    #periodic-table .info body #about .state-response abbr.ferro,
+    body #about .legend abbr.ferro .inner > *,
+    body #about #periodic-table .info .magnetic-response abbr.ferro .inner > *,
+    #periodic-table .info body #about .magnetic-response abbr.ferro .inner > *,
+    body #about #periodic-table .info .state-response abbr.ferro .inner > *,
+    #periodic-table .info body #about .state-response abbr.ferro .inner > *,
+    body #about .element.ferro,
+    body #about .element.ferro .inner > *,
+    body #legend-area [data-magnetic-order="ferro"],
+    body #legend-area [data-magnetic-order="ferro"] .inner > *,
+    body #legend-area .info abbr.ferro,
+    body #legend-area .info abbr.ferro .inner > *,
+    body #legend-area .legend abbr.ferro,
+    body #legend-area #periodic-table .info .magnetic-response abbr.ferro,
+    #periodic-table .info body #legend-area .magnetic-response abbr.ferro,
+    body #legend-area #periodic-table .info .state-response abbr.ferro,
+    #periodic-table .info body #legend-area .state-response abbr.ferro,
+    body #legend-area .legend abbr.ferro .inner > *,
+    body #legend-area #periodic-table .info .magnetic-response abbr.ferro .inner > *,
+    #periodic-table .info body #legend-area .magnetic-response abbr.ferro .inner > *,
+    body #legend-area #periodic-table .info .state-response abbr.ferro .inner > *,
+    #periodic-table .info body #legend-area .state-response abbr.ferro .inner > *,
+    body #legend-area .element.ferro,
+    body #legend-area .element.ferro .inner > * {
+      color: white;
+      text-shadow: none; }
+    body #periodic-table.magnetic [data-magnetic-order="ferro"] .inner,
+    body #periodic-table.magnetic .info abbr.ferro .inner,
+    body #periodic-table.magnetic .legend abbr.ferro .inner,
+    body #periodic-table.magnetic .info .magnetic-response abbr.ferro .inner,
+    body #periodic-table.magnetic .info .state-response abbr.ferro .inner,
+    body #periodic-table.magnetic .element.ferro .inner,
+    body #about [data-magnetic-order="ferro"] .inner,
+    body #about .info abbr.ferro .inner,
+    body #about .legend abbr.ferro .inner,
+    body #about #periodic-table .info .magnetic-response abbr.ferro .inner,
+    #periodic-table .info body #about .magnetic-response abbr.ferro .inner,
+    body #about #periodic-table .info .state-response abbr.ferro .inner,
+    #periodic-table .info body #about .state-response abbr.ferro .inner,
+    body #about .element.ferro .inner,
+    body #legend-area [data-magnetic-order="ferro"] .inner,
+    body #legend-area .info abbr.ferro .inner,
+    body #legend-area .legend abbr.ferro .inner,
+    body #legend-area #periodic-table .info .magnetic-response abbr.ferro .inner,
+    #periodic-table .info body #legend-area .magnetic-response abbr.ferro .inner,
+    body #legend-area #periodic-table .info .state-response abbr.ferro .inner,
+    #periodic-table .info body #legend-area .state-response abbr.ferro .inner,
+    body #legend-area .element.ferro .inner {
+      background: none; }
+    body #periodic-table.magnetic [data-magnetic-order="ferro"]:after,
+    body #periodic-table.magnetic .info abbr.ferro:after,
+    body #periodic-table.magnetic .legend abbr.ferro:after,
+    body #periodic-table.magnetic .info .magnetic-response abbr.ferro:after,
+    body #periodic-table.magnetic .info .state-response abbr.ferro:after,
+    body #periodic-table.magnetic .element.ferro:after,
+    body #about [data-magnetic-order="ferro"]:after,
+    body #about .info abbr.ferro:after,
+    body #about .legend abbr.ferro:after,
+    body #about #periodic-table .info .magnetic-response abbr.ferro:after,
+    #periodic-table .info body #about .magnetic-response abbr.ferro:after,
+    body #about #periodic-table .info .state-response abbr.ferro:after,
+    #periodic-table .info body #about .state-response abbr.ferro:after,
+    body #about .element.ferro:after,
+    body #legend-area [data-magnetic-order="ferro"]:after,
+    body #legend-area .info abbr.ferro:after,
+    body #legend-area .legend abbr.ferro:after,
+    body #legend-area #periodic-table .info .magnetic-response abbr.ferro:after,
+    #periodic-table .info body #legend-area .magnetic-response abbr.ferro:after,
+    body #legend-area #periodic-table .info .state-response abbr.ferro:after,
+    #periodic-table .info body #legend-area .state-response abbr.ferro:after,
+    body #legend-area .element.ferro:after {
+      position: absolute;
+      top: 0;
+      z-index: -1;
+      content: "";
+      display: block;
+      height: 50%;
+      width: 100%;
+      background: red; }
+  body #periodic-table.magnetic [data-magnetic-order="anti"],
+  body #periodic-table.magnetic .info abbr.anti,
+  body #periodic-table.magnetic .legend abbr.anti,
+  body #periodic-table.magnetic .info .magnetic-response abbr.anti,
+  body #periodic-table.magnetic .info .state-response abbr.anti,
+  body #periodic-table.magnetic .element.anti,
+  body #about [data-magnetic-order="anti"],
+  body #about .info abbr.anti,
+  body #about .legend abbr.anti,
+  body #about #periodic-table .info .magnetic-response abbr.anti,
+  #periodic-table .info body #about .magnetic-response abbr.anti,
+  body #about #periodic-table .info .state-response abbr.anti,
+  #periodic-table .info body #about .state-response abbr.anti,
+  body #about .element.anti,
+  body #legend-area [data-magnetic-order="anti"],
+  body #legend-area .info abbr.anti,
+  body #legend-area .legend abbr.anti,
+  body #legend-area #periodic-table .info .magnetic-response abbr.anti,
+  #periodic-table .info body #legend-area .magnetic-response abbr.anti,
+  body #legend-area #periodic-table .info .state-response abbr.anti,
+  #periodic-table .info body #legend-area .state-response abbr.anti,
+  body #legend-area .element.anti {
+    background: white;
+    color: black; }
+    body #periodic-table.magnetic [data-magnetic-order="anti"],
+    body #periodic-table.magnetic [data-magnetic-order="anti"] .inner > *,
+    body #periodic-table.magnetic .info abbr.anti,
+    body #periodic-table.magnetic .info abbr.anti .inner > *,
+    body #periodic-table.magnetic .legend abbr.anti,
+    body #periodic-table.magnetic .info .magnetic-response abbr.anti,
+    body #periodic-table.magnetic .info .state-response abbr.anti,
+    body #periodic-table.magnetic .legend abbr.anti .inner > *,
+    body #periodic-table.magnetic .info .magnetic-response abbr.anti .inner > *,
+    body #periodic-table.magnetic .info .state-response abbr.anti .inner > *,
+    body #periodic-table.magnetic .element.anti,
+    body #periodic-table.magnetic .element.anti .inner > *,
+    body #about [data-magnetic-order="anti"],
+    body #about [data-magnetic-order="anti"] .inner > *,
+    body #about .info abbr.anti,
+    body #about .info abbr.anti .inner > *,
+    body #about .legend abbr.anti,
+    body #about #periodic-table .info .magnetic-response abbr.anti,
+    #periodic-table .info body #about .magnetic-response abbr.anti,
+    body #about #periodic-table .info .state-response abbr.anti,
+    #periodic-table .info body #about .state-response abbr.anti,
+    body #about .legend abbr.anti .inner > *,
+    body #about #periodic-table .info .magnetic-response abbr.anti .inner > *,
+    #periodic-table .info body #about .magnetic-response abbr.anti .inner > *,
+    body #about #periodic-table .info .state-response abbr.anti .inner > *,
+    #periodic-table .info body #about .state-response abbr.anti .inner > *,
+    body #about .element.anti,
+    body #about .element.anti .inner > *,
+    body #legend-area [data-magnetic-order="anti"],
+    body #legend-area [data-magnetic-order="anti"] .inner > *,
+    body #legend-area .info abbr.anti,
+    body #legend-area .info abbr.anti .inner > *,
+    body #legend-area .legend abbr.anti,
+    body #legend-area #periodic-table .info .magnetic-response abbr.anti,
+    #periodic-table .info body #legend-area .magnetic-response abbr.anti,
+    body #legend-area #periodic-table .info .state-response abbr.anti,
+    #periodic-table .info body #legend-area .state-response abbr.anti,
+    body #legend-area .legend abbr.anti .inner > *,
+    body #legend-area #periodic-table .info .magnetic-response abbr.anti .inner > *,
+    #periodic-table .info body #legend-area .magnetic-response abbr.anti .inner > *,
+    body #legend-area #periodic-table .info .state-response abbr.anti .inner > *,
+    #periodic-table .info body #legend-area .state-response abbr.anti .inner > *,
+    body #legend-area .element.anti,
+    body #legend-area .element.anti .inner > * {
+      color: black;
+      text-shadow: none; }
+    body #periodic-table.magnetic [data-magnetic-order="anti"] .inner,
+    body #periodic-table.magnetic .info abbr.anti .inner,
+    body #periodic-table.magnetic .legend abbr.anti .inner,
+    body #periodic-table.magnetic .info .magnetic-response abbr.anti .inner,
+    body #periodic-table.magnetic .info .state-response abbr.anti .inner,
+    body #periodic-table.magnetic .element.anti .inner,
+    body #about [data-magnetic-order="anti"] .inner,
+    body #about .info abbr.anti .inner,
+    body #about .legend abbr.anti .inner,
+    body #about #periodic-table .info .magnetic-response abbr.anti .inner,
+    #periodic-table .info body #about .magnetic-response abbr.anti .inner,
+    body #about #periodic-table .info .state-response abbr.anti .inner,
+    #periodic-table .info body #about .state-response abbr.anti .inner,
+    body #about .element.anti .inner,
+    body #legend-area [data-magnetic-order="anti"] .inner,
+    body #legend-area .info abbr.anti .inner,
+    body #legend-area .legend abbr.anti .inner,
+    body #legend-area #periodic-table .info .magnetic-response abbr.anti .inner,
+    #periodic-table .info body #legend-area .magnetic-response abbr.anti .inner,
+    body #legend-area #periodic-table .info .state-response abbr.anti .inner,
+    #periodic-table .info body #legend-area .state-response abbr.anti .inner,
+    body #legend-area .element.anti .inner {
+      background: none; }
+    body #periodic-table.magnetic [data-magnetic-order="anti"]:after,
+    body #periodic-table.magnetic .info abbr.anti:after,
+    body #periodic-table.magnetic .legend abbr.anti:after,
+    body #periodic-table.magnetic .info .magnetic-response abbr.anti:after,
+    body #periodic-table.magnetic .info .state-response abbr.anti:after,
+    body #periodic-table.magnetic .element.anti:after,
+    body #about [data-magnetic-order="anti"]:after,
+    body #about .info abbr.anti:after,
+    body #about .legend abbr.anti:after,
+    body #about #periodic-table .info .magnetic-response abbr.anti:after,
+    #periodic-table .info body #about .magnetic-response abbr.anti:after,
+    body #about #periodic-table .info .state-response abbr.anti:after,
+    #periodic-table .info body #about .state-response abbr.anti:after,
+    body #about .element.anti:after,
+    body #legend-area [data-magnetic-order="anti"]:after,
+    body #legend-area .info abbr.anti:after,
+    body #legend-area .legend abbr.anti:after,
+    body #legend-area #periodic-table .info .magnetic-response abbr.anti:after,
+    #periodic-table .info body #legend-area .magnetic-response abbr.anti:after,
+    body #legend-area #periodic-table .info .state-response abbr.anti:after,
+    #periodic-table .info body #legend-area .state-response abbr.anti:after,
+    body #legend-area .element.anti:after {
+      position: absolute;
+      top: 0;
+      z-index: -1;
+      content: "";
+      display: block;
+      height: 50%;
+      width: 100%;
+      background: cyan; }
+  body #periodic-table.magnetic [data-magnetic-order="para"] .inner,
+  body #periodic-table.magnetic .info abbr.para,
+  body #periodic-table.magnetic .legend abbr.para,
+  body #periodic-table.magnetic .info .magnetic-response abbr.para,
+  body #periodic-table.magnetic .info .state-response abbr.para,
+  body #periodic-table.magnetic .element.para .inner,
+  body #about [data-magnetic-order="para"] .inner,
+  body #about .info abbr.para,
+  body #about .legend abbr.para,
+  body #about #periodic-table .info .magnetic-response abbr.para,
+  #periodic-table .info body #about .magnetic-response abbr.para,
+  body #about #periodic-table .info .state-response abbr.para,
+  #periodic-table .info body #about .state-response abbr.para,
+  body #about .element.para .inner,
+  body #legend-area [data-magnetic-order="para"] .inner,
+  body #legend-area .info abbr.para,
+  body #legend-area .legend abbr.para,
+  body #legend-area #periodic-table .info .magnetic-response abbr.para,
+  #periodic-table .info body #legend-area .magnetic-response abbr.para,
+  body #legend-area #periodic-table .info .state-response abbr.para,
+  #periodic-table .info body #legend-area .state-response abbr.para,
+  body #legend-area .element.para .inner {
+    background: #702121 image-url("para-texture-grey.png") repeat center 0;
+    background-size: 180px; }
+    body #periodic-table.magnetic [data-magnetic-order="para"] .inner,
+    body #periodic-table.magnetic [data-magnetic-order="para"] .inner > *,
+    body #periodic-table.magnetic .info abbr.para,
+    body #periodic-table.magnetic .info abbr.para > *,
+    body #periodic-table.magnetic .legend abbr.para,
+    body #periodic-table.magnetic .info .magnetic-response abbr.para,
+    body #periodic-table.magnetic .info .state-response abbr.para,
+    body #periodic-table.magnetic .legend abbr.para > *,
+    body #periodic-table.magnetic .info .magnetic-response abbr.para > *,
+    body #periodic-table.magnetic .info .state-response abbr.para > *,
+    body #periodic-table.magnetic .element.para .inner,
+    body #periodic-table.magnetic .element.para .inner > *,
+    body #about [data-magnetic-order="para"] .inner,
+    body #about [data-magnetic-order="para"] .inner > *,
+    body #about .info abbr.para,
+    body #about .info abbr.para > *,
+    body #about .legend abbr.para,
+    body #about #periodic-table .info .magnetic-response abbr.para,
+    #periodic-table .info body #about .magnetic-response abbr.para,
+    body #about #periodic-table .info .state-response abbr.para,
+    #periodic-table .info body #about .state-response abbr.para,
+    body #about .legend abbr.para > *,
+    body #about #periodic-table .info .magnetic-response abbr.para > *,
+    #periodic-table .info body #about .magnetic-response abbr.para > *,
+    body #about #periodic-table .info .state-response abbr.para > *,
+    #periodic-table .info body #about .state-response abbr.para > *,
+    body #about .element.para .inner,
+    body #about .element.para .inner > *,
+    body #legend-area [data-magnetic-order="para"] .inner,
+    body #legend-area [data-magnetic-order="para"] .inner > *,
+    body #legend-area .info abbr.para,
+    body #legend-area .info abbr.para > *,
+    body #legend-area .legend abbr.para,
+    body #legend-area #periodic-table .info .magnetic-response abbr.para,
+    #periodic-table .info body #legend-area .magnetic-response abbr.para,
+    body #legend-area #periodic-table .info .state-response abbr.para,
+    #periodic-table .info body #legend-area .state-response abbr.para,
+    body #legend-area .legend abbr.para > *,
+    body #legend-area #periodic-table .info .magnetic-response abbr.para > *,
+    #periodic-table .info body #legend-area .magnetic-response abbr.para > *,
+    body #legend-area #periodic-table .info .state-response abbr.para > *,
+    #periodic-table .info body #legend-area .state-response abbr.para > *,
+    body #legend-area .element.para .inner,
+    body #legend-area .element.para .inner > * {
+      color: white;
+      text-shadow: 0 0 6px black; }
+  body #periodic-table.states [data-state="gas"] > .inner,
+  body #periodic-table.states .legend abbr.gas,
+  body #periodic-table.states .info .magnetic-response abbr.gas,
+  body #periodic-table.states .info .state-response abbr.gas,
+  body #periodic-table.states .info abbr.gas,
+  body #periodic-table.states .element.gas > .inner,
+  body #about [data-state="gas"] > .inner,
+  body #about .legend abbr.gas,
+  body #about #periodic-table .info .magnetic-response abbr.gas,
+  #periodic-table .info body #about .magnetic-response abbr.gas,
+  body #about #periodic-table .info .state-response abbr.gas,
+  #periodic-table .info body #about .state-response abbr.gas,
+  body #about .info abbr.gas,
+  body #about .element.gas > .inner,
+  body #legend-area [data-state="gas"] > .inner,
+  body #legend-area .legend abbr.gas,
+  body #legend-area #periodic-table .info .magnetic-response abbr.gas,
+  #periodic-table .info body #legend-area .magnetic-response abbr.gas,
+  body #legend-area #periodic-table .info .state-response abbr.gas,
+  #periodic-table .info body #legend-area .state-response abbr.gas,
+  body #legend-area .info abbr.gas,
+  body #legend-area .element.gas > .inner {
+    background: #c8e2ff; }
+    body #periodic-table.states [data-state="gas"] > .inner,
+    body #periodic-table.states [data-state="gas"] > .inner > *,
+    body #periodic-table.states .legend abbr.gas,
+    body #periodic-table.states .info .magnetic-response abbr.gas,
+    body #periodic-table.states .info .state-response abbr.gas,
+    body #periodic-table.states .legend abbr.gas > *,
+    body #periodic-table.states .info .magnetic-response abbr.gas > *,
+    body #periodic-table.states .info .state-response abbr.gas > *,
+    body #periodic-table.states .info abbr.gas,
+    body #periodic-table.states .info abbr.gas > *,
+    body #periodic-table.states .element.gas > .inner,
+    body #periodic-table.states .element.gas > .inner > *,
+    body #about [data-state="gas"] > .inner,
+    body #about [data-state="gas"] > .inner > *,
+    body #about .legend abbr.gas,
+    body #about #periodic-table .info .magnetic-response abbr.gas,
+    #periodic-table .info body #about .magnetic-response abbr.gas,
+    body #about #periodic-table .info .state-response abbr.gas,
+    #periodic-table .info body #about .state-response abbr.gas,
+    body #about .legend abbr.gas > *,
+    body #about #periodic-table .info .magnetic-response abbr.gas > *,
+    #periodic-table .info body #about .magnetic-response abbr.gas > *,
+    body #about #periodic-table .info .state-response abbr.gas > *,
+    #periodic-table .info body #about .state-response abbr.gas > *,
+    body #about .info abbr.gas,
+    body #about .info abbr.gas > *,
+    body #about .element.gas > .inner,
+    body #about .element.gas > .inner > *,
+    body #legend-area [data-state="gas"] > .inner,
+    body #legend-area [data-state="gas"] > .inner > *,
+    body #legend-area .legend abbr.gas,
+    body #legend-area #periodic-table .info .magnetic-response abbr.gas,
+    #periodic-table .info body #legend-area .magnetic-response abbr.gas,
+    body #legend-area #periodic-table .info .state-response abbr.gas,
+    #periodic-table .info body #legend-area .state-response abbr.gas,
+    body #legend-area .legend abbr.gas > *,
+    body #legend-area #periodic-table .info .magnetic-response abbr.gas > *,
+    #periodic-table .info body #legend-area .magnetic-response abbr.gas > *,
+    body #legend-area #periodic-table .info .state-response abbr.gas > *,
+    #periodic-table .info body #legend-area .state-response abbr.gas > *,
+    body #legend-area .info abbr.gas,
+    body #legend-area .info abbr.gas > *,
+    body #legend-area .element.gas > .inner,
+    body #legend-area .element.gas > .inner > * {
+      color: #111a1a; }
+  body #periodic-table.states [data-state="liquid"] > .inner,
+  body #periodic-table.states .legend abbr.liquid,
+  body #periodic-table.states .info .magnetic-response abbr.liquid,
+  body #periodic-table.states .info .state-response abbr.liquid,
+  body #periodic-table.states .info abbr.liquid,
+  body #periodic-table.states .element.liquid > .inner,
+  body #about [data-state="liquid"] > .inner,
+  body #about .legend abbr.liquid,
+  body #about #periodic-table .info .magnetic-response abbr.liquid,
+  #periodic-table .info body #about .magnetic-response abbr.liquid,
+  body #about #periodic-table .info .state-response abbr.liquid,
+  #periodic-table .info body #about .state-response abbr.liquid,
+  body #about .info abbr.liquid,
+  body #about .element.liquid > .inner,
+  body #legend-area [data-state="liquid"] > .inner,
+  body #legend-area .legend abbr.liquid,
+  body #legend-area #periodic-table .info .magnetic-response abbr.liquid,
+  #periodic-table .info body #legend-area .magnetic-response abbr.liquid,
+  body #legend-area #periodic-table .info .state-response abbr.liquid,
+  #periodic-table .info body #legend-area .state-response abbr.liquid,
+  body #legend-area .info abbr.liquid,
+  body #legend-area .element.liquid > .inner {
+    background: #64aac5; }
+    body #periodic-table.states [data-state="liquid"] > .inner,
+    body #periodic-table.states [data-state="liquid"] > .inner > *,
+    body #periodic-table.states .legend abbr.liquid,
+    body #periodic-table.states .info .magnetic-response abbr.liquid,
+    body #periodic-table.states .info .state-response abbr.liquid,
+    body #periodic-table.states .legend abbr.liquid > *,
+    body #periodic-table.states .info .magnetic-response abbr.liquid > *,
+    body #periodic-table.states .info .state-response abbr.liquid > *,
+    body #periodic-table.states .info abbr.liquid,
+    body #periodic-table.states .info abbr.liquid > *,
+    body #periodic-table.states .element.liquid > .inner,
+    body #periodic-table.states .element.liquid > .inner > *,
+    body #about [data-state="liquid"] > .inner,
+    body #about [data-state="liquid"] > .inner > *,
+    body #about .legend abbr.liquid,
+    body #about #periodic-table .info .magnetic-response abbr.liquid,
+    #periodic-table .info body #about .magnetic-response abbr.liquid,
+    body #about #periodic-table .info .state-response abbr.liquid,
+    #periodic-table .info body #about .state-response abbr.liquid,
+    body #about .legend abbr.liquid > *,
+    body #about #periodic-table .info .magnetic-response abbr.liquid > *,
+    #periodic-table .info body #about .magnetic-response abbr.liquid > *,
+    body #about #periodic-table .info .state-response abbr.liquid > *,
+    #periodic-table .info body #about .state-response abbr.liquid > *,
+    body #about .info abbr.liquid,
+    body #about .info abbr.liquid > *,
+    body #about .element.liquid > .inner,
+    body #about .element.liquid > .inner > *,
+    body #legend-area [data-state="liquid"] > .inner,
+    body #legend-area [data-state="liquid"] > .inner > *,
+    body #legend-area .legend abbr.liquid,
+    body #legend-area #periodic-table .info .magnetic-response abbr.liquid,
+    #periodic-table .info body #legend-area .magnetic-response abbr.liquid,
+    body #legend-area #periodic-table .info .state-response abbr.liquid,
+    #periodic-table .info body #legend-area .state-response abbr.liquid,
+    body #legend-area .legend abbr.liquid > *,
+    body #legend-area #periodic-table .info .magnetic-response abbr.liquid > *,
+    #periodic-table .info body #legend-area .magnetic-response abbr.liquid > *,
+    body #legend-area #periodic-table .info .state-response abbr.liquid > *,
+    #periodic-table .info body #legend-area .state-response abbr.liquid > *,
+    body #legend-area .info abbr.liquid,
+    body #legend-area .info abbr.liquid > *,
+    body #legend-area .element.liquid > .inner,
+    body #legend-area .element.liquid > .inner > * {
+      color: #111a1a; }
+  body #periodic-table.states [data-state="solid"] > .inner,
+  body #periodic-table.states .info abbr.solid,
+  body #periodic-table.states .legend abbr.solid,
+  body #periodic-table.states .info .magnetic-response abbr.solid,
+  body #periodic-table.states .info .state-response abbr.solid,
+  body #periodic-table.states .element.solid > .inner,
+  body #about [data-state="solid"] > .inner,
+  body #about .info abbr.solid,
+  body #about .legend abbr.solid,
+  body #about #periodic-table .info .magnetic-response abbr.solid,
+  #periodic-table .info body #about .magnetic-response abbr.solid,
+  body #about #periodic-table .info .state-response abbr.solid,
+  #periodic-table .info body #about .state-response abbr.solid,
+  body #about .element.solid > .inner,
+  body #legend-area [data-state="solid"] > .inner,
+  body #legend-area .info abbr.solid,
+  body #legend-area .legend abbr.solid,
+  body #legend-area #periodic-table .info .magnetic-response abbr.solid,
+  #periodic-table .info body #legend-area .magnetic-response abbr.solid,
+  body #legend-area #periodic-table .info .state-response abbr.solid,
+  #periodic-table .info body #legend-area .state-response abbr.solid,
+  body #legend-area .element.solid > .inner {
+    background: #536677; }
+    body #periodic-table.states [data-state="solid"] > .inner,
+    body #periodic-table.states [data-state="solid"] > .inner > *,
+    body #periodic-table.states .info abbr.solid,
+    body #periodic-table.states .info abbr.solid > *,
+    body #periodic-table.states .legend abbr.solid,
+    body #periodic-table.states .info .magnetic-response abbr.solid,
+    body #periodic-table.states .info .state-response abbr.solid,
+    body #periodic-table.states .legend abbr.solid > *,
+    body #periodic-table.states .info .magnetic-response abbr.solid > *,
+    body #periodic-table.states .info .state-response abbr.solid > *,
+    body #periodic-table.states .element.solid > .inner,
+    body #periodic-table.states .element.solid > .inner > *,
+    body #about [data-state="solid"] > .inner,
+    body #about [data-state="solid"] > .inner > *,
+    body #about .info abbr.solid,
+    body #about .info abbr.solid > *,
+    body #about .legend abbr.solid,
+    body #about #periodic-table .info .magnetic-response abbr.solid,
+    #periodic-table .info body #about .magnetic-response abbr.solid,
+    body #about #periodic-table .info .state-response abbr.solid,
+    #periodic-table .info body #about .state-response abbr.solid,
+    body #about .legend abbr.solid > *,
+    body #about #periodic-table .info .magnetic-response abbr.solid > *,
+    #periodic-table .info body #about .magnetic-response abbr.solid > *,
+    body #about #periodic-table .info .state-response abbr.solid > *,
+    #periodic-table .info body #about .state-response abbr.solid > *,
+    body #about .element.solid > .inner,
+    body #about .element.solid > .inner > *,
+    body #legend-area [data-state="solid"] > .inner,
+    body #legend-area [data-state="solid"] > .inner > *,
+    body #legend-area .info abbr.solid,
+    body #legend-area .info abbr.solid > *,
+    body #legend-area .legend abbr.solid,
+    body #legend-area #periodic-table .info .magnetic-response abbr.solid,
+    #periodic-table .info body #legend-area .magnetic-response abbr.solid,
+    body #legend-area #periodic-table .info .state-response abbr.solid,
+    #periodic-table .info body #legend-area .state-response abbr.solid,
+    body #legend-area .legend abbr.solid > *,
+    body #legend-area #periodic-table .info .magnetic-response abbr.solid > *,
+    #periodic-table .info body #legend-area .magnetic-response abbr.solid > *,
+    body #legend-area #periodic-table .info .state-response abbr.solid > *,
+    #periodic-table .info body #legend-area .state-response abbr.solid > *,
+    body #legend-area .element.solid > .inner,
+    body #legend-area .element.solid > .inner > * {
+      color: #f7ffff; }
+  body #periodic-table.states .info abbr.unknown,
+  body #periodic-table.states .legend abbr.unknown,
+  body #periodic-table.states .info .magnetic-response abbr.unknown,
+  body #periodic-table.states .info .state-response abbr.unknown,
+  body #about .info abbr.unknown,
+  body #about .legend abbr.unknown,
+  body #about #periodic-table .info .magnetic-response abbr.unknown,
+  #periodic-table .info body #about .magnetic-response abbr.unknown,
+  body #about #periodic-table .info .state-response abbr.unknown,
+  #periodic-table .info body #about .state-response abbr.unknown,
+  body #legend-area .info abbr.unknown,
+  body #legend-area .legend abbr.unknown,
+  body #legend-area #periodic-table .info .magnetic-response abbr.unknown,
+  #periodic-table .info body #legend-area .magnetic-response abbr.unknown,
+  body #legend-area #periodic-table .info .state-response abbr.unknown,
+  #periodic-table .info body #legend-area .state-response abbr.unknown {
+    color: #aff;
+    background: #333333; }
+  body #periodic-table.magnetic.highlight .element,
+  body #periodic-table.states.highlight .element {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=10);
+    opacity: 0.1;
+    -webkit-transition: opacity 0.3s ease-out;
+    -moz-transition: opacity 0.3s ease-out;
+    -o-transition: opacity 0.3s ease-out;
+    transition: opacity 0.3s ease-out; }
+  body #periodic-table.magnetic.highlight .element.highlight,
+  body #periodic-table.states.highlight .element.highlight {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1; }
+  body .ctrl-temperature .noUi-base,
+  body .temp-slider .noUi-base {
+    border-color: black; }
+  body .ctrl-temperature .noUi-handle,
+  body .temp-slider .noUi-handle {
+    background: #333;
+    color: cyan;
+    border: 1px solid black; }
+    body .ctrl-temperature .noUi-handle:hover,
+    body .temp-slider .noUi-handle:hover {
+      border-color: rgba(0, 255, 255, 0.4); }
+  body #dipole-visualization .dipole,
+  body #legend-visualization .dipole {
+    background: #fafafa; }
+    body #dipole-visualization .dipole:after,
+    body #legend-visualization .dipole:after {
+      border-color: transparent transparent #fafafa; }
+  body #dipole-visualization .ferro .dipole,
+  body #legend-visualization .ferro .dipole {
+    background: red; }
+    body #dipole-visualization .ferro .dipole:after,
+    body #legend-visualization .ferro .dipole:after {
+      border-color: transparent transparent red; }
+  body #dipole-visualization .anti .dipole,
+  body #legend-visualization .anti .dipole {
+    background: #fafafa; }
+    body #dipole-visualization .anti .dipole:after,
+    body #legend-visualization .anti .dipole:after {
+      border-color: transparent transparent #fafafa; }
+  body #dipole-visualization .anti .dipole:nth-child(2n),
+  body #legend-visualization .anti .dipole:nth-child(2n) {
+    background: cyan; }
+    body #dipole-visualization .anti .dipole:nth-child(2n):after,
+    body #legend-visualization .anti .dipole:nth-child(2n):after {
+      border-color: transparent transparent cyan; }
+  body #disqus_thread p {
+    color: #fafafa; }
+  body #disqus_thread a {
+    color: cyan; }
+
+body.light-skin {
+  /* Open */
+  /* 'Cover' Positioning */
+  /* 'Bottom' Positioning */
+  /* 'Bottom' + 'Cover' Positioning */
+  /* Multiple Select */
+  /* 'Disabled' State */ }
+  body.light-skin .selecter-element {
+    *left: -999999px;
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    margin: 0;
+    border: 0;
+    width: 0; }
+  body.light-skin .selecter {
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    z-index: 1; }
+  body.light-skin .selecter .selecter-selected {
+    background: #fff;
+    border: 1px solid #cccccc;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    color: #411;
+    cursor: pointer;
+    display: block;
+    font-size: 1em;
+    margin: 0;
+    overflow: hidden;
+    padding: 6px 30px 6px 10px;
+    position: relative;
+    text-overflow: clip;
+    z-index: 49; }
+    body.light-skin .selecter .selecter-selected:after {
+      content: '';
+      border: 6px solid black;
+      border-color: black transparent transparent;
+      position: absolute;
+      top: .8em;
+      right: 12px; }
+    body.light-skin .selecter .selecter-selected:hover {
+      border-color: #b40000; }
+      body.light-skin .selecter .selecter-selected:hover:after {
+        border-color: #b40000 transparent transparent; }
+  body.light-skin .selecter .selecter-options {
+    background-color: #fff;
+    border: 1px solid #cccccc;
+    border-top: none;
+    -webkit-border-radius: 0 0 3px 3px;
+    -moz-border-radius: 0 0 3px 3px;
+    -ms-border-radius: 0 0 3px 3px;
+    -o-border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px;
+    display: none;
+    left: 0;
+    margin: 0;
+    max-height: 260px;
+    overflow: auto;
+    overflow-x: hidden;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    *width: auto;
+    z-index: 50; }
+  body.light-skin .selecter .selecter-group {
+    background: #fff;
+    border-bottom: 1px solid #cccccc;
+    color: #411;
+    display: block;
+    font-size: 11px;
+    padding: 5px 10px 4px;
+    text-transform: uppercase; }
+  body.light-skin .selecter .selecter-item {
+    background: #fff;
+    border-bottom: 1px solid #cccccc;
+    color: #411;
+    cursor: pointer;
+    display: block;
+    font-size: 1em;
+    margin: 0;
+    overflow: hidden;
+    padding: 14px 10px;
+    text-overflow: ellipsis;
+    width: 100%; }
+  body.light-skin .selecter .selecter-item.selected {
+    background: #fff; }
+  body.light-skin .selecter .selecter-item.first {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    border-radius: 0; }
+  body.light-skin .selecter .selecter-item.last {
+    -webkit-border-radius: 0 0 3px 3px;
+    -moz-border-radius: 0 0 3px 3px;
+    -ms-border-radius: 0 0 3px 3px;
+    -o-border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px;
+    border-bottom: 0; }
+  @media screen and (min-width: 740px) {
+    body.light-skin .selecter .selecter-item:hover,
+    body.light-skin .selecter .selecter-item.selected:hover {
+      color: #fff;
+      background-color: #b40000; }
+    body.light-skin .selecter.disabled .selecter-item:hover {
+      background: #dacfcf; } }
+  body.light-skin .selecter.open {
+    z-index: 3; }
+  body.light-skin .selecter.open .selecter-selected {
+    border-radius: 3px 3px 0 0;
+    z-index: 51; }
+  body.light-skin .selecter.open .selecter-selected,
+  body.light-skin .selecter.focus .selecter-selected {
+    background-color: #fff; }
+  body.light-skin .selecter.cover .selecter-options {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    border-width: 1px;
+    top: 0; }
+  body.light-skin .selecter.cover .selecter-options .selecter-item.first {
+    -webkit-border-radius: 3px 3px 0 0;
+    -moz-border-radius: 3px 3px 0 0;
+    -ms-border-radius: 3px 3px 0 0;
+    -o-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0; }
+  body.light-skin .selecter.cover.open .selecter-selected {
+    -webkit-border-radius: 3px 3px 0 0;
+    -moz-border-radius: 3px 3px 0 0;
+    -ms-border-radius: 3px 3px 0 0;
+    -o-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0;
+    z-index: 49; }
+  body.light-skin .selecter.bottom .selecter-options {
+    border-width: 1px 1px 0;
+    bottom: 100%;
+    top: auto; }
+  body.light-skin .selecter.bottom .selecter-item.last {
+    border: none; }
+  body.light-skin .selecter.bottom.open .selecter-selected {
+    -webkit-border-radius: 0 0 3px 3px;
+    -moz-border-radius: 0 0 3px 3px;
+    -ms-border-radius: 0 0 3px 3px;
+    -o-border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px; }
+  body.light-skin .selecter.bottom.open .selecter-options {
+    -webkit-border-radius: 3px 3px 0 0;
+    -moz-border-radius: 3px 3px 0 0;
+    -ms-border-radius: 3px 3px 0 0;
+    -o-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0; }
+  body.light-skin .selecter.bottom.cover .selecter-options {
+    bottom: 0;
+    top: auto; }
+  body.light-skin .selecter.bottom.cover.open .selecter-selected {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px; }
+  body.light-skin .selecter.bottom.cover.open .selecter-options {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px; }
+  body.light-skin .selecter.multiple .selecter-options {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    border-width: 1px;
+    box-shadow: none;
+    display: block;
+    position: static;
+    width: 100%; }
+  body.light-skin .selecter.disabled .selecter-selected {
+    background: #fff;
+    border-color: #eee;
+    color: #ccc;
+    cursor: default; }
+  body.light-skin .selecter.disabled .selecter-options {
+    background: #fff;
+    border-color: #eee; }
+  body.light-skin .selecter.disabled .selecter-group,
+  body.light-skin .selecter.disabled .selecter-item {
+    border-color: #eee;
+    color: #ccc;
+    cursor: default; }
+  body.light-skin .selecter.disabled .selecter-item.selected {
+    background: #fafafa; }
+  body.light-skin {
+    background: #f2f2f2; }
+  body.light-skin #about {
+    color: black; }
+    body.light-skin #about a {
+      color: #b40000; }
+    body.light-skin #about strong {
+      font-weight: bold; }
+    body.light-skin #about .ctrl-back {
+      background: #e6e6e6;
+      color: #222;
+      -webkit-transition: background 0.3s ease-out;
+      -moz-transition: background 0.3s ease-out;
+      -o-transition: background 0.3s ease-out;
+      transition: background 0.3s ease-out; }
+      body.light-skin #about .ctrl-back:hover {
+        background: #d9d9d9; }
+      body.light-skin #about .ctrl-back:active {
+        background: #d9d9d9; }
+  body.light-skin .toggler button {
+    background: #fff;
+    color: #411;
+    border: 1px solid rgba(180, 0, 0, 0.4);
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out; }
+    body.light-skin .toggler button:hover {
+      border-color: rgba(180, 0, 0, 0.8); }
+    body.light-skin .toggler button.on {
+      color: #fefafa;
+      background: rgba(180, 0, 0, 0.8);
+      border-color: rgba(180, 0, 0, 0.8);
+      -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) inset;
+      -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) inset;
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) inset; }
+  body.light-skin #site-header {
+    background: #fff;
+    color: #411; }
+    body.light-skin #site-header h1,
+    body.light-skin #site-header .subtitle {
+      color: #222; }
+    body.light-skin #site-header a {
+      color: #222; }
+    body.light-skin #site-header ul a {
+      background: rgba(180, 0, 0, 0);
+      color: #222;
+      border: 2px solid #fff;
+      -webkit-transition: background 0.3s ease-out;
+      -moz-transition: background 0.3s ease-out;
+      -o-transition: background 0.3s ease-out;
+      transition: background 0.3s ease-out; }
+      body.light-skin #site-header ul a:hover {
+        background: #e6e6e6; }
+      body.light-skin #site-header ul a:active {
+        background: #d9d9d9; }
+  body.light-skin #controls .ctrl-toggle,
+  body.light-skin #controls .ctrl-toggle-legend {
+    background: rgba(180, 0, 0, 0);
+    color: #222;
+    cursor: pointer;
+    -webkit-transition: background 0.3s ease-out;
+    -moz-transition: background 0.3s ease-out;
+    -o-transition: background 0.3s ease-out;
+    transition: background 0.3s ease-out; }
+  body.light-skin .reveal #controls .ctrl-toggle-controls,
+  body.light-skin .reveal-video #controls .ctrl-toggle-video,
+  body.light-skin .reveal-legend #controls .ctrl-toggle-legend {
+    background: #db8585; }
+  body.light-skin #controls .ctrl-toggle:hover,
+  body.light-skin #controls .ctrl-toggle-legend:hover {
+    background: #e6e6e6; }
+  body.light-skin #controls .ctrl-toggle:active,
+  body.light-skin #controls .ctrl-toggle-legend:active {
+    background: #d9d9d9; }
+  body.light-skin #video-area,
+  body.light-skin #settings-area,
+  body.light-skin #legend-area {
+    color: #b40000;
+    background: #fff;
+    border: 1px solid #e6e6e6; }
+  body.light-skin #periodic-table {
+    background: #f2f2f2; }
+    body.light-skin #periodic-table .info {
+      background: #fff;
+      color: #411;
+      border: 1px solid #e6e6e6; }
+      body.light-skin #periodic-table .info .symbol {
+        color: rgba(0, 0, 0, 0.75); }
+      body.light-skin #periodic-table .info .details {
+        color: black; }
+  body.light-skin #periodic-table .info .state-response abbr,
+  body.light-skin #periodic-table .info .magnetic-response abbr,
+  body.light-skin .legend abbr,
+  body.light-skin #periodic-table .info .magnetic-response abbr,
+  #periodic-table .info body.light-skin .magnetic-response abbr,
+  body.light-skin #periodic-table .info .state-response abbr,
+  #periodic-table .info body.light-skin .state-response abbr {
+    border: 1px solid #b3b3b3; }
+  body.light-skin #periodic-table .info .state-response data:after,
+  body.light-skin #periodic-table .info .magnetic-response data:after,
+  body.light-skin .legend data:after,
+  body.light-skin #periodic-table .info .magnetic-response data:after,
+  #periodic-table .info body.light-skin .magnetic-response data:after,
+  body.light-skin #periodic-table .info .state-response data:after,
+  #periodic-table .info body.light-skin .state-response data:after {
+    border-color: #b40000; }
+  body.light-skin .element {
+    border: 1px solid rgba(255, 47, 47, 0.25); }
+    body.light-skin .element .inner {
+      background: #dddcdc;
+      outline: 1px solid transparent;
+      -webkit-transition: background-color 0.3s ease-out, outline-color 0.3s ease-out;
+      -moz-transition: background-color 0.3s ease-out, outline-color 0.3s ease-out;
+      -o-transition: background-color 0.3s ease-out, outline-color 0.3s ease-out;
+      transition: background-color 0.3s ease-out, outline-color 0.3s ease-out; }
+    body.light-skin .element:hover .inner {
+      outline-color: #b40000; }
+      body.light-skin .element:hover .inner .symbol {
+        color: #b40000; }
+    body.light-skin .element .number {
+      color: rgba(180, 0, 0, 0.6); }
+    body.light-skin .element .symbol {
+      color: rgba(0, 0, 0, 0.75);
+      -webkit-transition: color 0.3s ease-out;
+      -moz-transition: color 0.3s ease-out;
+      -o-transition: color 0.3s ease-out;
+      transition: color 0.3s ease-out; }
+    body.light-skin .element .details {
+      color: rgba(74, 16, 16, 0.7);
+      text-rendering: optimizeLegibility;
+      word-wrap: break-word;
+      line-height: 1; }
+  body.light-skin #periodic-table .highlight .inner {
+    background: #b40000; }
+    body.light-skin #periodic-table .highlight .inner,
+    body.light-skin #periodic-table .highlight .inner > * {
+      color: #f0cccc; }
+  body.light-skin #periodic-table.magnetic [data-magnetic-order="dia"] > .inner,
+  body.light-skin #periodic-table.magnetic .info abbr.dia,
+  body.light-skin #periodic-table.magnetic .legend abbr.dia,
+  body.light-skin #periodic-table.magnetic .info .magnetic-response abbr.dia,
+  body.light-skin #periodic-table.magnetic .info .state-response abbr.dia,
+  body.light-skin #periodic-table.magnetic .element.dia > .inner,
+  body.light-skin #about [data-magnetic-order="dia"] > .inner,
+  body.light-skin #about .info abbr.dia,
+  body.light-skin #about .legend abbr.dia,
+  body.light-skin #about #periodic-table .info .magnetic-response abbr.dia,
+  #periodic-table .info body.light-skin #about .magnetic-response abbr.dia,
+  body.light-skin #about #periodic-table .info .state-response abbr.dia,
+  #periodic-table .info body.light-skin #about .state-response abbr.dia,
+  body.light-skin #about .element.dia > .inner,
+  body.light-skin #legend-area [data-magnetic-order="dia"] > .inner,
+  body.light-skin #legend-area .info abbr.dia,
+  body.light-skin #legend-area .legend abbr.dia,
+  body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.dia,
+  #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.dia,
+  body.light-skin #legend-area #periodic-table .info .state-response abbr.dia,
+  #periodic-table .info body.light-skin #legend-area .state-response abbr.dia,
+  body.light-skin #legend-area .element.dia > .inner {
+    background: #dffbfb; }
+    body.light-skin #periodic-table.magnetic [data-magnetic-order="dia"] > .inner,
+    body.light-skin #periodic-table.magnetic [data-magnetic-order="dia"] > .inner > *,
+    body.light-skin #periodic-table.magnetic .info abbr.dia,
+    body.light-skin #periodic-table.magnetic .info abbr.dia > *,
+    body.light-skin #periodic-table.magnetic .legend abbr.dia,
+    body.light-skin #periodic-table.magnetic .info .magnetic-response abbr.dia,
+    body.light-skin #periodic-table.magnetic .info .state-response abbr.dia,
+    body.light-skin #periodic-table.magnetic .legend abbr.dia > *,
+    body.light-skin #periodic-table.magnetic .info .magnetic-response abbr.dia > *,
+    body.light-skin #periodic-table.magnetic .info .state-response abbr.dia > *,
+    body.light-skin #periodic-table.magnetic .element.dia > .inner,
+    body.light-skin #periodic-table.magnetic .element.dia > .inner > *,
+    body.light-skin #about [data-magnetic-order="dia"] > .inner,
+    body.light-skin #about [data-magnetic-order="dia"] > .inner > *,
+    body.light-skin #about .info abbr.dia,
+    body.light-skin #about .info abbr.dia > *,
+    body.light-skin #about .legend abbr.dia,
+    body.light-skin #about #periodic-table .info .magnetic-response abbr.dia,
+    #periodic-table .info body.light-skin #about .magnetic-response abbr.dia,
+    body.light-skin #about #periodic-table .info .state-response abbr.dia,
+    #periodic-table .info body.light-skin #about .state-response abbr.dia,
+    body.light-skin #about .legend abbr.dia > *,
+    body.light-skin #about #periodic-table .info .magnetic-response abbr.dia > *,
+    #periodic-table .info body.light-skin #about .magnetic-response abbr.dia > *,
+    body.light-skin #about #periodic-table .info .state-response abbr.dia > *,
+    #periodic-table .info body.light-skin #about .state-response abbr.dia > *,
+    body.light-skin #about .element.dia > .inner,
+    body.light-skin #about .element.dia > .inner > *,
+    body.light-skin #legend-area [data-magnetic-order="dia"] > .inner,
+    body.light-skin #legend-area [data-magnetic-order="dia"] > .inner > *,
+    body.light-skin #legend-area .info abbr.dia,
+    body.light-skin #legend-area .info abbr.dia > *,
+    body.light-skin #legend-area .legend abbr.dia,
+    body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.dia,
+    #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.dia,
+    body.light-skin #legend-area #periodic-table .info .state-response abbr.dia,
+    #periodic-table .info body.light-skin #legend-area .state-response abbr.dia,
+    body.light-skin #legend-area .legend abbr.dia > *,
+    body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.dia > *,
+    #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.dia > *,
+    body.light-skin #legend-area #periodic-table .info .state-response abbr.dia > *,
+    #periodic-table .info body.light-skin #legend-area .state-response abbr.dia > *,
+    body.light-skin #legend-area .element.dia > .inner,
+    body.light-skin #legend-area .element.dia > .inner > * {
+      text-shadow: none; }
+  body.light-skin #periodic-table.magnetic [data-magnetic-order="ferro"],
+  body.light-skin #periodic-table.magnetic .info abbr.ferro,
+  body.light-skin #periodic-table.magnetic .legend abbr.ferro,
+  body.light-skin #periodic-table.magnetic .info .magnetic-response abbr.ferro,
+  body.light-skin #periodic-table.magnetic .info .state-response abbr.ferro,
+  body.light-skin #periodic-table.magnetic .element.ferro,
+  body.light-skin #about [data-magnetic-order="ferro"],
+  body.light-skin #about .info abbr.ferro,
+  body.light-skin #about .legend abbr.ferro,
+  body.light-skin #about #periodic-table .info .magnetic-response abbr.ferro,
+  #periodic-table .info body.light-skin #about .magnetic-response abbr.ferro,
+  body.light-skin #about #periodic-table .info .state-response abbr.ferro,
+  #periodic-table .info body.light-skin #about .state-response abbr.ferro,
+  body.light-skin #about .element.ferro,
+  body.light-skin #legend-area [data-magnetic-order="ferro"],
+  body.light-skin #legend-area .info abbr.ferro,
+  body.light-skin #legend-area .legend abbr.ferro,
+  body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.ferro,
+  #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.ferro,
+  body.light-skin #legend-area #periodic-table .info .state-response abbr.ferro,
+  #periodic-table .info body.light-skin #legend-area .state-response abbr.ferro,
+  body.light-skin #legend-area .element.ferro {
+    background: black; }
+    body.light-skin #periodic-table.magnetic [data-magnetic-order="ferro"],
+    body.light-skin #periodic-table.magnetic [data-magnetic-order="ferro"] .inner > *,
+    body.light-skin #periodic-table.magnetic .info abbr.ferro,
+    body.light-skin #periodic-table.magnetic .info abbr.ferro .inner > *,
+    body.light-skin #periodic-table.magnetic .legend abbr.ferro,
+    body.light-skin #periodic-table.magnetic .info .magnetic-response abbr.ferro,
+    body.light-skin #periodic-table.magnetic .info .state-response abbr.ferro,
+    body.light-skin #periodic-table.magnetic .legend abbr.ferro .inner > *,
+    body.light-skin #periodic-table.magnetic .info .magnetic-response abbr.ferro .inner > *,
+    body.light-skin #periodic-table.magnetic .info .state-response abbr.ferro .inner > *,
+    body.light-skin #periodic-table.magnetic .element.ferro,
+    body.light-skin #periodic-table.magnetic .element.ferro .inner > *,
+    body.light-skin #about [data-magnetic-order="ferro"],
+    body.light-skin #about [data-magnetic-order="ferro"] .inner > *,
+    body.light-skin #about .info abbr.ferro,
+    body.light-skin #about .info abbr.ferro .inner > *,
+    body.light-skin #about .legend abbr.ferro,
+    body.light-skin #about #periodic-table .info .magnetic-response abbr.ferro,
+    #periodic-table .info body.light-skin #about .magnetic-response abbr.ferro,
+    body.light-skin #about #periodic-table .info .state-response abbr.ferro,
+    #periodic-table .info body.light-skin #about .state-response abbr.ferro,
+    body.light-skin #about .legend abbr.ferro .inner > *,
+    body.light-skin #about #periodic-table .info .magnetic-response abbr.ferro .inner > *,
+    #periodic-table .info body.light-skin #about .magnetic-response abbr.ferro .inner > *,
+    body.light-skin #about #periodic-table .info .state-response abbr.ferro .inner > *,
+    #periodic-table .info body.light-skin #about .state-response abbr.ferro .inner > *,
+    body.light-skin #about .element.ferro,
+    body.light-skin #about .element.ferro .inner > *,
+    body.light-skin #legend-area [data-magnetic-order="ferro"],
+    body.light-skin #legend-area [data-magnetic-order="ferro"] .inner > *,
+    body.light-skin #legend-area .info abbr.ferro,
+    body.light-skin #legend-area .info abbr.ferro .inner > *,
+    body.light-skin #legend-area .legend abbr.ferro,
+    body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.ferro,
+    #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.ferro,
+    body.light-skin #legend-area #periodic-table .info .state-response abbr.ferro,
+    #periodic-table .info body.light-skin #legend-area .state-response abbr.ferro,
+    body.light-skin #legend-area .legend abbr.ferro .inner > *,
+    body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.ferro .inner > *,
+    #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.ferro .inner > *,
+    body.light-skin #legend-area #periodic-table .info .state-response abbr.ferro .inner > *,
+    #periodic-table .info body.light-skin #legend-area .state-response abbr.ferro .inner > *,
+    body.light-skin #legend-area .element.ferro,
+    body.light-skin #legend-area .element.ferro .inner > * {
+      color: white;
+      text-shadow: none; }
+    body.light-skin #periodic-table.magnetic [data-magnetic-order="ferro"] .inner,
+    body.light-skin #periodic-table.magnetic .info abbr.ferro .inner,
+    body.light-skin #periodic-table.magnetic .legend abbr.ferro .inner,
+    body.light-skin #periodic-table.magnetic .info .magnetic-response abbr.ferro .inner,
+    body.light-skin #periodic-table.magnetic .info .state-response abbr.ferro .inner,
+    body.light-skin #periodic-table.magnetic .element.ferro .inner,
+    body.light-skin #about [data-magnetic-order="ferro"] .inner,
+    body.light-skin #about .info abbr.ferro .inner,
+    body.light-skin #about .legend abbr.ferro .inner,
+    body.light-skin #about #periodic-table .info .magnetic-response abbr.ferro .inner,
+    #periodic-table .info body.light-skin #about .magnetic-response abbr.ferro .inner,
+    body.light-skin #about #periodic-table .info .state-response abbr.ferro .inner,
+    #periodic-table .info body.light-skin #about .state-response abbr.ferro .inner,
+    body.light-skin #about .element.ferro .inner,
+    body.light-skin #legend-area [data-magnetic-order="ferro"] .inner,
+    body.light-skin #legend-area .info abbr.ferro .inner,
+    body.light-skin #legend-area .legend abbr.ferro .inner,
+    body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.ferro .inner,
+    #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.ferro .inner,
+    body.light-skin #legend-area #periodic-table .info .state-response abbr.ferro .inner,
+    #periodic-table .info body.light-skin #legend-area .state-response abbr.ferro .inner,
+    body.light-skin #legend-area .element.ferro .inner {
+      background: none; }
+    body.light-skin #periodic-table.magnetic [data-magnetic-order="ferro"]:after,
+    body.light-skin #periodic-table.magnetic .info abbr.ferro:after,
+    body.light-skin #periodic-table.magnetic .legend abbr.ferro:after,
+    body.light-skin #periodic-table.magnetic .info .magnetic-response abbr.ferro:after,
+    body.light-skin #periodic-table.magnetic .info .state-response abbr.ferro:after,
+    body.light-skin #periodic-table.magnetic .element.ferro:after,
+    body.light-skin #about [data-magnetic-order="ferro"]:after,
+    body.light-skin #about .info abbr.ferro:after,
+    body.light-skin #about .legend abbr.ferro:after,
+    body.light-skin #about #periodic-table .info .magnetic-response abbr.ferro:after,
+    #periodic-table .info body.light-skin #about .magnetic-response abbr.ferro:after,
+    body.light-skin #about #periodic-table .info .state-response abbr.ferro:after,
+    #periodic-table .info body.light-skin #about .state-response abbr.ferro:after,
+    body.light-skin #about .element.ferro:after,
+    body.light-skin #legend-area [data-magnetic-order="ferro"]:after,
+    body.light-skin #legend-area .info abbr.ferro:after,
+    body.light-skin #legend-area .legend abbr.ferro:after,
+    body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.ferro:after,
+    #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.ferro:after,
+    body.light-skin #legend-area #periodic-table .info .state-response abbr.ferro:after,
+    #periodic-table .info body.light-skin #legend-area .state-response abbr.ferro:after,
+    body.light-skin #legend-area .element.ferro:after {
+      position: absolute;
+      top: 0;
+      z-index: -1;
+      content: "";
+      display: block;
+      height: 50%;
+      width: 100%;
+      background: red; }
+  body.light-skin #periodic-table.magnetic [data-magnetic-order="anti"],
+  body.light-skin #periodic-table.magnetic .info abbr.anti,
+  body.light-skin #periodic-table.magnetic .legend abbr.anti,
+  body.light-skin #periodic-table.magnetic .info .magnetic-response abbr.anti,
+  body.light-skin #periodic-table.magnetic .info .state-response abbr.anti,
+  body.light-skin #periodic-table.magnetic .element.anti,
+  body.light-skin #about [data-magnetic-order="anti"],
+  body.light-skin #about .info abbr.anti,
+  body.light-skin #about .legend abbr.anti,
+  body.light-skin #about #periodic-table .info .magnetic-response abbr.anti,
+  #periodic-table .info body.light-skin #about .magnetic-response abbr.anti,
+  body.light-skin #about #periodic-table .info .state-response abbr.anti,
+  #periodic-table .info body.light-skin #about .state-response abbr.anti,
+  body.light-skin #about .element.anti,
+  body.light-skin #legend-area [data-magnetic-order="anti"],
+  body.light-skin #legend-area .info abbr.anti,
+  body.light-skin #legend-area .legend abbr.anti,
+  body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.anti,
+  #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.anti,
+  body.light-skin #legend-area #periodic-table .info .state-response abbr.anti,
+  #periodic-table .info body.light-skin #legend-area .state-response abbr.anti,
+  body.light-skin #legend-area .element.anti {
+    background: #fafafa;
+    color: black; }
+    body.light-skin #periodic-table.magnetic [data-magnetic-order="anti"],
+    body.light-skin #periodic-table.magnetic [data-magnetic-order="anti"] .inner > *,
+    body.light-skin #periodic-table.magnetic .info abbr.anti,
+    body.light-skin #periodic-table.magnetic .info abbr.anti .inner > *,
+    body.light-skin #periodic-table.magnetic .legend abbr.anti,
+    body.light-skin #periodic-table.magnetic .info .magnetic-response abbr.anti,
+    body.light-skin #periodic-table.magnetic .info .state-response abbr.anti,
+    body.light-skin #periodic-table.magnetic .legend abbr.anti .inner > *,
+    body.light-skin #periodic-table.magnetic .info .magnetic-response abbr.anti .inner > *,
+    body.light-skin #periodic-table.magnetic .info .state-response abbr.anti .inner > *,
+    body.light-skin #periodic-table.magnetic .element.anti,
+    body.light-skin #periodic-table.magnetic .element.anti .inner > *,
+    body.light-skin #about [data-magnetic-order="anti"],
+    body.light-skin #about [data-magnetic-order="anti"] .inner > *,
+    body.light-skin #about .info abbr.anti,
+    body.light-skin #about .info abbr.anti .inner > *,
+    body.light-skin #about .legend abbr.anti,
+    body.light-skin #about #periodic-table .info .magnetic-response abbr.anti,
+    #periodic-table .info body.light-skin #about .magnetic-response abbr.anti,
+    body.light-skin #about #periodic-table .info .state-response abbr.anti,
+    #periodic-table .info body.light-skin #about .state-response abbr.anti,
+    body.light-skin #about .legend abbr.anti .inner > *,
+    body.light-skin #about #periodic-table .info .magnetic-response abbr.anti .inner > *,
+    #periodic-table .info body.light-skin #about .magnetic-response abbr.anti .inner > *,
+    body.light-skin #about #periodic-table .info .state-response abbr.anti .inner > *,
+    #periodic-table .info body.light-skin #about .state-response abbr.anti .inner > *,
+    body.light-skin #about .element.anti,
+    body.light-skin #about .element.anti .inner > *,
+    body.light-skin #legend-area [data-magnetic-order="anti"],
+    body.light-skin #legend-area [data-magnetic-order="anti"] .inner > *,
+    body.light-skin #legend-area .info abbr.anti,
+    body.light-skin #legend-area .info abbr.anti .inner > *,
+    body.light-skin #legend-area .legend abbr.anti,
+    body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.anti,
+    #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.anti,
+    body.light-skin #legend-area #periodic-table .info .state-response abbr.anti,
+    #periodic-table .info body.light-skin #legend-area .state-response abbr.anti,
+    body.light-skin #legend-area .legend abbr.anti .inner > *,
+    body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.anti .inner > *,
+    #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.anti .inner > *,
+    body.light-skin #legend-area #periodic-table .info .state-response abbr.anti .inner > *,
+    #periodic-table .info body.light-skin #legend-area .state-response abbr.anti .inner > *,
+    body.light-skin #legend-area .element.anti,
+    body.light-skin #legend-area .element.anti .inner > * {
+      color: #050505;
+      text-shadow: none; }
+    body.light-skin #periodic-table.magnetic [data-magnetic-order="anti"] .inner,
+    body.light-skin #periodic-table.magnetic .info abbr.anti .inner,
+    body.light-skin #periodic-table.magnetic .legend abbr.anti .inner,
+    body.light-skin #periodic-table.magnetic .info .magnetic-response abbr.anti .inner,
+    body.light-skin #periodic-table.magnetic .info .state-response abbr.anti .inner,
+    body.light-skin #periodic-table.magnetic .element.anti .inner,
+    body.light-skin #about [data-magnetic-order="anti"] .inner,
+    body.light-skin #about .info abbr.anti .inner,
+    body.light-skin #about .legend abbr.anti .inner,
+    body.light-skin #about #periodic-table .info .magnetic-response abbr.anti .inner,
+    #periodic-table .info body.light-skin #about .magnetic-response abbr.anti .inner,
+    body.light-skin #about #periodic-table .info .state-response abbr.anti .inner,
+    #periodic-table .info body.light-skin #about .state-response abbr.anti .inner,
+    body.light-skin #about .element.anti .inner,
+    body.light-skin #legend-area [data-magnetic-order="anti"] .inner,
+    body.light-skin #legend-area .info abbr.anti .inner,
+    body.light-skin #legend-area .legend abbr.anti .inner,
+    body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.anti .inner,
+    #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.anti .inner,
+    body.light-skin #legend-area #periodic-table .info .state-response abbr.anti .inner,
+    #periodic-table .info body.light-skin #legend-area .state-response abbr.anti .inner,
+    body.light-skin #legend-area .element.anti .inner {
+      background: none; }
+    body.light-skin #periodic-table.magnetic [data-magnetic-order="anti"]:after,
+    body.light-skin #periodic-table.magnetic .info abbr.anti:after,
+    body.light-skin #periodic-table.magnetic .legend abbr.anti:after,
+    body.light-skin #periodic-table.magnetic .info .magnetic-response abbr.anti:after,
+    body.light-skin #periodic-table.magnetic .info .state-response abbr.anti:after,
+    body.light-skin #periodic-table.magnetic .element.anti:after,
+    body.light-skin #about [data-magnetic-order="anti"]:after,
+    body.light-skin #about .info abbr.anti:after,
+    body.light-skin #about .legend abbr.anti:after,
+    body.light-skin #about #periodic-table .info .magnetic-response abbr.anti:after,
+    #periodic-table .info body.light-skin #about .magnetic-response abbr.anti:after,
+    body.light-skin #about #periodic-table .info .state-response abbr.anti:after,
+    #periodic-table .info body.light-skin #about .state-response abbr.anti:after,
+    body.light-skin #about .element.anti:after,
+    body.light-skin #legend-area [data-magnetic-order="anti"]:after,
+    body.light-skin #legend-area .info abbr.anti:after,
+    body.light-skin #legend-area .legend abbr.anti:after,
+    body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.anti:after,
+    #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.anti:after,
+    body.light-skin #legend-area #periodic-table .info .state-response abbr.anti:after,
+    #periodic-table .info body.light-skin #legend-area .state-response abbr.anti:after,
+    body.light-skin #legend-area .element.anti:after {
+      position: absolute;
+      top: 0;
+      z-index: -1;
+      content: "";
+      display: block;
+      height: 50%;
+      width: 100%;
+      background: cyan; }
+  body.light-skin #periodic-table.magnetic [data-magnetic-order="para"] .inner,
+  body.light-skin #periodic-table.magnetic .info abbr.para,
+  body.light-skin #periodic-table.magnetic .legend abbr.para,
+  body.light-skin #periodic-table.magnetic .info .magnetic-response abbr.para,
+  body.light-skin #periodic-table.magnetic .info .state-response abbr.para,
+  body.light-skin #periodic-table.magnetic .element.para .inner,
+  body.light-skin #about [data-magnetic-order="para"] .inner,
+  body.light-skin #about .info abbr.para,
+  body.light-skin #about .legend abbr.para,
+  body.light-skin #about #periodic-table .info .magnetic-response abbr.para,
+  #periodic-table .info body.light-skin #about .magnetic-response abbr.para,
+  body.light-skin #about #periodic-table .info .state-response abbr.para,
+  #periodic-table .info body.light-skin #about .state-response abbr.para,
+  body.light-skin #about .element.para .inner,
+  body.light-skin #legend-area [data-magnetic-order="para"] .inner,
+  body.light-skin #legend-area .info abbr.para,
+  body.light-skin #legend-area .legend abbr.para,
+  body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.para,
+  #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.para,
+  body.light-skin #legend-area #periodic-table .info .state-response abbr.para,
+  #periodic-table .info body.light-skin #legend-area .state-response abbr.para,
+  body.light-skin #legend-area .element.para .inner {
+    background: #b64444 image-url("para-texture-grey.png") repeat center 0;
+    background-size: 180px; }
+    body.light-skin #periodic-table.magnetic [data-magnetic-order="para"] .inner,
+    body.light-skin #periodic-table.magnetic [data-magnetic-order="para"] .inner > *,
+    body.light-skin #periodic-table.magnetic .info abbr.para,
+    body.light-skin #periodic-table.magnetic .info abbr.para > *,
+    body.light-skin #periodic-table.magnetic .legend abbr.para,
+    body.light-skin #periodic-table.magnetic .info .magnetic-response abbr.para,
+    body.light-skin #periodic-table.magnetic .info .state-response abbr.para,
+    body.light-skin #periodic-table.magnetic .legend abbr.para > *,
+    body.light-skin #periodic-table.magnetic .info .magnetic-response abbr.para > *,
+    body.light-skin #periodic-table.magnetic .info .state-response abbr.para > *,
+    body.light-skin #periodic-table.magnetic .element.para .inner,
+    body.light-skin #periodic-table.magnetic .element.para .inner > *,
+    body.light-skin #about [data-magnetic-order="para"] .inner,
+    body.light-skin #about [data-magnetic-order="para"] .inner > *,
+    body.light-skin #about .info abbr.para,
+    body.light-skin #about .info abbr.para > *,
+    body.light-skin #about .legend abbr.para,
+    body.light-skin #about #periodic-table .info .magnetic-response abbr.para,
+    #periodic-table .info body.light-skin #about .magnetic-response abbr.para,
+    body.light-skin #about #periodic-table .info .state-response abbr.para,
+    #periodic-table .info body.light-skin #about .state-response abbr.para,
+    body.light-skin #about .legend abbr.para > *,
+    body.light-skin #about #periodic-table .info .magnetic-response abbr.para > *,
+    #periodic-table .info body.light-skin #about .magnetic-response abbr.para > *,
+    body.light-skin #about #periodic-table .info .state-response abbr.para > *,
+    #periodic-table .info body.light-skin #about .state-response abbr.para > *,
+    body.light-skin #about .element.para .inner,
+    body.light-skin #about .element.para .inner > *,
+    body.light-skin #legend-area [data-magnetic-order="para"] .inner,
+    body.light-skin #legend-area [data-magnetic-order="para"] .inner > *,
+    body.light-skin #legend-area .info abbr.para,
+    body.light-skin #legend-area .info abbr.para > *,
+    body.light-skin #legend-area .legend abbr.para,
+    body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.para,
+    #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.para,
+    body.light-skin #legend-area #periodic-table .info .state-response abbr.para,
+    #periodic-table .info body.light-skin #legend-area .state-response abbr.para,
+    body.light-skin #legend-area .legend abbr.para > *,
+    body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.para > *,
+    #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.para > *,
+    body.light-skin #legend-area #periodic-table .info .state-response abbr.para > *,
+    #periodic-table .info body.light-skin #legend-area .state-response abbr.para > *,
+    body.light-skin #legend-area .element.para .inner,
+    body.light-skin #legend-area .element.para .inner > * {
+      color: white;
+      text-shadow: 0 0 6px black; }
+  body.light-skin #periodic-table.states [data-state="gas"] > .inner,
+  body.light-skin #periodic-table.states .legend abbr.gas,
+  body.light-skin #periodic-table.states .info .magnetic-response abbr.gas,
+  body.light-skin #periodic-table.states .info .state-response abbr.gas,
+  body.light-skin #periodic-table.states .info abbr.gas,
+  body.light-skin #periodic-table.states .element.gas > .inner,
+  body.light-skin #about [data-state="gas"] > .inner,
+  body.light-skin #about .legend abbr.gas,
+  body.light-skin #about #periodic-table .info .magnetic-response abbr.gas,
+  #periodic-table .info body.light-skin #about .magnetic-response abbr.gas,
+  body.light-skin #about #periodic-table .info .state-response abbr.gas,
+  #periodic-table .info body.light-skin #about .state-response abbr.gas,
+  body.light-skin #about .info abbr.gas,
+  body.light-skin #about .element.gas > .inner,
+  body.light-skin #legend-area [data-state="gas"] > .inner,
+  body.light-skin #legend-area .legend abbr.gas,
+  body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.gas,
+  #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.gas,
+  body.light-skin #legend-area #periodic-table .info .state-response abbr.gas,
+  #periodic-table .info body.light-skin #legend-area .state-response abbr.gas,
+  body.light-skin #legend-area .info abbr.gas,
+  body.light-skin #legend-area .element.gas > .inner {
+    background: #c8e2ff; }
+    body.light-skin #periodic-table.states [data-state="gas"] > .inner,
+    body.light-skin #periodic-table.states [data-state="gas"] > .inner > *,
+    body.light-skin #periodic-table.states .legend abbr.gas,
+    body.light-skin #periodic-table.states .info .magnetic-response abbr.gas,
+    body.light-skin #periodic-table.states .info .state-response abbr.gas,
+    body.light-skin #periodic-table.states .legend abbr.gas > *,
+    body.light-skin #periodic-table.states .info .magnetic-response abbr.gas > *,
+    body.light-skin #periodic-table.states .info .state-response abbr.gas > *,
+    body.light-skin #periodic-table.states .info abbr.gas,
+    body.light-skin #periodic-table.states .info abbr.gas > *,
+    body.light-skin #periodic-table.states .element.gas > .inner,
+    body.light-skin #periodic-table.states .element.gas > .inner > *,
+    body.light-skin #about [data-state="gas"] > .inner,
+    body.light-skin #about [data-state="gas"] > .inner > *,
+    body.light-skin #about .legend abbr.gas,
+    body.light-skin #about #periodic-table .info .magnetic-response abbr.gas,
+    #periodic-table .info body.light-skin #about .magnetic-response abbr.gas,
+    body.light-skin #about #periodic-table .info .state-response abbr.gas,
+    #periodic-table .info body.light-skin #about .state-response abbr.gas,
+    body.light-skin #about .legend abbr.gas > *,
+    body.light-skin #about #periodic-table .info .magnetic-response abbr.gas > *,
+    #periodic-table .info body.light-skin #about .magnetic-response abbr.gas > *,
+    body.light-skin #about #periodic-table .info .state-response abbr.gas > *,
+    #periodic-table .info body.light-skin #about .state-response abbr.gas > *,
+    body.light-skin #about .info abbr.gas,
+    body.light-skin #about .info abbr.gas > *,
+    body.light-skin #about .element.gas > .inner,
+    body.light-skin #about .element.gas > .inner > *,
+    body.light-skin #legend-area [data-state="gas"] > .inner,
+    body.light-skin #legend-area [data-state="gas"] > .inner > *,
+    body.light-skin #legend-area .legend abbr.gas,
+    body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.gas,
+    #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.gas,
+    body.light-skin #legend-area #periodic-table .info .state-response abbr.gas,
+    #periodic-table .info body.light-skin #legend-area .state-response abbr.gas,
+    body.light-skin #legend-area .legend abbr.gas > *,
+    body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.gas > *,
+    #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.gas > *,
+    body.light-skin #legend-area #periodic-table .info .state-response abbr.gas > *,
+    #periodic-table .info body.light-skin #legend-area .state-response abbr.gas > *,
+    body.light-skin #legend-area .info abbr.gas,
+    body.light-skin #legend-area .info abbr.gas > *,
+    body.light-skin #legend-area .element.gas > .inner,
+    body.light-skin #legend-area .element.gas > .inner > * {
+      color: #070202; }
+  body.light-skin #periodic-table.states [data-state="liquid"] > .inner,
+  body.light-skin #periodic-table.states .legend abbr.liquid,
+  body.light-skin #periodic-table.states .info .magnetic-response abbr.liquid,
+  body.light-skin #periodic-table.states .info .state-response abbr.liquid,
+  body.light-skin #periodic-table.states .info abbr.liquid,
+  body.light-skin #periodic-table.states .element.liquid > .inner,
+  body.light-skin #about [data-state="liquid"] > .inner,
+  body.light-skin #about .legend abbr.liquid,
+  body.light-skin #about #periodic-table .info .magnetic-response abbr.liquid,
+  #periodic-table .info body.light-skin #about .magnetic-response abbr.liquid,
+  body.light-skin #about #periodic-table .info .state-response abbr.liquid,
+  #periodic-table .info body.light-skin #about .state-response abbr.liquid,
+  body.light-skin #about .info abbr.liquid,
+  body.light-skin #about .element.liquid > .inner,
+  body.light-skin #legend-area [data-state="liquid"] > .inner,
+  body.light-skin #legend-area .legend abbr.liquid,
+  body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.liquid,
+  #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.liquid,
+  body.light-skin #legend-area #periodic-table .info .state-response abbr.liquid,
+  #periodic-table .info body.light-skin #legend-area .state-response abbr.liquid,
+  body.light-skin #legend-area .info abbr.liquid,
+  body.light-skin #legend-area .element.liquid > .inner {
+    background: #64aac5; }
+    body.light-skin #periodic-table.states [data-state="liquid"] > .inner,
+    body.light-skin #periodic-table.states [data-state="liquid"] > .inner > *,
+    body.light-skin #periodic-table.states .legend abbr.liquid,
+    body.light-skin #periodic-table.states .info .magnetic-response abbr.liquid,
+    body.light-skin #periodic-table.states .info .state-response abbr.liquid,
+    body.light-skin #periodic-table.states .legend abbr.liquid > *,
+    body.light-skin #periodic-table.states .info .magnetic-response abbr.liquid > *,
+    body.light-skin #periodic-table.states .info .state-response abbr.liquid > *,
+    body.light-skin #periodic-table.states .info abbr.liquid,
+    body.light-skin #periodic-table.states .info abbr.liquid > *,
+    body.light-skin #periodic-table.states .element.liquid > .inner,
+    body.light-skin #periodic-table.states .element.liquid > .inner > *,
+    body.light-skin #about [data-state="liquid"] > .inner,
+    body.light-skin #about [data-state="liquid"] > .inner > *,
+    body.light-skin #about .legend abbr.liquid,
+    body.light-skin #about #periodic-table .info .magnetic-response abbr.liquid,
+    #periodic-table .info body.light-skin #about .magnetic-response abbr.liquid,
+    body.light-skin #about #periodic-table .info .state-response abbr.liquid,
+    #periodic-table .info body.light-skin #about .state-response abbr.liquid,
+    body.light-skin #about .legend abbr.liquid > *,
+    body.light-skin #about #periodic-table .info .magnetic-response abbr.liquid > *,
+    #periodic-table .info body.light-skin #about .magnetic-response abbr.liquid > *,
+    body.light-skin #about #periodic-table .info .state-response abbr.liquid > *,
+    #periodic-table .info body.light-skin #about .state-response abbr.liquid > *,
+    body.light-skin #about .info abbr.liquid,
+    body.light-skin #about .info abbr.liquid > *,
+    body.light-skin #about .element.liquid > .inner,
+    body.light-skin #about .element.liquid > .inner > *,
+    body.light-skin #legend-area [data-state="liquid"] > .inner,
+    body.light-skin #legend-area [data-state="liquid"] > .inner > *,
+    body.light-skin #legend-area .legend abbr.liquid,
+    body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.liquid,
+    #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.liquid,
+    body.light-skin #legend-area #periodic-table .info .state-response abbr.liquid,
+    #periodic-table .info body.light-skin #legend-area .state-response abbr.liquid,
+    body.light-skin #legend-area .legend abbr.liquid > *,
+    body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.liquid > *,
+    #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.liquid > *,
+    body.light-skin #legend-area #periodic-table .info .state-response abbr.liquid > *,
+    #periodic-table .info body.light-skin #legend-area .state-response abbr.liquid > *,
+    body.light-skin #legend-area .info abbr.liquid,
+    body.light-skin #legend-area .info abbr.liquid > *,
+    body.light-skin #legend-area .element.liquid > .inner,
+    body.light-skin #legend-area .element.liquid > .inner > * {
+      color: #070202; }
+  body.light-skin #periodic-table.states [data-state="solid"] > .inner,
+  body.light-skin #periodic-table.states .info abbr.solid,
+  body.light-skin #periodic-table.states .legend abbr.solid,
+  body.light-skin #periodic-table.states .info .magnetic-response abbr.solid,
+  body.light-skin #periodic-table.states .info .state-response abbr.solid,
+  body.light-skin #periodic-table.states .element.solid > .inner,
+  body.light-skin #about [data-state="solid"] > .inner,
+  body.light-skin #about .info abbr.solid,
+  body.light-skin #about .legend abbr.solid,
+  body.light-skin #about #periodic-table .info .magnetic-response abbr.solid,
+  #periodic-table .info body.light-skin #about .magnetic-response abbr.solid,
+  body.light-skin #about #periodic-table .info .state-response abbr.solid,
+  #periodic-table .info body.light-skin #about .state-response abbr.solid,
+  body.light-skin #about .element.solid > .inner,
+  body.light-skin #legend-area [data-state="solid"] > .inner,
+  body.light-skin #legend-area .info abbr.solid,
+  body.light-skin #legend-area .legend abbr.solid,
+  body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.solid,
+  #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.solid,
+  body.light-skin #legend-area #periodic-table .info .state-response abbr.solid,
+  #periodic-table .info body.light-skin #legend-area .state-response abbr.solid,
+  body.light-skin #legend-area .element.solid > .inner {
+    background: #536677; }
+    body.light-skin #periodic-table.states [data-state="solid"] > .inner,
+    body.light-skin #periodic-table.states [data-state="solid"] > .inner > *,
+    body.light-skin #periodic-table.states .info abbr.solid,
+    body.light-skin #periodic-table.states .info abbr.solid > *,
+    body.light-skin #periodic-table.states .legend abbr.solid,
+    body.light-skin #periodic-table.states .info .magnetic-response abbr.solid,
+    body.light-skin #periodic-table.states .info .state-response abbr.solid,
+    body.light-skin #periodic-table.states .legend abbr.solid > *,
+    body.light-skin #periodic-table.states .info .magnetic-response abbr.solid > *,
+    body.light-skin #periodic-table.states .info .state-response abbr.solid > *,
+    body.light-skin #periodic-table.states .element.solid > .inner,
+    body.light-skin #periodic-table.states .element.solid > .inner > *,
+    body.light-skin #about [data-state="solid"] > .inner,
+    body.light-skin #about [data-state="solid"] > .inner > *,
+    body.light-skin #about .info abbr.solid,
+    body.light-skin #about .info abbr.solid > *,
+    body.light-skin #about .legend abbr.solid,
+    body.light-skin #about #periodic-table .info .magnetic-response abbr.solid,
+    #periodic-table .info body.light-skin #about .magnetic-response abbr.solid,
+    body.light-skin #about #periodic-table .info .state-response abbr.solid,
+    #periodic-table .info body.light-skin #about .state-response abbr.solid,
+    body.light-skin #about .legend abbr.solid > *,
+    body.light-skin #about #periodic-table .info .magnetic-response abbr.solid > *,
+    #periodic-table .info body.light-skin #about .magnetic-response abbr.solid > *,
+    body.light-skin #about #periodic-table .info .state-response abbr.solid > *,
+    #periodic-table .info body.light-skin #about .state-response abbr.solid > *,
+    body.light-skin #about .element.solid > .inner,
+    body.light-skin #about .element.solid > .inner > *,
+    body.light-skin #legend-area [data-state="solid"] > .inner,
+    body.light-skin #legend-area [data-state="solid"] > .inner > *,
+    body.light-skin #legend-area .info abbr.solid,
+    body.light-skin #legend-area .info abbr.solid > *,
+    body.light-skin #legend-area .legend abbr.solid,
+    body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.solid,
+    #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.solid,
+    body.light-skin #legend-area #periodic-table .info .state-response abbr.solid,
+    #periodic-table .info body.light-skin #legend-area .state-response abbr.solid,
+    body.light-skin #legend-area .legend abbr.solid > *,
+    body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.solid > *,
+    #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.solid > *,
+    body.light-skin #legend-area #periodic-table .info .state-response abbr.solid > *,
+    #periodic-table .info body.light-skin #legend-area .state-response abbr.solid > *,
+    body.light-skin #legend-area .element.solid > .inner,
+    body.light-skin #legend-area .element.solid > .inner > * {
+      color: #ece7e7; }
+  body.light-skin #periodic-table.states .info abbr.unknown,
+  body.light-skin #periodic-table.states .legend abbr.unknown,
+  body.light-skin #periodic-table.states .info .magnetic-response abbr.unknown,
+  body.light-skin #periodic-table.states .info .state-response abbr.unknown,
+  body.light-skin #about .info abbr.unknown,
+  body.light-skin #about .legend abbr.unknown,
+  body.light-skin #about #periodic-table .info .magnetic-response abbr.unknown,
+  #periodic-table .info body.light-skin #about .magnetic-response abbr.unknown,
+  body.light-skin #about #periodic-table .info .state-response abbr.unknown,
+  #periodic-table .info body.light-skin #about .state-response abbr.unknown,
+  body.light-skin #legend-area .info abbr.unknown,
+  body.light-skin #legend-area .legend abbr.unknown,
+  body.light-skin #legend-area #periodic-table .info .magnetic-response abbr.unknown,
+  #periodic-table .info body.light-skin #legend-area .magnetic-response abbr.unknown,
+  body.light-skin #legend-area #periodic-table .info .state-response abbr.unknown,
+  #periodic-table .info body.light-skin #legend-area .state-response abbr.unknown {
+    color: #411;
+    background: #dddcdc; }
+  body.light-skin #periodic-table.magnetic.highlight .element,
+  body.light-skin #periodic-table.states.highlight .element {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=10);
+    opacity: 0.1;
+    -webkit-transition: opacity 0.3s ease-out;
+    -moz-transition: opacity 0.3s ease-out;
+    -o-transition: opacity 0.3s ease-out;
+    transition: opacity 0.3s ease-out; }
+  body.light-skin #periodic-table.magnetic.highlight .element.highlight,
+  body.light-skin #periodic-table.states.highlight .element.highlight {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1; }
+  body.light-skin .ctrl-temperature .noUi-base,
+  body.light-skin .temp-slider .noUi-base {
+    border-color: gray; }
+  body.light-skin .ctrl-temperature .noUi-handle,
+  body.light-skin .temp-slider .noUi-handle {
+    background: #fff;
+    color: #b40000;
+    border: 1px solid gray; }
+    body.light-skin .ctrl-temperature .noUi-handle:hover,
+    body.light-skin .temp-slider .noUi-handle:hover {
+      border-color: rgba(180, 0, 0, 0.4); }
+  body.light-skin #dipole-visualization .dipole,
+  body.light-skin #legend-visualization .dipole {
+    background: #222; }
+    body.light-skin #dipole-visualization .dipole:after,
+    body.light-skin #legend-visualization .dipole:after {
+      border-color: transparent transparent #222; }
+  body.light-skin #dipole-visualization .ferro .dipole,
+  body.light-skin #legend-visualization .ferro .dipole {
+    background: red; }
+    body.light-skin #dipole-visualization .ferro .dipole:after,
+    body.light-skin #legend-visualization .ferro .dipole:after {
+      border-color: transparent transparent red; }
+  body.light-skin #dipole-visualization .anti .dipole,
+  body.light-skin #legend-visualization .anti .dipole {
+    background: #222; }
+    body.light-skin #dipole-visualization .anti .dipole:after,
+    body.light-skin #legend-visualization .anti .dipole:after {
+      border-color: transparent transparent #222; }
+  body.light-skin #dipole-visualization .anti .dipole:nth-child(2n),
+  body.light-skin #legend-visualization .anti .dipole:nth-child(2n) {
+    background: cyan; }
+    body.light-skin #dipole-visualization .anti .dipole:nth-child(2n):after,
+    body.light-skin #legend-visualization .anti .dipole:nth-child(2n):after {
+      border-color: transparent transparent cyan; }
+  body.light-skin #disqus_thread p {
+    color: #222; }
+  body.light-skin #disqus_thread a {
+    color: #b40000; }
+
+#viewport #periodic-table .contents {
+  background: image-url("big-logo-inverse.png") no-repeat 200px 40px;
+  background-size: 260px; }
+
+.light-skin #viewport #periodic-table .contents {
+  background: image-url("big-logo.png") no-repeat 200px 40px;
+  background-size: 260px; }
+
+#viewport #periodic-table.mini-table[data-table-style="short"] .contents {
+  background-position: 200px 0;
+  background-size: 130px; }

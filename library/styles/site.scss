@@ -1,0 +1,1197 @@
+$sansFontFamily:        'Droid Sans', 'Karla', "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$serifFontFamily:       Georgia, "Times New Roman", Times, serif !default;
+$monoFontFamily:        'Oxygen Mono', "Courier New", monospace !default;
+
+@import "compass/reset";
+@import "compass/css3";
+@import "compass/typography";
+@import "_icons";
+@import "_jquery.nouislider";
+@import "_selecter";
+
+$phi: 1.61803398875;
+
+* {
+    @include box-sizing( border-box );
+}
+
+body {
+    font: 100%/1.2 $monoFontFamily;
+}
+
+button {
+    margin: 0;
+    font-family: $monoFontFamily;
+}
+
+#nav-widget {
+    &,
+    &.light {
+        top: 80px;
+        left: 10px;
+    }
+
+    .top {
+        background: #333333;
+    }
+
+    a.btn-subscribe {
+        @include border-radius( 3px );
+    }
+}
+
+#viewport {
+
+}
+
+#loading-msg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 300px;
+    font-size: 20px;
+    margin: -100px 0 0 -150px;
+    text-align: center;
+    padding-top: 160px;
+    background: image-url('bg-collider.png') no-repeat center 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.mute {
+    color: #888;
+}
+
+a {
+    text-decoration: none;
+}
+
+.toggler {
+
+    font-size: 1em;
+    margin: 0.5em 0;
+    width: 14.8em;
+
+    button {
+        cursor: pointer;
+        padding: 0.7em 1em 0.7em;
+        font-size: 14px;
+        width: 8em;
+        
+        &:first-child {
+            border-left-width: 1px;
+            @include border-radius( 4px 0 0 4px );
+        }
+        &:last-child {
+            @include border-radius( 0 4px 4px 0 );
+        }
+    }
+}
+
+$headerHeight: 110px;
+
+#site-header {
+    position: fixed;
+    top: 0px;
+    left: 0;
+    right: 0;
+    height: $headerHeight;
+    z-index: 2;
+
+    padding: 0 1em;
+    @include box-shadow( 0px 2px 7px rgba(0,0,0,0.5) );
+
+    h1,
+    .subtitle {
+        display: inline-block;
+        font-size: 1.25em;
+        font-family: $sansFontFamily;
+        
+        &,
+        > * {
+            vertical-align: middle;
+        }
+    }
+
+    .subtitle {
+        margin: 0 1em 0 0;
+
+        .selecter {
+            position: relative;
+            top: 0.35em;
+            margin-left: 0.4em;
+            margin-top: -0.7em;
+            min-width: 142px;
+        }
+
+        small {
+            font-size: 0.5em;
+            vertical-align: baseline;
+        }
+
+        small,
+        a {
+            color: #888;
+        }
+    }
+
+    ul, ul > li {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    ul {
+        vertical-align: middle;
+        margin-top: 0.2em;
+        margin-left: 1em;
+        display: inline-block;
+        
+        & > li {
+            display: inline-block;
+            margin-right: 1em;
+        }
+
+        a {
+            display: block;
+            padding: 0.5em;
+            text-decoration: none;
+            @include border-radius( 5px );
+        }
+    }
+}
+
+#controls {
+    
+    .ctrl-toggle {
+        @extend [data-icon]:before;
+        width: 1.5em;
+        line-height: 0;
+        padding: 0;
+        font-size: 22px;
+        height: 1.5em;
+        border: none;
+        text-indent: -9999em;
+        overflow: hidden;
+        @include border-radius( 5px );
+
+        &:after {
+            vertical-align: middle;
+            text-indent: 0;
+            display: block;
+        }
+
+        &.ctrl-toggle-controls:after {
+            @extend .icon-equalizer:before;
+        }
+
+        &.ctrl-toggle-video:after {
+            @extend .icon-youtube-2:before;
+        }
+    }
+
+    .ctrl-toggle-legend {
+        line-height: 1;
+        padding: 0.55em 0.5em;
+        font-size: 16px;
+        font-family: $monoFontFamily;
+        border: none;
+        @include border-radius( 5px );
+    }
+
+    .left {
+        float: left;
+
+        > * {
+            vertical-align: middle;
+        }
+    }
+
+    .title {
+        display: inline-block;
+        margin-left: 1em;
+    }
+}
+
+.ctrl-temperature {
+    position: relative;
+    top: 5px;
+    margin-left: 320px;
+}
+
+.ctrl-temperature,
+.temp-slider {
+    .noUi-base {
+        height: 22px;
+        width: 100%;
+    }
+    .noUi-background {
+        background: #004799; /* Old browsers */
+        background: -moz-linear-gradient(left,  #004799 0%, #ff0000 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%,#004799), color-stop(100%,#ff0000)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(left,  #004799 0%,#ff0000 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(left,  #004799 0%,#ff0000 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(left,  #004799 0%,#ff0000 100%); /* IE10+ */
+        background: linear-gradient(to right,  #004799 0%,#ff0000 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#004799', endColorstr='#ff0000',GradientType=1 ); /* IE6-9 */
+    }
+    .noUi-handle {
+        height: 30px;
+        width: 4em;
+        text-align: center;
+        padding-top: 0.32em;
+        cursor: pointer;
+        margin: -5px 0 0 -23px;
+        @include transition( border-color 0.1s ease-out );
+        @include border-radius( 3px );
+    }
+    .noUi-active:after {
+        display: none;
+    }
+}
+
+.temp-slider {
+    .noUi-handle {
+        padding-top: 0.2em;
+    }
+}
+
+#original-video {
+
+    display: block;
+    width: 560px;
+    height: 315px;
+    background: image-url('sprite-video-thumb.png') no-repeat -1px -2px;
+
+    &:hover {
+        background-position: -1px -322px;
+    }
+
+    img {
+        display: none;
+    }
+}
+
+#video-area,
+#settings-area,
+#legend-area {
+    position: fixed;
+    z-index: 1;
+    overflow: visible;
+    width: 582px;
+    padding: 12px 10px 6px;
+    @include transform( translateZ(0) );
+    @include transition( margin 0.3s ease-out );
+}
+
+#video-area {
+    bottom: 0;
+    left: 0;
+    width: 582px;
+    height: 339px;
+    margin-left: -582px;
+    @include border-radius( 0 5px 5px 0 );
+}
+
+#legend-area {
+    @include clearfix;
+    top: $headerHeight;
+    left: 100px;
+    width: auto;
+    height: 57px;
+    margin-top: -57px;
+    @include border-radius( 0 5px 5px 0 );
+
+    .legend {
+        float: left;
+        width: 230px;
+    }
+
+    abbr {
+        width: 100%;
+    }
+}
+
+#settings-area {
+    top: $headerHeight;
+    left: 0;
+    width: auto;
+    margin-top: -260px;
+    padding-top: 1.2em;
+    width: auto;
+    @include border-radius( 0 0 5px 5px );
+    @include box-shadow( 0 2px 6px rgba(0, 0, 0, 0.4));
+
+    .inner { 
+        width: 520px;
+    }
+
+    .left,
+    .right {
+        display: block;
+        float: left;
+        width: 50%;
+    }
+
+    .left {
+        padding-right: 20px;
+    }
+
+    .ctrl-units button {
+        width: 8em * 2 / 3 - 0.22em;
+
+        &:before {
+            content: '\00b0';
+        }
+        &:first-child:before {
+            content: '';
+        }
+    }
+}
+
+.reveal #settings-area {
+    margin-top: 0;
+}
+
+.reveal-legend #legend-area {
+    margin-top: 0;
+}
+
+.reveal-video #video-area {
+    margin-left: 0;
+}
+
+///////////////
+// legend
+// 
+.legend {
+
+    position: relative;
+    line-height: 1.2;
+
+    abbr {
+        position: relative;
+        z-index: 0;
+        display: inline-block;
+        width: 4.9em;
+        height: 2em;
+        margin-right: -0.65em;
+        padding: 0.5em 0;
+        background: black;
+        text-align: center;
+    }
+
+    data {
+        position: absolute;
+        bottom: -2em;
+        display: inline-block;
+        text-align: center;
+        width: 4em;
+        margin-left: -2em;
+
+        &:after {
+            content: "";
+            position: absolute;
+            border-left: 1px solid black;
+            top: -1em;
+            left: 50%;
+            margin-left: -1px;
+            height: 1em;
+            z-index: -1;
+        }
+    }
+}
+
+///////////////
+// about section
+// 
+
+#about {
+    margin: 154px auto;
+    width: 600px;
+    font-family: $sansFontFamily;
+    line-height: 1.6;
+
+    h1 {
+        font-size: $phi * 1em;
+        margin-top: 1.5em;
+        margin-bottom: 1em;
+
+        small {
+            font-size: 0.5em;
+        }
+    }
+
+    h2 {
+        font-size: $phi * 0.75em;
+        margin-top: 1.5em;
+        margin-bottom: 1em;
+    }
+
+    p {
+        margin-bottom: 1em;
+    }
+
+    #legend-visualization {
+        width: 100%;
+        padding-right: 10px;
+        margin-bottom: 5px;
+
+        .material {
+            display: block;
+            margin: auto;
+        }
+    }
+
+    .legend {
+        margin: auto;
+        width: 100%;
+        margin-bottom: 3em;
+
+        abbr {
+            width: 33.33%;
+        }
+    }
+
+    .ctrl-back {
+        display: inline-block;
+        font-size: 20px;
+        padding: 0.5em 1em;
+
+        &:before {
+            font-family: 'icomoon';
+            @extend .icon-chevron-left:before;
+            margin-right: 0.75em;
+        }
+
+        @include border-radius( 5px );
+    }
+
+    #disqus_thread {
+        margin-top: 3em;
+    }
+}
+
+#periodic-table {
+    position: absolute;
+    top: $headerHeight;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    z-index: 1;
+    padding-right: 0;
+
+    .contents {
+        position: relative;
+        margin: 20px 20px 360px;
+        padding-right: 40px;
+
+        @include box-sizing( content-box );
+
+        @include transform( translateZ(0) );
+        @include transition( all 0.3s ease-out );
+    }
+
+    .info {
+        display: none;
+        width: 368px;
+        height: 222px;
+        padding: 1.6em 1.6em 1.6em 0;
+        overflow: hidden;
+        z-index: 3;
+        @include border-radius( 5px );
+
+        .symbol {
+            display: block;
+            width: 2.6em;
+            text-align: center;
+            float: left;
+            font-size: 60px;
+            font-family: 'Droid Sans', sans-serif;
+
+            &:after {
+                content: attr(title);
+                display: block;
+                margin-top: 0.8em;
+                font-size: 16px;
+                font-family: $monoFontFamily;
+            }
+        }
+
+        .above {
+            @include clearfix;
+            margin-bottom: 1em;
+        }
+
+        .details {
+            overflow: hidden;
+            padding-top: 1em;
+            font-size: 14px;
+
+            .line {
+                margin-bottom: 1em;
+                text-transform: capitalize;
+
+                div {
+                    display: inline-block;
+                    vertical-align: middle;
+                    text-align: center;
+                    width: 50%;
+                }
+
+                div:first-child {
+                    width: 40%;
+                    text-align: right;
+                }
+            }
+        }
+
+        .magnetic-response,
+        .state-response {
+            display: none;
+            width: 100%;
+            text-align: center;
+
+            @extend .legend;
+
+            abbr.stp {
+                color: transparent !important;
+            }
+        }
+    }
+
+    &.magnetic .info .magnetic-response {
+        display: block;
+    }
+
+    &.states .info .state-response {
+        display: block;
+    }
+}
+
+.element {
+    font-size: 30px;
+    width: 2.1em;
+    height: 2.8em;
+    border: 1px solid black;
+    text-align: center;
+    cursor: pointer;
+    
+    @include transition( transform 0.5s ease-in-out );
+
+    .inner {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .number {
+        position: absolute;
+        top: 0.4em;
+        right: 0.5em;
+        font-size: 12px;
+    }
+
+    .symbol {
+        position: absolute;
+        top: 0.75em;
+        left: 0px;
+        right: 0px;
+        // font-weight: bold;
+        font-family: 'Droid Sans', sans-serif;
+        
+        -webkit-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.15));
+           -moz-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.15));
+            -ms-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.15));
+             -o-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.15));
+                filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.15));
+    }
+
+    .details {
+        position: absolute;
+        bottom: .4em;
+        left: 0px;
+        right: 0px;
+        font-size: 10px;
+        text-rendering: optimizeLegibility;
+        word-wrap: break-word;
+        line-height: 1;
+    }
+}
+
+#periodic-table {
+    .info {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+    }
+}
+
+#periodic-table.mini-table {
+
+    .contents {
+        margin: 20px 20px;
+    }
+
+    .element {
+        font-size: 16px;
+
+        .symbol {
+            top: 1.3em;
+        }
+
+        .number {
+            top: auto;
+            top: 0.2em;
+            right: 0.25em;
+        }
+
+        .details {
+            display: none;
+        }
+    }
+}
+
+.reveal-legend #periodic-table[data-table-style="short"] .contents {
+    margin-top: 60px;
+}
+
+/////////////////////////
+// Dipole visualizations
+// 
+
+#dipole-visualization,
+#legend-visualization {
+
+    width: (180px + 34px) * 2;
+    margin: 2em auto;
+    
+    .material {
+        width: 180px;
+        display: inline-block;
+        margin: 0 1em 1em;
+
+        &:after {
+            content: attr(data-title);
+            width: 100%;
+            text-align: center;
+            display: block;
+        }
+    }
+    
+    .dipole {
+        position: relative;
+        display: inline-block;
+        width: 4px;
+        height: 30px;
+        background: black;
+        margin: 10px;
+        @include transition( all 0.3s ease-in-out );
+        
+        &:after {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: -8px;
+            border: 10px solid black;
+            border-color: transparent transparent black;
+        }
+    }
+}
+
+#legend-visualization {
+    width: 180px;
+}
+
+
+//////////////////////////////////
+// Site skins controlled by mixin
+// 
+@mixin site-skin(
+    $background: #333,
+    $text: #aff,
+    $textHeading: #fafafa,
+    $highlight: rgba(0, 255, 255, 1),
+    $link: rgba(0, 255, 255, 1),
+    $elementText: rgba(255, 255, 255, 0.75),
+    $elementBg: #333,
+    $diaColor: blue,
+    $paraColor: rgb(112, 33, 33),
+    $paraBg: image-url('para-texture-grey.png'),
+    $antiColor: cyan,
+    $antiColor2: white,
+    $ferroColor: rgb(255, 0, 0),
+    $ferroColor2: black,
+
+    $gasColor: rgb(200, 226, 255),
+    $liquidColor: rgb(100, 170, 197),
+    $solidColor: rgb(83, 102, 119)
+){
+
+@include selecter($background, $text, $highlight);
+
+& {
+    background: darken($background, 5);
+}
+
+#about {
+    color: darken($textHeading, 15);
+
+    a {
+        color: $highlight;
+    }
+
+    strong {
+        font-weight: bold;
+    }
+
+    .ctrl-back {
+        background: darken($background, 10);
+        color: $textHeading;
+        // border: 2px solid darken($background, 10);
+
+        @include transition( background 0.3s ease-out );
+
+        &:hover {
+            background: darken($background, 15);
+        }
+
+        &:active {
+            background: darken($background, 15);
+        }     
+    }
+}
+
+.toggler {
+
+    button {
+        background: $background;
+        color: $text;
+        border: 1px solid transparentize($highlight, 0.6);
+        @include transition( all 0.3s ease-out );
+
+        &:hover {
+            border-color: transparentize($highlight, 0.2);
+        }
+
+        &:active {
+            // color: yellow;
+        }
+
+        &.on {
+            color: mix($background, $highlight, 98);
+            background: transparentize($highlight, 0.2);
+            border-color: transparentize($highlight, 0.2);
+            @include box-shadow( 1px 1px 2px rgba(0, 0, 0, 0.5) inset );
+        }
+    }
+}
+
+#site-header {
+    background: $background;
+    color: $text;
+    
+    h1,
+    .subtitle {
+        color: $textHeading;
+    }
+
+    a {
+        color: $textHeading;
+    }
+
+    ul a {
+        background: transparentize($highlight, 1);
+        color: $textHeading;
+        border: 2px solid $background;
+
+        @include transition( background 0.3s ease-out );
+
+        &:hover {
+            background: darken($background, 10);
+        }
+
+        &:active {
+            background: darken($background, 15);
+        }        
+    }
+}
+
+#controls {
+    
+    .ctrl-toggle,
+    .ctrl-toggle-legend {
+        background: transparentize($highlight, 1);
+        color: $textHeading;
+        cursor: pointer;
+        
+        @include transition( background 0.3s ease-out );
+    }
+}
+
+.reveal #controls .ctrl-toggle-controls,
+.reveal-video #controls .ctrl-toggle-video,
+.reveal-legend #controls .ctrl-toggle-legend {
+    background: darken(mix($background, $highlight, 60), 5);
+}
+
+#controls .ctrl-toggle,
+#controls .ctrl-toggle-legend {
+    &:hover {
+        background: darken($background, 10);
+    }
+
+    &:active {
+        background: darken($background, 15);
+    }        
+}
+
+#video-area,
+#settings-area,
+#legend-area {
+    color: $highlight;
+    background: $background;
+    border: 1px solid darken($background, 10);
+}
+
+#periodic-table {
+    background: darken($background, 5);
+
+    .info {
+
+        background: $background;
+        color: $text;
+        border: 1px solid darken($background, 10);
+
+        .symbol {
+            color: $elementText;
+        }
+
+        .details {
+            color: darken(invert($background), 15);
+        }
+    }
+}
+
+#periodic-table .info .state-response,
+#periodic-table .info .magnetic-response,
+.legend {
+    abbr {
+        border: 1px solid mix(invert($background), $background, 30);
+    }
+
+    data:after {
+        border-color: $highlight;
+    }
+}
+
+.element {
+    border: 1px solid transparentize(lighten($highlight, 24), 0.75);
+    
+    .inner {
+        background: $elementBg;
+        outline: 1px solid transparent;
+        @include transition( background-color 0.3s ease-out, outline-color 0.3s ease-out );
+    }
+    
+    &:hover .inner {
+        .symbol {
+            color: $highlight;
+        }
+
+        outline-color: $highlight;
+    }
+    
+    .number {
+        color: transparentize($highlight, 0.4);
+    }
+
+    .symbol {
+        color: $elementText;
+        @include transition( color 0.3s ease-out );
+    }
+
+    .details {
+        color: transparentize(mix($highlight, $text, 5), 0.3);
+        text-rendering: optimizeLegibility;
+        word-wrap: break-word;
+        line-height: 1;
+    }
+}
+
+
+#periodic-table {
+    .highlight .inner {
+        background: $highlight;
+        &,
+        > * {
+            color: mix($background, $highlight, 80);
+        }
+    }
+}
+
+#periodic-table.magnetic,
+#about,
+#legend-area {
+    
+    [data-magnetic-order="dia"] > .inner,
+    .info abbr.dia,
+    .legend abbr.dia,
+    .element.dia > .inner {
+        background: $diaColor;
+
+        &,
+        > * {
+            @include text-shadow( none );
+        }
+    }
+
+    [data-magnetic-order="ferro"], 
+    .info abbr.ferro,
+    .legend abbr.ferro,
+    .element.ferro {
+        background: $ferroColor2;
+
+        &,
+        .inner > * {
+            color: invert($ferroColor2);
+            @include text-shadow( none );
+        }
+
+        .inner {
+            background: none;
+        }
+
+        &:after {
+            position: absolute;
+            top: 0;
+            z-index: -1;
+            content: "";
+            display: block;
+            height: 50%;
+            width: 100%;
+            background: $ferroColor;
+        }
+    }
+
+    [data-magnetic-order="anti"], 
+    .info abbr.anti,
+    .legend abbr.anti,
+    .element.anti {
+        background: $antiColor2;
+        color: black;
+
+        &,
+        .inner > * {
+            color: invert($antiColor2);
+            @include text-shadow( none );
+        }
+
+        .inner {
+            background: none;
+        }
+
+        &:after {
+            position: absolute;
+            top: 0;
+            z-index: -1;
+            content: "";
+            display: block;
+            height: 50%;
+            width: 100%;
+            background: $antiColor;
+        }
+    }
+
+    [data-magnetic-order="para"] .inner, 
+    .info abbr.para,
+    .legend abbr.para,
+    .element.para .inner {
+
+        &,
+        > * {
+            color: white;
+            @include text-shadow( 0 0 6px black );
+        }
+        
+        background: $paraColor $paraBg repeat center 0;
+        background-size: 180px;
+    }
+}
+
+#periodic-table.states,
+#about,
+#legend-area {
+    
+    [data-state="gas"] > .inner,
+    .legend abbr.gas,
+    .info abbr.gas,
+    .element.gas > .inner {
+        &,
+        > * {
+            @if (lightness($gasColor) < 50){
+                color: mix($text, white, 10);
+            } @else {
+                color: mix($text, black, 10);
+            }
+        }
+        background: $gasColor;
+    }
+
+    [data-state="liquid"] > .inner,
+    .legend abbr.liquid,
+    .info abbr.liquid,
+    .element.liquid > .inner {
+        &,
+        > * {
+            @if (lightness($liquidColor) < 50){
+                color: mix($text, white, 10);
+            } @else {
+                color: mix($text, black, 10);
+            }
+        }
+        background: $liquidColor;
+    }
+
+    [data-state="solid"] > .inner,
+    .info abbr.solid,
+    .legend abbr.solid,
+    .element.solid > .inner {
+        &,
+        > * {
+            @if (lightness($solidColor) < 50){
+                color: mix($text, white, 10);
+            } @else {
+                color: mix($text, black, 10);
+            }
+        }
+        background: $solidColor;
+    }
+
+    .info abbr.unknown,
+    .legend abbr.unknown {
+        color: $text;
+        background: $elementBg;
+    }
+}
+
+#periodic-table.magnetic.highlight,
+#periodic-table.states.highlight {
+    .element {
+        @include opacity( 0.1 );
+        @include transition( opacity 0.3s ease-out );
+    }
+
+    .element.highlight {
+        @include opacity( 1 );
+    }
+}
+
+.ctrl-temperature,
+.temp-slider {
+
+    .noUi-base {
+        border-color: darken($background, 50);
+    }
+    .noUi-handle {
+        background: $background;
+        color: $highlight;
+        border: 1px solid darken($background, 50);
+
+        &:hover {
+            border-color: transparentize($highlight, 0.6);
+        }
+    }
+}
+
+#dipole-visualization,
+#legend-visualization {
+
+    .dipole {
+        background: $textHeading;
+
+        &:after {
+            border-color: transparent transparent $textHeading;
+        }
+    }
+    
+    .ferro .dipole {
+        background: $ferroColor;
+
+        &:after {
+            border-color: transparent transparent $ferroColor;
+        }
+    }
+    
+    .anti {
+
+        .dipole {
+            background: $textHeading;
+
+            &:after {
+                border-color: transparent transparent $textHeading;
+            }
+        }
+
+        .dipole:nth-child(2n){
+            background: $antiColor;
+                
+            &:after {
+                border-color: transparent transparent $antiColor;
+            }
+        }
+    }
+}
+
+#disqus_thread {
+    p {
+        color: $textHeading;
+    }
+
+    a {
+        color: $highlight;
+    }
+}
+
+} // mixin
+
+body {
+    @include site-skin(
+        $elementBg: #333333,
+        $diaColor: #204671
+    );
+}
+
+body.light-skin {
+    @include site-skin(
+        $background: #fff,
+        $text: #411,
+        $textHeading: #222,
+        $highlight: rgba(180, 0, 0, 1),
+        $link: rgba(200, 0, 0, 1),
+        $elementBg: rgb(221, 220, 220),
+        $elementText: rgba(0, 0, 0, 0.75),
+        $diaColor: hsl(180, 78%, 93%),
+        $paraColor: rgb(182, 68, 68),
+        $paraBg: image-url('para-texture-grey.png'),
+        $antiColor2: #fafafa
+    );
+}
+
+#viewport #periodic-table .contents {
+    background: image-url('big-logo-inverse.png') no-repeat 200px 40px;
+    background-size: 260px;
+}
+
+.light-skin #viewport #periodic-table .contents {
+    background: image-url('big-logo.png') no-repeat 200px 40px;
+    background-size: 260px;
+}
+
+#viewport #periodic-table.mini-table[data-table-style="short"] .contents {
+    background-position: 200px 0;
+    background-size: 130px;
+}

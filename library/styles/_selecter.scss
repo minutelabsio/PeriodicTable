@@ -1,0 +1,212 @@
+/*
+ * Selecter Plugin [Formstone Library]
+ * @author Ben Plum
+ * @version 2.1.2
+ *
+ * Copyright © 2013 Ben Plum <mr@benplum.com>
+ * Released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
+ */
+
+@mixin selecter($background, $text, $highlight){
+
+    .selecter-element { 
+        *left: -999999px;
+        position: absolute;
+        opacity: 0;
+        height: 0;
+        margin: 0;
+        border: 0;
+        width: 0;
+    }
+    .selecter { 
+        display: inline-block;
+        margin: 0;
+        position: relative;
+        z-index: 1;
+    }
+    .selecter .selecter-selected { 
+        background: $background;
+        border: 1px solid mix(invert($background), $background, 20);
+        @include border-radius( 3px );
+        color: $text;
+        cursor: pointer;
+        display: block;
+        font-size: 1em;
+        margin: 0;
+        overflow: hidden;
+        padding: 6px 30px 6px 10px;
+        position: relative;
+        text-overflow: clip;
+        z-index: 49;
+
+        &:after {
+            content: '';
+            border: 6px solid invert($background);
+            border-color: invert($background) transparent transparent;
+            position: absolute;
+            top: .8em;
+            right: 12px;
+        }
+
+        &:hover{
+            border-color: $highlight;
+
+            &:after {
+                border-color: $highlight transparent transparent;
+            }
+        }
+    }
+    .selecter .selecter-options { 
+        background-color: $background;
+        border: 1px solid mix(invert($background), $background, 20);
+        border-top: none;
+        @include border-radius( 0 0 3px 3px );
+        display: none;
+        left: 0;
+        margin: 0;
+        max-height: 260px;
+        overflow: auto;
+        overflow-x: hidden;
+        padding: 0;
+        position: absolute;
+        top: 100%;
+        width: 100%;
+        *width: auto;
+        z-index: 50;
+    }
+    .selecter .selecter-group { 
+        background: $background;
+        border-bottom: 1px solid mix(invert($background), $background, 20);
+        color: $text;
+        display: block;
+        font-size: 11px;
+        padding: 5px 10px 4px;
+        text-transform: uppercase;
+    }
+    .selecter .selecter-item { 
+        background: $background;
+        border-bottom: 1px solid mix(invert($background), $background, 20);
+        color: $text;
+        cursor: pointer;
+        display: block;
+        font-size: 1em;
+        margin: 0;
+        overflow: hidden;
+        padding: 14px 10px;
+        text-overflow: ellipsis;
+        width: 100%;
+    }
+    .selecter .selecter-item.selected { 
+        background: $background;
+    }
+    .selecter .selecter-item.first { 
+        @include border-radius( 0 );
+    }
+    .selecter .selecter-item.last { 
+        @include border-radius( 0 0 3px 3px );
+        border-bottom: 0;
+    }
+
+    @media screen and (min-width: 740px) {
+        .selecter .selecter-item:hover, 
+        .selecter .selecter-item.selected:hover { 
+            color: $background;
+            background-color: $highlight;
+        }
+        
+        .selecter:hover .selecter-selected { 
+            
+        }
+        
+        .selecter.disabled .selecter-item:hover { 
+            background: mix($text, $background, 20);
+        }
+    }
+
+    /* Open */
+    .selecter.open { 
+        z-index: 3;
+    }
+    .selecter.open .selecter-selected { 
+        border-radius: 3px 3px 0 0;
+        z-index: 51;
+    }
+
+    .selecter.open .selecter-selected, 
+    .selecter.focus .selecter-selected { 
+        background-color: $background;
+    }
+
+    /* 'Cover' Positioning */
+    .selecter.cover .selecter-options { 
+        @include border-radius( 3px );
+        border-width: 1px;
+        top: 0;
+    }
+    .selecter.cover .selecter-options .selecter-item.first { 
+        @include border-radius( 3px 3px 0 0 );
+    }
+    .selecter.cover.open .selecter-selected { 
+        @include border-radius( 3px 3px 0 0 );
+        z-index: 49;
+    }
+
+    /* 'Bottom' Positioning */
+    .selecter.bottom .selecter-options { 
+        border-width: 1px 1px 0;
+        bottom: 100%;
+        top: auto;
+    }
+    .selecter.bottom .selecter-item.last { 
+        border: none;
+    }
+    .selecter.bottom.open .selecter-selected { 
+        @include border-radius( 0 0 3px 3px );
+    }
+    .selecter.bottom.open .selecter-options { 
+        @include border-radius( 3px 3px 0 0 );
+    }
+
+    /* 'Bottom' + 'Cover' Positioning */
+    .selecter.bottom.cover .selecter-options { 
+        bottom: 0;
+        top: auto;
+    }
+    .selecter.bottom.cover.open .selecter-selected { 
+        @include border-radius( 3px );
+    }
+    .selecter.bottom.cover.open .selecter-options { 
+        @include border-radius( 3px );
+    }
+
+    /* Multiple Select */
+    .selecter.multiple .selecter-options { 
+        @include border-radius( 3px );
+        border-width: 1px;
+        box-shadow: none;
+        display: block;
+        position: static;
+        width: 100%;
+    }
+
+    /* 'Disabled' State */
+    .selecter.disabled .selecter-selected { 
+        background: #fff;
+        border-color: #eee;
+        color: #ccc;
+        cursor: default;
+    }
+    .selecter.disabled .selecter-options { 
+        background: #fff;
+        border-color: #eee;
+    }
+    .selecter.disabled .selecter-group,
+    .selecter.disabled .selecter-item { 
+        border-color: #eee;
+        color: #ccc;
+        cursor: default;
+    }
+    .selecter.disabled .selecter-item.selected { 
+        background: #fafafa;
+    }
+}
