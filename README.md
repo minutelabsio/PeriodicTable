@@ -1,6 +1,6 @@
 # The Minute Physics Periodic Table
 
-[Visit the Minute Physics Periodic Table](http://table.minutephysics.com).
+[Visit the Minute Physics Periodic Table](http://labs.minutelabs.io/PeriodicTable/).
 
 Concept, research, and artwork by [Minute Physics](http://minutephysics.com) ( Henry Reich ).
 
